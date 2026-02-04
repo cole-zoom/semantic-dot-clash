@@ -151,14 +151,71 @@ The `score_deck()` function evaluates your deck across multiple dimensions:
 
 ---
 
-## Card Data
+## Lance Schema
 
-The cards table includes:
-- **id, name, elixir, type, rarity** - basic stats
-- **description** - official card description
-- **vibe** - AI-generated description of how the card "feels" to play
-- **role_tags** - semantic roles like "win condition", "anti-air", "splash"
-- **combined_embedding** - 2048-dim vector (1536 text + 512 image from CLIP)
+Three tables, because why stop at one when you can over-engineer everything.
+
+### Cards Table
+
+The main event. Every card in the game with multimodal embeddings and vibe annotations.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | int64 | Unique card ID from Clash Royale API |
+| `name` | string | Official card name |
+| `rarity` | string | Common, Rare, Epic, Legendary, Champion |
+| `type` | string | Troop, Spell, Building |
+| `elixir` | int32 | Elixir cost (1-10) |
+| `description` | string | Official card description |
+| `image` | binary | Raw image bytes for card artwork |
+| `image_embedding` | float[512] | Visual embedding from CLIP |
+| `text_embedding` | float[1536] | Semantic embedding from text-embedding-3-small |
+| `combined_embedding` | float[2048] | Concatenation of text + image embeddings (this is what we search) |
+| `role_tags` | list\<string\> | Tactical roles: "win condition", "cycle", "splash", "tank", "anti-air" |
+| `vibe_tags` | list\<string\> | Player perception: "toxic", "annoying", "spammy", "wholesome", "tryhard" |
+| `crowd_ratings` | map\<string, float\> | Aggregated vibe ratings (e.g., `{"toxic": 0.73}`) |
+| `llm_vibe_summary` | string | GPT-generated summary of how players perceive the card |
+
+### Archetypes Table
+
+High-level deck styles and meta archetypes (Hog Cycle, Lava Loon, Log Bait, etc.).
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | string | Unique archetype ID (e.g., "hog_cycle") |
+| `name` | string | Human-readable name |
+| `description` | string | Playstyle and strategy description |
+| `example_decks` | list\<list\<int64\>\> | Example decks as arrays of card IDs |
+| `embedding` | float[768] | Semantic embedding of the description |
+| `tags` | list\<string\> | Tactical tags: "cycle", "control", "air", "aggro", "beatdown" |
+| `meta_strength` | float | Performance score / win-rate indicator |
+| `playstyle_vibes` | list\<string\> | Vibe tags: "annoying", "spammy", "toxic", "off-meta" |
+| `vibe_embedding` | float[768] | Embedding for semantic vibe filtering |
+| `llm_vibe_summary` | string | Natural language summary of the archetype's "feel" |
+
+### Decks Table
+
+Specific 8-card decks with synergy analysis and vibe ratings.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | string | Unique deck ID (UUID or hash) |
+| `card_ids` | int64[8] | The 8 card IDs that compose the deck |
+| `archetype_id` | string | Foreign key to archetype |
+| `average_elixir` | float | Auto-computed average elixir |
+| `roles` | list\<string\> | Summary of tactical roles in the deck |
+| `deck_embedding` | float[1024] | Combined embedding of all 8 cards |
+| `synergy_embedding` | float[768] | Embedding capturing how cards work together |
+| `meta_score` | float | Win-rate / usage rate / meta strength |
+| `user_labels` | list\<string\> | Player labels: "toxic", "tryhard", "meme", "casual" |
+| `crowd_ratings` | map\<string, float\> | Aggregated vibe ratings |
+| `llm_vibe_summary` | string | GPT classification of the deck's vibe |
+| `conflict_tags` | list\<string\> | Counter strategies: "hard counter air", "anti-swarm" |
+| `combo_notes` | string | GPT-generated description of key synergies |
+
+### Why all the vibe stuff?
+
+Because Clash Royale players have *feelings* about cards. Asking for "a deck that isn't toxic" is a legitimate request, and the vibe embeddings let you search by that. The `crowd_ratings` and `llm_vibe_summary` fields capture community perception so you can build decks that match your desired energy level.
 
 ---
 
