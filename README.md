@@ -153,7 +153,7 @@ The `score_deck()` function evaluates your deck across multiple dimensions:
 
 ## Lance Schema
 
-Three tables, because why stop at one when you can over-engineer everything.
+Three tables, because why stop at one!
 
 ### Cards Table
 
@@ -251,16 +251,6 @@ semantic_dot_clash/
 └── pyproject.toml           # Package config
 ```
 
----
-
-## Why "Semantic"?
-
-Because keyword search sucks for this. You don't want to search "air defense" and miss Musketeer because its description says "targets" instead of "defense". Semantic search understands that "counters Lava Hound" and "anti-air splash" are related concepts.
-
-The embeddings capture both the *text identity* of a card (description, stats, roles) and the *visual identity* (what the card looks like, which correlates with gameplay feel). A chunky slow card looks different from a fast swarm card.
-
----
-
 ## Limitations
 
 - **Requires cloud services** - LanceDB Cloud + OpenAI API (not free)
@@ -276,10 +266,5 @@ MIT. Do whatever you want.
 
 ---
 
-## Contributing
-
-PRs welcome. If you improve the vibe descriptions or add better role tagging, that directly improves search quality.
-
----
 
 *Built because I got tired of losing to meta decks and wanted a robot to think for me.*
