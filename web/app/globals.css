@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --paper: #ffffff;
+  --ink: #1b1b1b;
+  --pencil: #6a6a6a;
+  --accent: #2f78b7;
+  --accent-soft: #d4e6f7;
+  --line: #1f1f1f;
+  --font-display: "Kalam";
+  --font-body: "Spectral";
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body), serif;
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgba(15, 15, 15, 0.04) 0px,
+    rgba(15, 15, 15, 0.04) 1px,
+    transparent 1px,
+    transparent 28px
+  );
+}
+
+::selection {
+  background: var(--accent-soft);
+}
+
+.sketch-panel {
+  border: 2px solid var(--line);
+  border-radius: 18px;
+  box-shadow: 4px 5px 0 rgba(0, 0, 0, 0.15);
+}
+
+.sketch-panel-sm {
+  border: 2px solid var(--line);
+  border-radius: 16px;
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.12);
+  padding: 16px;
+}
+
+.sketch-pill {
+  border: 2px solid var(--line);
+  border-radius: 999px;
+  padding: 8px 16px;
+  background: #fff;
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.12);
+}
+
+.sketch-chip {
+  border: 2px dashed var(--line);
+  border-radius: 999px;
+  padding: 6px 12px;
+  background: #fff;
+  font-size: 0.85rem;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+}
+
+.sketch-card {
+  border: 2px solid var(--line);
+  border-radius: 16px;
+  padding: 16px;
+  background: #fff;
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.12);
+}
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.prose table th,
+.prose table td {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 6px 8px;
+}
+
+.prose h2,
+.prose h3 {
+  font-family: var(--font-display), serif;
+}
