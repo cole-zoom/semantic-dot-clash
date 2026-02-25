@@ -81,6 +81,36 @@ python -m semantic_dot_clash --verbose "Build a defensive deck under 3.5 elixir"
 python -m semantic_dot_clash --model gpt-4o-mini "Quick aggressive deck"
 ```
 
+### Web App (chat UI)
+
+This repo includes a Next.js chat UI and a FastAPI backend that wraps the CLI agent.
+
+**Start the API server (Python):**
+
+```bash
+python -m semantic_dot_clash.web_api
+```
+
+**Start the frontend (Next.js):**
+
+```bash
+cd web
+npm install
+npm run dev
+```
+
+The UI expects the API at `http://localhost:8000` by default. To change it:
+
+```bash
+export NEXT_PUBLIC_API_URL="http://localhost:8000"
+```
+
+For CORS, you can customize:
+
+```bash
+export SDC_CORS_ORIGINS="http://localhost:3000"
+```
+
 ### Python API (the flexible way)
 
 ```python

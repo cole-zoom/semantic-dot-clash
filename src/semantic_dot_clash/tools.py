@@ -21,6 +21,8 @@ Usage:
 
 from __future__ import annotations
 
+import base64
+import io
 import os
 from dataclasses import dataclass, field
 from typing import Any
@@ -29,6 +31,7 @@ import lancedb
 import numpy as np
 from dotenv import load_dotenv
 from openai import OpenAI
+from PIL import Image
 
 load_dotenv()
 
@@ -170,7 +173,30 @@ class CardTools:
         
         return padded_embedding
     
-    def _clean_card_result(self, card: dict) -> dict:
+    def _infer_image_mime(self, image_bytes: bytes | None) -> str | None:
+        """Infer the MIME type for raw image bytes."""
+        if not image_bytes:
+            return None
+        try:
+            with Image.open(io.BytesIO(image_bytes)) as img:
+                fmt = (img.format or "").lower()
+        except Exception:
+            return "image/png"
+        if fmt == "jpeg":
+            return "image/jpeg"
+        if fmt:
+            return f"image/{fmt}"
+        return "image/png"
+
+    def _encode_image_data_url(self, image_bytes: bytes | None) -> str | None:
+        """Encode raw image bytes as a data URL string."""
+        if not image_bytes:
+            return None
+        mime = self._infer_image_mime(image_bytes) or "image/png"
+        encoded = base64.b64encode(image_bytes).decode("ascii")
+        return f"data:{mime};base64,{encoded}"
+
+    def _clean_card_result(self, card: dict, include_image: bool = False) -> dict:
         """
         Clean a card result by removing embedding fields for readability.
         
@@ -182,8 +208,11 @@ class CardTools:
         """
         # Fields to exclude from results
         embedding_fields = {"text_embedding", "image_embedding", "combined_embedding", "image"}
-        
-        return {k: v for k, v in card.items() if k not in embedding_fields}
+
+        cleaned = {k: v for k, v in card.items() if k not in embedding_fields}
+        if include_image:
+            cleaned["image_data_url"] = self._encode_image_data_url(card.get("image"))
+        return cleaned
     
     def search_cards(
         self,
@@ -193,6 +222,7 @@ class CardTools:
         type: str | None = None,
         rarity: str | None = None,
         limit: int = 10,
+        include_images: bool = False,
     ) -> list[dict]:
         """
         Search cards semantically with optional filters.
@@ -242,12 +272,13 @@ class CardTools:
         results = search.limit(limit).to_list()
         
         # Clean results
-        return [self._clean_card_result(card) for card in results]
+        return [self._clean_card_result(card, include_image=include_images) for card in results]
     
     def similar_cards(
         self,
         card_id: int,
         limit: int = 5,
+        include_images: bool = False,
     ) -> list[dict]:
         """
         Find cards similar to a given card.
@@ -287,7 +318,7 @@ class CardTools:
         similar = []
         for card in results:
             if card["id"] != card_id:
-                similar.append(self._clean_card_result(card))
+                similar.append(self._clean_card_result(card, include_image=include_images))
                 if len(similar) >= limit:
                     break
         
@@ -297,6 +328,7 @@ class CardTools:
         self,
         card_id: int,
         include_embeddings: bool = False,
+        include_image: bool = False,
     ) -> dict | None:
         """
         Fetch a card by ID.
@@ -333,7 +365,7 @@ class CardTools:
         if include_embeddings:
             return card
         else:
-            return self._clean_card_result(card)
+            return self._clean_card_result(card, include_image=include_image)
     
     def _calculate_synergy_score(self, embeddings: list[list[float]]) -> float:
         """
@@ -440,7 +472,7 @@ class CardTools:
         
         return min(100, max(0, score))
     
-    def score_deck(self, card_ids: list[int]) -> DeckScore:
+    def score_deck(self, card_ids: list[int], include_images: bool = False) -> DeckScore:
         """
         Evaluate a deck for balance and constraints.
         
@@ -544,7 +576,9 @@ class CardTools:
         )
         
         # Clean cards for output (remove embeddings)
-        cleaned_cards = [self._clean_card_result(card) for card in cards]
+        cleaned_cards = [
+            self._clean_card_result(card, include_image=include_images) for card in cards
+        ]
         
         return DeckScore(
             avg_elixir=round(avg_elixir, 2),

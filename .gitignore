@@ -104,6 +104,10 @@ cython_debug/
 ehthumbs.db
 Thumbs.db
 
+# Web app build artifacts
+web/node_modules/
+web/.next/
+
 # Data files (optional - uncomment if you don't want to track these)
 # data/*.json
 # data/lance_db/
