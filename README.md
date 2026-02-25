@@ -12,7 +12,7 @@ An LLM agent with tools. You give it a natural language request, it uses semanti
 
 The secret sauce: every card has been embedded with both text descriptions AND image embeddings (via CLIP), so the search actually understands card identity beyond just keywords. Ask for "swarm control" and it knows you probably want Fireball or Arrows, not the Giant.
 
-### The Architecture (for nerds)
+### The Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -262,7 +262,7 @@ semantic_dot_clash/
 
 ## License
 
-MIT. Do whatever you want.
+MIT. Do whatever you want :)
 
 ---
 
