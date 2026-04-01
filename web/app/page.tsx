@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
@@ -11,6 +11,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+const SESSION_STORAGE_KEY = "semantic-dot-clash-chat";
 
 type Card = {
   id: number;
@@ -37,6 +38,24 @@ type DeckResponse = {
   tower_card?: Card | null;
 };
 
+type ChatMessageResponse = {
+  session_id: string;
+  response_markdown: string;
+  avg_elixir: number;
+  cards: Card[];
+  tower_card?: Card | null;
+  turn_index: number;
+  used_summary: boolean;
+};
+
+type ChatSessionStateResponse = {
+  session_id: string;
+  avg_elixir: number;
+  cards: Card[];
+  tower_card?: Card | null;
+  turn_count: number;
+};
+
 type Message = {
   id: string;
   role: "user" | "assistant";
@@ -53,23 +72,130 @@ const samplePrompts = [
   "A wholesome, low-toxicity deck for ladder",
 ];
 
+function createSessionId(): string {
+  return crypto.randomUUID();
+}
+
+function stripCardImages(card?: Card | null): Card | null | undefined {
+  if (!card) return card;
+  return {
+    ...card,
+    image_data_url: null,
+  };
+}
+
+function sanitizeMessagesForStorage(messages: Message[]): Message[] {
+  return messages.map((message) => ({
+    ...message,
+    cards: message.cards?.map((card) => stripCardImages(card) as Card),
+    towerCard: stripCardImages(message.towerCard) as Card | null | undefined,
+  }));
+}
+
 export default function Home() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [sessionId, setSessionId] = useState("");
+  const [hasRestoredSession, setHasRestoredSession] = useState(false);
 
   const latestDeck = useMemo(() => {
     return [...messages].reverse().find((msg) => msg.role === "assistant");
   }, [messages]);
 
+  useEffect(() => {
+    const raw = window.sessionStorage.getItem(SESSION_STORAGE_KEY);
+    if (!raw) {
+      setSessionId(createSessionId());
+      setHasRestoredSession(true);
+      return;
+    }
+
+    try {
+      const parsed = JSON.parse(raw) as {
+        sessionId?: string;
+        messages?: Message[];
+      };
+      setSessionId(parsed.sessionId || createSessionId());
+      setMessages(Array.isArray(parsed.messages) ? parsed.messages : []);
+    } catch {
+      window.sessionStorage.removeItem(SESSION_STORAGE_KEY);
+      setSessionId(createSessionId());
+    } finally {
+      setHasRestoredSession(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!hasRestoredSession || !sessionId) return;
+
+    window.sessionStorage.setItem(
+      SESSION_STORAGE_KEY,
+      JSON.stringify({
+        sessionId,
+        messages: sanitizeMessagesForStorage(messages),
+      })
+    );
+  }, [hasRestoredSession, messages, sessionId]);
+
+  useEffect(() => {
+    if (!hasRestoredSession || !sessionId || messages.length === 0) return;
+
+    let cancelled = false;
+
+    async function hydrateLatestDeck() {
+      try {
+        const response = await fetch(
+          `${API_URL}/api/chat/session/${encodeURIComponent(sessionId)}`
+        );
+
+        if (response.status === 404) {
+          if (cancelled) return;
+          window.sessionStorage.removeItem(SESSION_STORAGE_KEY);
+          setMessages([]);
+          setSessionId(createSessionId());
+          return;
+        }
+
+        if (!response.ok) return;
+
+        const data = (await response.json()) as ChatSessionStateResponse;
+        if (cancelled) return;
+
+        setMessages((prev) => {
+          const next = [...prev];
+          for (let i = next.length - 1; i >= 0; i -= 1) {
+            if (next[i].role === "assistant") {
+              next[i] = {
+                ...next[i],
+                cards: data.cards,
+                towerCard: data.tower_card,
+                avgElixir: data.avg_elixir,
+              };
+              break;
+            }
+          }
+          return next;
+        });
+      } catch {
+        // Leave the session restored from sessionStorage even if rehydration fails.
+      }
+    }
+
+    void hydrateLatestDeck();
+    return () => {
+      cancelled = true;
+    };
+  }, [hasRestoredSession, messages.length, sessionId]);
+
   const handleSend = async () => {
-    const prompt = input.trim();
-    if (!prompt || isLoading) return;
+    const message = input.trim();
+    if (!message || isLoading || !sessionId) return;
 
     const newMessage: Message = {
       id: crypto.randomUUID(),
       role: "user",
-      content: prompt,
+      content: message,
     };
 
     setMessages((prev) => [...prev, newMessage]);
@@ -77,10 +203,13 @@ export default function Home() {
     setIsLoading(true);
 
     try {
-      const response = await fetch(`${API_URL}/api/deck`, {
+      const response = await fetch(`${API_URL}/api/chat/message`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt }),
+        body: JSON.stringify({
+          session_id: sessionId,
+          message,
+        }),
       });
 
       if (!response.ok) {
@@ -88,7 +217,7 @@ export default function Home() {
         throw new Error(errorText || "Deck build failed");
       }
 
-      const data = (await response.json()) as DeckResponse;
+      const data = (await response.json()) as ChatMessageResponse;
 
       const assistantMessage: Message = {
         id: crypto.randomUUID(),
@@ -112,6 +241,30 @@ export default function Home() {
       setMessages((prev) => [...prev, assistantMessage]);
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleRestart = async () => {
+    if (isLoading) return;
+
+    const oldSessionId = sessionId;
+    const nextSessionId = createSessionId();
+
+    setMessages([]);
+    setInput("");
+    setSessionId(nextSessionId);
+    window.sessionStorage.removeItem(SESSION_STORAGE_KEY);
+
+    if (!oldSessionId) return;
+
+    try {
+      await fetch(`${API_URL}/api/chat/reset`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ session_id: oldSessionId }),
+      });
+    } catch {
+      // Local reset is enough to satisfy the ephemeral UX if the server call fails.
     }
   };
 
@@ -176,9 +329,18 @@ export default function Home() {
             <div className="sketch-panel bg-white p-6">
               <div className="flex items-center justify-between">
                 <h3 className="font-display text-2xl">Chat Console</h3>
-                <span className="text-xs uppercase tracking-[0.35em] text-pencil">
-                  Live Build
-                </span>
+                <div className="flex items-center gap-3">
+                  <span className="text-xs uppercase tracking-[0.35em] text-pencil">
+                    Live Build
+                  </span>
+                  <Button
+                    variant="ghost"
+                    onClick={handleRestart}
+                    disabled={isLoading}
+                  >
+                    Restart Chat
+                  </Button>
+                </div>
               </div>
 
               <div className="mt-4 max-h-[420px] space-y-4 overflow-y-auto pr-2">
@@ -226,7 +388,7 @@ export default function Home() {
                 />
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <p className="text-xs text-pencil">
-                    Powered by the CLI agent and LanceDB embeddings.
+                    Powered by the chat agent and LanceDB embeddings.
                   </p>
                   <Button
                     variant="accent"
