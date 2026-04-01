@@ -159,7 +159,17 @@ def test_similar_cards(tools: CardTools, card_id: int) -> None:
         print("\n  SUCCESS! Source card correctly excluded from results")
 
 
-def test_score_deck(tools: CardTools, card_ids: list[int]) -> None:
+def get_tower_card_id(tools: CardTools) -> int:
+    """Fetch a tower troop ID for deck scoring tests."""
+    results = tools.search_cards("tower troop", type="Tower Troop", limit=3)
+    if not results:
+        raise ValueError("No tower troops found in database")
+    tower_card = results[0]
+    print(f"\n  Selected tower troop: {tower_card['name']} (ID: {tower_card['id']})")
+    return tower_card["id"]
+
+
+def test_score_deck(tools: CardTools, card_ids: list[int], tower_card_id: int) -> None:
     """Test score_deck functionality."""
     print_header("TEST: score_deck")
     
@@ -174,12 +184,16 @@ def test_score_deck(tools: CardTools, card_ids: list[int]) -> None:
     
     print(f"\n  Scoring deck with {len(card_ids)} cards...")
     print(f"  Card IDs: {card_ids}")
+    print(f"  Tower Card ID: {tower_card_id}")
     
-    score = tools.score_deck(card_ids)
+    score = tools.score_deck(battle_card_ids=card_ids, tower_card_id=tower_card_id)
     
     print(f"\n  Deck Cards:")
-    for i, card in enumerate(score.cards, 1):
+    for i, card in enumerate(score.battle_cards, 1):
         print(f"    [{i}] {card['name']} - {card['elixir']} elixir")
+    if score.tower_card:
+        print(f"\n  Tower Troop:")
+        print(f"    {score.tower_card['name']} - {score.tower_card['type']}")
     
     print(f"\n  Metrics:")
     print(f"    Average Elixir: {score.avg_elixir}")
@@ -236,12 +250,13 @@ def main():
         
         # Test search_cards
         deck_card_ids = test_search_cards(tools)
+        tower_card_id = get_tower_card_id(tools)
         
         # Test similar_cards
         test_similar_cards(tools, card_id)
         
         # Test score_deck
-        test_score_deck(tools, deck_card_ids)
+        test_score_deck(tools, deck_card_ids, tower_card_id)
         
     except Exception as e:
         print(f"\nERROR: Test failed with exception: {e}")

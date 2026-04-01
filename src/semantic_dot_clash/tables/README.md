@@ -8,7 +8,7 @@ The module provides three main tables:
 
 1. **Cards** - Individual cards with multimodal embeddings
 2. **Archetypes** - High-level deck styles and meta archetypes
-3. **Decks** - Specific 8-card deck combinations
+3. **Decks** - Specific 8 battle card + tower troop combinations
 
 ## Quick Start
 
@@ -70,17 +70,22 @@ Stores individual cards with multimodal representations:
 - **id**: Unique card ID
 - **name**: Card name
 - **rarity**: Common/Rare/Epic/Legendary/Champion
-- **type**: Troop/Spell/Building
+- **type**: Troop/Spell/Building/Champion/Tower Troop
 - **elixir**: Elixir cost (1-10)
 - **description**: API description
 - **image**: Raw image bytes
 - **image_embedding**: Visual embedding from CLIP/ViT (512-dim)
-- **text_embedding**: Semantic embedding from LLM (768-dim)
-- **combined_embedding**: Fused multimodal embedding (1024-dim)
+- **text_embedding**: Semantic embedding from LLM (1536-dim)
+- **combined_embedding**: Fused multimodal embedding (2048-dim)
 - **role_tags**: Tactical roles (win condition, cycle, splash, etc.)
 - **vibe_tags**: Player perception (toxic, annoying, wholesome, etc.)
 - **crowd_ratings**: Aggregated vibe ratings
 - **llm_vibe_summary**: LLM interpretation of player perception
+- **has_evolution**: Whether the card has an evolution variant
+- **max_evolution_level**: Highest supported evolution level
+- **evolution_image_url**: Evolution artwork URL
+- **has_hero**: Whether the card has a hero form
+- **hero_image_url**: Hero artwork URL
 
 ### Archetypes Table
 
@@ -89,20 +94,20 @@ Stores high-level deck styles:
 - **id**: Unique archetype ID (e.g., "hog_cycle")
 - **name**: Human-readable name
 - **description**: Archetype description
-- **example_decks**: List of example deck compositions
-- **embedding**: Semantic embedding (768-dim)
+- **example_decks**: List of example deck structs with `battle_card_ids[8]` and `tower_card_id`
+- **embedding**: Semantic embedding of the full archetype blueprint, including strategy and vibe text (768-dim)
 - **tags**: Tactical tags (cycle, control, air, aggro)
 - **meta_strength**: Win-rate or performance score
 - **playstyle_vibes**: Vibe tags for the archetype
-- **vibe_embedding**: Embedding of vibe description (768-dim)
 - **llm_vibe_summary**: Natural language summary of archetype feel
 
 ### Decks Table
 
-Stores specific 8-card decks:
+Stores specific 8 battle card decks plus a tower troop:
 
 - **id**: Unique deck ID
-- **card_ids**: Array of 8 card IDs
+- **battle_card_ids**: Array of 8 battle card IDs
+- **tower_card_id**: Tower troop card ID
 - **archetype_id**: Link to archetype
 - **average_elixir**: Average elixir cost
 - **roles**: Summary of tactical roles
@@ -144,9 +149,11 @@ results = cards_table.search(query_embedding).where(
 ```python
 from semantic_dot_clash.tables import generate_deck_id
 
-card_ids = [26000000, 26000001, 26000002, 26000003, 
-            26000004, 26000005, 26000006, 26000007]
-deck_id = generate_deck_id(card_ids)
+battle_card_ids = [
+    26000000, 26000001, 26000002, 26000003,
+    26000004, 26000005, 26000006, 26000007,
+]
+deck_id = generate_deck_id(battle_card_ids, 28000000)
 # Returns: "deck_a1b2c3d4"
 ```
 
@@ -155,7 +162,7 @@ deck_id = generate_deck_id(card_ids)
 ```python
 from semantic_dot_clash.tables import compute_average_elixir
 
-avg_elixir = compute_average_elixir(card_ids, cards_table)
+avg_elixir = compute_average_elixir(battle_card_ids, cards_table)
 # Returns: 2.875
 ```
 
@@ -165,7 +172,7 @@ The staging pipeline includes built-in validation:
 
 - **Cards**: Validates required fields, rarity values, card types, and elixir costs
 - **Archetypes**: Validates required fields
-- **Decks**: Validates required fields and ensures exactly 8 cards
+- **Decks**: Validates required fields and ensures exactly 8 battle cards plus 1 tower troop
 
 Disable validation if needed:
 

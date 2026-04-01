@@ -117,3 +117,4 @@ data/lance_db/
 
 # Embedding files (large, can be regenerated)
 data/cards_with_embeddings.json
+data/archetypes_with_embeddings.json

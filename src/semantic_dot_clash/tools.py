@@ -16,7 +16,7 @@ Usage:
     cards = tools.search_cards("fast cycle cards", elixir_max=3)
     similar = tools.similar_cards(card_id=26000000)
     card = tools.get_card(card_id=26000000)
-    score = tools.score_deck(card_ids=[...])
+    score = tools.score_deck(battle_card_ids=[...], tower_card_id=28000000)
 """
 
 from __future__ import annotations
@@ -57,7 +57,7 @@ class DeckScore:
     Comprehensive deck evaluation result.
     
     Attributes:
-        avg_elixir: Average elixir cost of the deck
+        avg_elixir: Average elixir cost of the 8 battle cards
         type_distribution: Count of cards by type (Troop, Spell, Building, etc.)
         rarity_distribution: Count of cards by rarity
         role_coverage: Set of roles covered by the deck
@@ -65,7 +65,8 @@ class DeckScore:
         synergy_score: Average pairwise embedding similarity (0-1)
         balance_warnings: List of balance issues detected
         meta_strength: Heuristic score (0-100) based on role balance + synergy
-        cards: List of card data for the deck
+        battle_cards: List of the 8 battle cards in the deck
+        tower_card: Tower troop card data for the deck
     """
     avg_elixir: float
     type_distribution: dict[str, int]
@@ -75,7 +76,13 @@ class DeckScore:
     synergy_score: float
     balance_warnings: list[str]
     meta_strength: float
-    cards: list[dict] = field(default_factory=list)
+    battle_cards: list[dict] = field(default_factory=list)
+    tower_card: dict | None = None
+
+    @property
+    def cards(self) -> list[dict]:
+        """Backward-compatible alias for the 8 battle cards."""
+        return self.battle_cards
     
     def to_dict(self) -> dict:
         """Convert to dictionary representation."""
@@ -88,8 +95,23 @@ class DeckScore:
             "synergy_score": self.synergy_score,
             "balance_warnings": self.balance_warnings,
             "meta_strength": self.meta_strength,
-            "cards": [{"id": c["id"], "name": c["name"], "elixir": c["elixir"]} 
-                     for c in self.cards],
+            "battle_cards": [
+                {"id": c["id"], "name": c["name"], "elixir": c["elixir"]}
+                for c in self.battle_cards
+            ],
+            "cards": [
+                {"id": c["id"], "name": c["name"], "elixir": c["elixir"]}
+                for c in self.battle_cards
+            ],
+            "tower_card": (
+                {
+                    "id": self.tower_card["id"],
+                    "name": self.tower_card["name"],
+                    "elixir": self.tower_card["elixir"],
+                }
+                if self.tower_card
+                else None
+            ),
         }
 
 
@@ -472,7 +494,12 @@ class CardTools:
         
         return min(100, max(0, score))
     
-    def score_deck(self, card_ids: list[int], include_images: bool = False) -> DeckScore:
+    def score_deck(
+        self,
+        battle_card_ids: list[int],
+        tower_card_id: int | None = None,
+        include_images: bool = False,
+    ) -> DeckScore:
         """
         Evaluate a deck for balance and constraints.
         
@@ -485,7 +512,8 @@ class CardTools:
         - Meta strength heuristic
         
         Args:
-            card_ids: List of card IDs in the deck (should be 8 for a standard deck)
+            battle_card_ids: List of battle card IDs in the deck (should be 8)
+            tower_card_id: Tower troop card ID for the deck
             
         Returns:
             DeckScore object with comprehensive evaluation
@@ -494,44 +522,53 @@ class CardTools:
             ValueError: If any card_id is not found
             
         Example:
-            >>> score = tools.score_deck([26000000, 26000001, ...])
+            >>> score = tools.score_deck(
+            ...     battle_card_ids=[26000000, 26000001, ...],
+            ...     tower_card_id=28000000,
+            ... )
             >>> print(f"Avg elixir: {score.avg_elixir}")
             >>> print(f"Meta strength: {score.meta_strength}")
             >>> for warning in score.balance_warnings:
             ...     print(f"Warning: {warning}")
         """
         # Fetch all cards
-        cards = []
+        battle_cards = []
         embeddings = []
         
-        for card_id in card_ids:
+        for card_id in battle_card_ids:
             card = self.get_card(card_id, include_embeddings=True)
             if card is None:
                 raise ValueError(f"Card with ID {card_id} not found")
-            cards.append(card)
+            battle_cards.append(card)
             
             # Collect embeddings for synergy calculation
             if card.get("combined_embedding"):
                 embeddings.append(card["combined_embedding"])
+
+        tower_card = None
+        if tower_card_id is not None:
+            tower_card = self.get_card(tower_card_id, include_embeddings=True)
+            if tower_card is None:
+                raise ValueError(f"Card with ID {tower_card_id} not found")
         
-        # Calculate average elixir
-        total_elixir = sum(card.get("elixir", 0) for card in cards)
-        avg_elixir = total_elixir / len(cards) if cards else 0
+        # Calculate average elixir from the 8 battle cards only.
+        total_elixir = sum(card.get("elixir", 0) for card in battle_cards)
+        avg_elixir = total_elixir / len(battle_cards) if battle_cards else 0
         
         # Calculate type distribution
         type_distribution: dict[str, int] = {}
-        for card in cards:
+        for card in battle_cards:
             card_type = card.get("type", "Unknown")
             type_distribution[card_type] = type_distribution.get(card_type, 0) + 1
         
         # Calculate rarity distribution
         rarity_distribution: dict[str, int] = {}
-        for card in cards:
+        for card in battle_cards:
             rarity = card.get("rarity", "Unknown")
             rarity_distribution[rarity] = rarity_distribution.get(rarity, 0) + 1
         
         # Extract roles
-        role_coverage = self._extract_roles(cards)
+        role_coverage = self._extract_roles(battle_cards)
         missing_roles = REQUIRED_ROLES - role_coverage
         
         # Calculate synergy score
@@ -541,12 +578,27 @@ class CardTools:
         balance_warnings = []
         
         # Deck size warning
-        if len(card_ids) != DECK_SIZE:
-            balance_warnings.append(f"Deck has {len(card_ids)} cards (expected {DECK_SIZE})")
+        if len(battle_card_ids) != DECK_SIZE:
+            balance_warnings.append(
+                f"Deck has {len(battle_card_ids)} battle cards (expected {DECK_SIZE})"
+            )
         
         # Duplicate cards warning
-        if len(card_ids) != len(set(card_ids)):
+        if len(battle_card_ids) != len(set(battle_card_ids)):
             balance_warnings.append("Deck contains duplicate cards")
+
+        if tower_card_id is None:
+            balance_warnings.append("Deck is missing a tower troop")
+        elif tower_card_id in set(battle_card_ids):
+            balance_warnings.append("Tower troop is duplicated in battle cards")
+
+        if any(card.get("type") == "Tower Troop" for card in battle_cards):
+            balance_warnings.append("Battle cards should not include tower troops")
+
+        if tower_card is not None and tower_card.get("type") != "Tower Troop":
+            balance_warnings.append(
+                f"Selected tower card is not a tower troop ({tower_card.get('type', 'Unknown')})"
+            )
         
         # Elixir warnings
         if avg_elixir > EXPENSIVE_DECK_THRESHOLD:
@@ -576,9 +628,14 @@ class CardTools:
         )
         
         # Clean cards for output (remove embeddings)
-        cleaned_cards = [
-            self._clean_card_result(card, include_image=include_images) for card in cards
+        cleaned_battle_cards = [
+            self._clean_card_result(card, include_image=include_images) for card in battle_cards
         ]
+        cleaned_tower_card = (
+            self._clean_card_result(tower_card, include_image=include_images)
+            if tower_card is not None
+            else None
+        )
         
         return DeckScore(
             avg_elixir=round(avg_elixir, 2),
@@ -589,7 +646,8 @@ class CardTools:
             synergy_score=round(synergy_score, 3),
             balance_warnings=balance_warnings,
             meta_strength=round(meta_strength, 1),
-            cards=cleaned_cards,
+            battle_cards=cleaned_battle_cards,
+            tower_card=cleaned_tower_card,
         )
 
 

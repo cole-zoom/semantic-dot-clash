@@ -8,7 +8,7 @@ Ask for "a fast cycle deck that counters Golem beatdown" and it'll figure out yo
 
 ## What the hell is this?
 
-An LLM agent with tools. You give it a natural language request, it uses semantic search to find cards that match your vibe, validates the deck for balance/legality, and spits out an 8-card deck with strategy tips.
+An LLM agent with tools. You give it a natural language request, it uses semantic search to find cards that match your vibe, validates the deck for balance/legality, and spits out an 8-card deck plus tower troop with strategy tips.
 
 The secret sauce: every card has been embedded with both text descriptions AND image embeddings (via CLIP), so the search actually understands card identity beyond just keywords. Ask for "swarm control" and it knows you probably want Fireball or Arrows, not the Giant.
 
@@ -145,7 +145,10 @@ similar = tools.similar_cards(card_id=26000000)  # Cards like Hog Rider
 hog = tools.get_card(card_id=26000000)
 
 # Score a deck
-score = tools.score_deck(card_ids=[...])  # 8 card IDs
+score = tools.score_deck(
+    battle_card_ids=[...],  # 8 battle card IDs
+    tower_card_id=28000000,  # tower troop ID
+)
 print(f"Meta strength: {score.meta_strength}/100")
 print(f"Missing roles: {score.missing_roles}")
 ```
@@ -194,7 +197,7 @@ The main event. Every card in the game with multimodal embeddings and vibe annot
 | `id` | int64 | Unique card ID from Clash Royale API |
 | `name` | string | Official card name |
 | `rarity` | string | Common, Rare, Epic, Legendary, Champion |
-| `type` | string | Troop, Spell, Building |
+| `type` | string | Troop, Spell, Building, Champion, Tower Troop |
 | `elixir` | int32 | Elixir cost (1-10) |
 | `description` | string | Official card description |
 | `image` | binary | Raw image bytes for card artwork |
@@ -205,6 +208,11 @@ The main event. Every card in the game with multimodal embeddings and vibe annot
 | `vibe_tags` | list\<string\> | Player perception: "toxic", "annoying", "spammy", "wholesome", "tryhard" |
 | `crowd_ratings` | map\<string, float\> | Aggregated vibe ratings (e.g., `{"toxic": 0.73}`) |
 | `llm_vibe_summary` | string | GPT-generated summary of how players perceive the card |
+| `has_evolution` | bool | Whether the base card has an evolution |
+| `max_evolution_level` | int32 | Highest available evolution level |
+| `evolution_image_url` | string | API URL for evolution artwork |
+| `has_hero` | bool | Whether the base card has a hero form |
+| `hero_image_url` | string | API URL for hero artwork |
 
 ### Archetypes Table
 
@@ -215,26 +223,26 @@ High-level deck styles and meta archetypes (Hog Cycle, Lava Loon, Log Bait, etc.
 | `id` | string | Unique archetype ID (e.g., "hog_cycle") |
 | `name` | string | Human-readable name |
 | `description` | string | Playstyle and strategy description |
-| `example_decks` | list\<list\<int64\>\> | Example decks as arrays of card IDs |
-| `embedding` | float[768] | Semantic embedding of the description |
+| `example_decks` | list\<struct\> | Example decks as `{battle_card_ids[8], tower_card_id}` |
+| `embedding` | float[768] | Semantic embedding of the archetype blueprint, including strategy and vibe text |
 | `tags` | list\<string\> | Tactical tags: "cycle", "control", "air", "aggro", "beatdown" |
 | `meta_strength` | float | Performance score / win-rate indicator |
 | `playstyle_vibes` | list\<string\> | Vibe tags: "annoying", "spammy", "toxic", "off-meta" |
-| `vibe_embedding` | float[768] | Embedding for semantic vibe filtering |
 | `llm_vibe_summary` | string | Natural language summary of the archetype's "feel" |
 
 ### Decks Table
 
-Specific 8-card decks with synergy analysis and vibe ratings.
+Specific 8-card battle decks plus tower troops with synergy analysis and vibe ratings.
 
 | Field | Type | Description |
 |-------|------|-------------|
 | `id` | string | Unique deck ID (UUID or hash) |
-| `card_ids` | int64[8] | The 8 card IDs that compose the deck |
+| `battle_card_ids` | int64[8] | The 8 battle card IDs that compose the deck |
+| `tower_card_id` | int64 | The tower troop card ID |
 | `archetype_id` | string | Foreign key to archetype |
-| `average_elixir` | float | Auto-computed average elixir |
+| `average_elixir` | float | Auto-computed average elixir across the 8 battle cards |
 | `roles` | list\<string\> | Summary of tactical roles in the deck |
-| `deck_embedding` | float[1024] | Combined embedding of all 8 cards |
+| `deck_embedding` | float[1024] | Combined embedding of all 8 battle cards |
 | `synergy_embedding` | float[768] | Embedding capturing how cards work together |
 | `meta_score` | float | Win-rate / usage rate / meta strength |
 | `user_labels` | list\<string\> | Player labels: "toxic", "tryhard", "meme", "casual" |
@@ -259,7 +267,9 @@ The `scripts/` folder has utilities for building the database:
 | `scrape_card_descriptions.py` | Scrape descriptions from the wiki |
 | `generate_card_vibes.py` | Use GPT to generate "vibe" descriptions |
 | `generate_card_embeddings.py` | Create text + image embeddings |
+| `generate_archetype_embeddings.py` | Create normalized 768-dim embeddings for archetypes |
 | `load_cards_to_lance.py` | Upload everything to LanceDB Cloud |
+| `load_archetypes_to_lance.py` | Load a curated archetype seed set with `8 + tower` example decks and optional precomputed embeddings |
 | `create_tables.py` | Initialize the LanceDB schema |
 | `test_tools.py` | Sanity check the tools work |
 
@@ -286,7 +296,7 @@ semantic_dot_clash/
 - **Requires cloud services** - LanceDB Cloud + OpenAI API (not free)
 - **Card data might lag behind updates** - need to re-run pipeline when new cards drop
 - **Meta knowledge is static** - the "meta strength" score is heuristic, not based on live ladder data
-- **Tower troops** - the agent knows about them but scoring treats them separately from the main 8
+- **Schema migrations** - if your existing Lance tables were created before the 8-plus-tower or hero/evolution fields, recreate or migrate them before loading fresh data
 
 ---
 

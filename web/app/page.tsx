@@ -21,6 +21,11 @@ type Card = {
   description?: string | null;
   role_tags?: string[] | null;
   vibe_tags?: string[] | null;
+  has_evolution?: boolean | null;
+  max_evolution_level?: number | null;
+  evolution_image_url?: string | null;
+  has_hero?: boolean | null;
+  hero_image_url?: string | null;
   image_data_url?: string | null;
 };
 
@@ -29,6 +34,7 @@ type DeckResponse = {
   response_markdown: string;
   avg_elixir: number;
   cards: Card[];
+  tower_card?: Card | null;
 };
 
 type Message = {
@@ -36,6 +42,7 @@ type Message = {
   role: "user" | "assistant";
   content: string;
   cards?: Card[];
+  towerCard?: Card | null;
   avgElixir?: number;
 };
 
@@ -88,6 +95,7 @@ export default function Home() {
         role: "assistant",
         content: data.response_markdown,
         cards: data.cards,
+        towerCard: data.tower_card,
         avgElixir: data.avg_elixir,
       };
 
@@ -149,8 +157,8 @@ export default function Home() {
               </h2>
               <p className="mt-3 text-base text-pencil">
                 Type a vibe, strategy, or counter matchup. The agent builds an
-                eight-card list, scores it, and brings back a markdown briefing
-                plus the card art.
+                eight-card battle deck plus tower troop, scores it, and brings
+                back a markdown briefing plus the card art.
               </p>
               <div className="mt-5 flex flex-wrap gap-2">
                 {samplePrompts.map((prompt) => (
@@ -240,6 +248,22 @@ export default function Home() {
               </p>
               {latestDeck?.cards?.length ? (
                 <div className="mt-5 grid gap-4">
+                  {latestDeck.towerCard ? (
+                    <div className="sketch-card bg-accentSoft/30">
+                      <div className="flex items-center justify-between">
+                        <h4 className="font-display text-lg">
+                          Tower Troop: {latestDeck.towerCard.name}
+                        </h4>
+                        <Badge variant="accent">
+                          {latestDeck.towerCard.elixir ?? "?"}
+                        </Badge>
+                      </div>
+                      <p className="mt-1 text-xs uppercase tracking-[0.2em] text-pencil">
+                        {latestDeck.towerCard.rarity || "Unknown"} ·{" "}
+                        {latestDeck.towerCard.type || "Card"}
+                      </p>
+                    </div>
+                  ) : null}
                   {latestDeck.cards.map((card) => (
                     <div key={card.id} className="sketch-card">
                       <div className="relative h-24 w-full overflow-hidden rounded-md border-2 border-line bg-white">

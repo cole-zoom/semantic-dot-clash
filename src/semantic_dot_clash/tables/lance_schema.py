@@ -34,6 +34,11 @@ def get_cards_schema() -> pa.Schema:
         - vibe_tags (list<string>): Player perception tags like "toxic", "annoying", "spammy", "gay", "wholesome", "fun", "tryhard"
         - crowd_ratings (map<string, float>): Aggregated crowd ratings for each vibe (e.g., {"toxic": 0.73, "annoying": 0.55})
         - llm_vibe_summary (string): LLM-generated natural language interpretation of how players perceive the card
+        - has_evolution (bool): Whether the card has an evolution variant
+        - max_evolution_level (int32): Highest supported evolution level for the card
+        - evolution_image_url (string): API URL for the evolution card art
+        - has_hero (bool): Whether the card has a hero form
+        - hero_image_url (string): API URL for the hero card art
     
     Example:
         >>> schema = get_cards_schema()
@@ -60,6 +65,11 @@ def get_cards_schema() -> pa.Schema:
             ("value", pa.float32())
         ])), nullable=True),
         pa.field("llm_vibe_summary", pa.string(), nullable=True),
+        pa.field("has_evolution", pa.bool_(), nullable=True),
+        pa.field("max_evolution_level", pa.int32(), nullable=True),
+        pa.field("evolution_image_url", pa.string(), nullable=True),
+        pa.field("has_hero", pa.bool_(), nullable=True),
+        pa.field("hero_image_url", pa.string(), nullable=True),
     ])
 
 
@@ -69,7 +79,7 @@ def get_archetypes_schema() -> pa.Schema:
     
     Purpose:
         Store high-level deck styles and meta archetypes like Hog Cycle, Beatdown,
-        Lava Loon, Miner Control, etc., with their semantic embeddings and vibe profiles.
+        Lava Loon, Miner Control, etc., with a semantic blueprint for deck construction.
     
     Returns:
         pa.Schema: PyArrow schema for the Archetypes table
@@ -78,12 +88,11 @@ def get_archetypes_schema() -> pa.Schema:
         - id (string): Unique archetype identifier (e.g., "hog_cycle", "lava_loon", "log_bait")
         - name (string): Human-readable archetype name (e.g., "Hog Cycle", "Lava Loon")
         - description (string): Detailed description of the archetype's playstyle and strategy
-        - example_decks (list<list<int64>>): List of example decks as arrays of card IDs
-        - embedding (fixed_size_list<float>[768]): Semantic embedding of the archetype description
+        - example_decks (list<struct>): List of example decks as 8 battle cards plus 1 tower troop
+        - embedding (fixed_size_list<float>[768]): Semantic embedding of the archetype blueprint, including strategy and vibe text
         - tags (list<string>): Tactical tags like "cycle", "control", "air", "aggro", "beatdown"
         - meta_strength (float): Optional meta performance score or win-rate indicator
         - playstyle_vibes (list<string>): Vibe tags like "annoying", "spammy", "toxic", "off-meta", "wholesome"
-        - vibe_embedding (fixed_size_list<float>[768]): Embedding of the vibe description for semantic filtering
         - llm_vibe_summary (string): Natural language summary of the archetype's "feel" and player perception
     
     Example:
@@ -101,12 +110,14 @@ def get_archetypes_schema() -> pa.Schema:
         pa.field("id", pa.string(), nullable=False),
         pa.field("name", pa.string(), nullable=False),
         pa.field("description", pa.string(), nullable=True),
-        pa.field("example_decks", pa.list_(pa.list_(pa.int64())), nullable=True),
+        pa.field("example_decks", pa.list_(pa.struct([
+            ("battle_card_ids", pa.list_(pa.int64(), 8)),
+            ("tower_card_id", pa.int64()),
+        ])), nullable=True),
         pa.field("embedding", pa.list_(pa.float32(), 768), nullable=True),
         pa.field("tags", pa.list_(pa.string()), nullable=True),
         pa.field("meta_strength", pa.float32(), nullable=True),
         pa.field("playstyle_vibes", pa.list_(pa.string()), nullable=True),
-        pa.field("vibe_embedding", pa.list_(pa.float32(), 768), nullable=True),
         pa.field("llm_vibe_summary", pa.string(), nullable=True),
     ])
 
@@ -116,7 +127,7 @@ def get_decks_schema() -> pa.Schema:
     Schema for the Decks table.
     
     Purpose:
-        Store specific 8-card decks including meta decks, historic decks, and
+        Store specific 8 battle card decks plus tower troops, including meta decks, historic decks, and
         player-submitted decks with their embeddings, synergies, and vibe ratings.
     
     Returns:
@@ -124,11 +135,12 @@ def get_decks_schema() -> pa.Schema:
     
     Schema Fields:
         - id (string): Unique deck identifier (UUID or hash of card composition)
-        - card_ids (list<int64>): Array of exactly 8 card IDs that compose the deck
+        - battle_card_ids (list<int64>): Array of exactly 8 battle card IDs that compose the deck
+        - tower_card_id (int64): Tower troop card ID for the deck
         - archetype_id (string): Foreign key linking to the archetype this deck belongs to
-        - average_elixir (float): Auto-computed average elixir cost across all 8 cards
+        - average_elixir (float): Auto-computed average elixir cost across the 8 battle cards
         - roles (list<string>): Summary of tactical roles present in the deck
-        - deck_embedding (fixed_size_list<float>[1024]): Combined embedding of all 8 card embeddings
+        - deck_embedding (fixed_size_list<float>[1024]): Combined embedding of all 8 battle card embeddings
         - synergy_embedding (fixed_size_list<float>[768]): Embedding capturing how the cards work together
         - meta_score (float): Performance metric like win-rate, usage rate, or meta strength score
         - user_labels (list<string>): Player-applied labels like "toxic", "gay", "tryhard", "meme", "casual", "annoying", "sweaty"
@@ -142,7 +154,8 @@ def get_decks_schema() -> pa.Schema:
         >>> # Create deck entry
         >>> deck = {
         ...     "id": "deck_abc123",
-        ...     "card_ids": [26000000, 26000001, 26000002, 26000003, 26000004, 26000005, 26000006, 26000007],
+        ...     "battle_card_ids": [26000000, 26000001, 26000002, 26000003, 26000004, 26000005, 26000006, 26000007],
+        ...     "tower_card_id": 28000000,
         ...     "archetype_id": "hog_cycle",
         ...     "average_elixir": 2.9,
         ...     "user_labels": ["tryhard", "cycle", "annoying"]
@@ -150,7 +163,8 @@ def get_decks_schema() -> pa.Schema:
     """
     return pa.schema([
         pa.field("id", pa.string(), nullable=False),
-        pa.field("card_ids", pa.list_(pa.int64(), 8), nullable=False),
+        pa.field("battle_card_ids", pa.list_(pa.int64(), 8), nullable=False),
+        pa.field("tower_card_id", pa.int64(), nullable=False),
         pa.field("archetype_id", pa.string(), nullable=True),
         pa.field("average_elixir", pa.float32(), nullable=True),
         pa.field("roles", pa.list_(pa.string()), nullable=True),

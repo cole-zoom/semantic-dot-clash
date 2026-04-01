@@ -49,6 +49,11 @@ class CardOut(BaseModel):
     description: str | None = None
     role_tags: list[str] | None = None
     vibe_tags: list[str] | None = None
+    has_evolution: bool | None = None
+    max_evolution_level: int | None = None
+    evolution_image_url: str | None = None
+    has_hero: bool | None = None
+    hero_image_url: str | None = None
     image_data_url: str | None = None
 
 
@@ -57,6 +62,7 @@ class DeckResponse(BaseModel):
     response_markdown: str
     avg_elixir: float
     cards: list[CardOut]
+    tower_card: CardOut | None = None
 
 
 @app.get("/api/health")
@@ -87,12 +93,16 @@ def build_deck(req: DeckRequest) -> DeckResponse:
         card = tools.get_card(card_id=card_id, include_image=True)
         if card:
             cards.append(card)
+    tower_card = None
+    if result.tower_card and result.tower_card.get("id") is not None:
+        tower_card = tools.get_card(card_id=result.tower_card["id"], include_image=True)
 
     return DeckResponse(
         prompt=req.prompt,
         response_markdown=result.response,
         avg_elixir=result.avg_elixir,
         cards=cards,
+        tower_card=tower_card,
     )
 
 

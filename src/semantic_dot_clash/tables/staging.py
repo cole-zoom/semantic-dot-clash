@@ -151,15 +151,16 @@ class StagingPipeline:
             int: Number of decks successfully inserted
         
         Raises:
-            ValueError: If validation fails or deck doesn't have exactly 8 cards
+            ValueError: If validation fails or deck doesn't have exactly 8 battle cards
         
         Example:
             >>> pipeline = StagingPipeline()
             >>> decks = [
             ...     {
             ...         "id": "deck_abc123",
-            ...         "card_ids": [26000000, 26000001, 26000002, 26000003,
+            ...         "battle_card_ids": [26000000, 26000001, 26000002, 26000003,
             ...                      26000004, 26000005, 26000006, 26000007],
+            ...         "tower_card_id": 28000000,
             ...         "archetype_id": "hog_cycle",
             ...         "average_elixir": 2.9,
             ...         "user_labels": ["tryhard", "cycle"]
@@ -273,7 +274,7 @@ class StagingPipeline:
         """
         required_fields = ["id", "name", "rarity", "type", "elixir"]
         valid_rarities = ["Common", "Rare", "Epic", "Legendary", "Champion"]
-        valid_types = ["Troop", "Spell", "Building"]
+        valid_types = ["Troop", "Spell", "Building", "Champion", "Tower Troop"]
         
         for i, card in enumerate(cards):
             # Check required fields
@@ -318,9 +319,9 @@ class StagingPipeline:
             decks: List of deck dictionaries
         
         Raises:
-            ValueError: If validation fails or deck doesn't have exactly 8 cards
+            ValueError: If validation fails or deck doesn't have exactly 8 battle cards
         """
-        required_fields = ["id", "card_ids"]
+        required_fields = ["id", "battle_card_ids", "tower_card_id"]
         
         for i, deck in enumerate(decks):
             # Check required fields
@@ -329,22 +330,24 @@ class StagingPipeline:
                     raise ValueError(f"Deck {i}: Missing required field '{field}'")
             
             # Validate card count
-            if len(deck["card_ids"]) != 8:
+            if len(deck["battle_card_ids"]) != 8:
                 raise ValueError(
-                    f"Deck {i}: Must have exactly 8 cards, got {len(deck['card_ids'])}"
+                    f"Deck {i}: Must have exactly 8 battle cards, got {len(deck['battle_card_ids'])}"
                 )
             
             # Validate all card IDs are integers
-            if not all(isinstance(card_id, int) for card_id in deck["card_ids"]):
-                raise ValueError(f"Deck {i}: All card_ids must be integers")
+            if not all(isinstance(card_id, int) for card_id in deck["battle_card_ids"]):
+                raise ValueError(f"Deck {i}: All battle_card_ids must be integers")
+            if not isinstance(deck["tower_card_id"], int):
+                raise ValueError(f"Deck {i}: tower_card_id must be an integer")
 
 
-def compute_average_elixir(card_ids: List[int], cards_table) -> float:
+def compute_average_elixir(battle_card_ids: List[int], cards_table) -> float:
     """
     Compute average elixir cost for a deck.
     
     Args:
-        card_ids: List of 8 card IDs
+        battle_card_ids: List of 8 battle card IDs
         cards_table: Lance table containing card data
     
     Returns:
@@ -356,33 +359,34 @@ def compute_average_elixir(card_ids: List[int], cards_table) -> float:
         >>> avg = compute_average_elixir([26000000, 26000001, ...], tables["cards"])
     """
     total_elixir = 0
-    for card_id in card_ids:
+    for card_id in battle_card_ids:
         result = cards_table.search().where(f"id = {card_id}").limit(1).to_list()
         if result:
             total_elixir += result[0]["elixir"]
     
-    return total_elixir / len(card_ids)
+    return total_elixir / len(battle_card_ids)
 
 
-def generate_deck_id(card_ids: List[int]) -> str:
+def generate_deck_id(battle_card_ids: List[int], tower_card_id: int) -> str:
     """
     Generate a unique deck ID from card IDs.
     
     Args:
-        card_ids: List of 8 card IDs
+        battle_card_ids: List of 8 battle card IDs
+        tower_card_id: Tower troop card ID
     
     Returns:
         str: Unique deck identifier
     
     Example:
-        >>> deck_id = generate_deck_id([26000000, 26000001, 26000002, ...])
+        >>> deck_id = generate_deck_id([26000000, 26000001, 26000002, ...], 28000000)
         >>> print(deck_id)  # "deck_a1b2c3d4"
     """
     import hashlib
     
     # Sort to ensure consistent ID regardless of card order
-    sorted_ids = sorted(card_ids)
-    id_string = "_".join(str(cid) for cid in sorted_ids)
+    sorted_ids = sorted(battle_card_ids)
+    id_string = "_".join(str(cid) for cid in sorted_ids + [tower_card_id])
     
     # Generate hash
     hash_obj = hashlib.md5(id_string.encode())

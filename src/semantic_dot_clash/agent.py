@@ -127,13 +127,17 @@ TOOL_SCHEMAS = [
             "parameters": {
                 "type": "object",
                 "properties": {
-                    "card_ids": {
+                    "battle_card_ids": {
                         "type": "array",
                         "items": {"type": "integer"},
-                        "description": "List of exactly 8 card IDs representing the deck"
+                        "description": "List of exactly 8 battle card IDs representing the deck"
+                    },
+                    "tower_card_id": {
+                        "type": "integer",
+                        "description": "Tower troop card ID for the deck"
                     }
                 },
-                "required": ["card_ids"]
+                "required": ["battle_card_ids", "tower_card_id"]
             }
         }
     }
@@ -147,14 +151,16 @@ class DeckResult:
     
     Attributes:
         success: Whether a valid deck was built
-        deck: List of card dictionaries in the final deck
-        avg_elixir: Average elixir cost of the deck
+        deck: List of the 8 battle card dictionaries in the final deck
+        tower_card: Tower troop dictionary in the final deck
+        avg_elixir: Average elixir cost of the 8 battle cards
         response: Full text response from the agent
         iterations: Number of loop iterations used
         error: Error message if success is False
     """
     success: bool
     deck: list[dict] = field(default_factory=list)
+    tower_card: dict | None = None
     avg_elixir: float = 0.0
     response: str = ""
     iterations: int = 0
@@ -237,7 +243,7 @@ class DeckAgent:
                 return path.read_text()
         
         # Fallback to embedded minimal prompt
-        return """You are a Clash Royale deck-building agent. Build exactly 8-card decks using only the tools provided.
+        return """You are a Clash Royale deck-building agent. Build exactly 8 battle cards plus 1 tower troop using only the tools provided.
 
 Rules:
 - Only use cards returned by tools - never invent cards
@@ -282,7 +288,10 @@ Rules:
         
         elif name == "score_deck":
             try:
-                score = self._tools.score_deck(card_ids=args["card_ids"])
+                score = self._tools.score_deck(
+                    battle_card_ids=args["battle_card_ids"],
+                    tower_card_id=args["tower_card_id"],
+                )
                 return score.to_dict()
             except ValueError as e:
                 return {"error": str(e)}
@@ -396,6 +405,7 @@ Rules:
             
             # Try to extract deck info from the last score_deck call
             deck_cards = []
+            tower_card = None
             avg_elixir = 0.0
             
             # Look backwards through messages for the last score_deck result
@@ -403,8 +413,9 @@ Rules:
                 if m.get("role") == "tool":
                     try:
                         tool_result = json.loads(m.get("content", "{}"))
-                        if "cards" in tool_result and "avg_elixir" in tool_result:
-                            deck_cards = tool_result["cards"]
+                        if "avg_elixir" in tool_result:
+                            deck_cards = tool_result.get("battle_cards") or tool_result.get("cards", [])
+                            tower_card = tool_result.get("tower_card")
                             avg_elixir = tool_result["avg_elixir"]
                             break
                     except json.JSONDecodeError:
@@ -413,6 +424,7 @@ Rules:
             return DeckResult(
                 success=True,
                 deck=deck_cards,
+                tower_card=tower_card,
                 avg_elixir=avg_elixir,
                 response=final_content,
                 iterations=step + 1,

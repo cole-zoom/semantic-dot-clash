@@ -27,7 +27,11 @@
         "timeless": 0.75,
         "underrated": 0.45
       },
-      "llm_vibe_summary": "Knight gets talked about like the definition of “boring but never sells.” People rate him as insanely consistent for the cost—cheap mini-tank that just soaks hits, distracts forever, and patches defense in basically any deck. There’s also a split where some see base Knight as outclassed (since other options/variants get more hype), but even then it’s more “not exciting” than actually bad."
+      "llm_vibe_summary": "Knight gets talked about like the definition of “boring but never sells.” People rate him as insanely consistent for the cost—cheap mini-tank that just soaks hits, distracts forever, and patches defense in basically any deck. There’s also a split where some see base Knight as outclassed (since other options/variants get more hype), but even then it’s more “not exciting” than actually bad.",
+      "is_hero": true,
+      "hero_url": "https://api-assets.clashroyale.com/cardheroes/300/jAj1Q5rclXxU9kVImGqSJxa4wEMfEhvwNQ_4jiGUuqg.png",
+      "is_evo": true,
+      "evo_url": "https://api-assets.clashroyale.com/cardevolutions/300/jAj1Q5rclXxU9kVImGqSJxa4wEMfEhvwNQ_4jiGUuqg.png"
     },
     {
       "name": "Archers",
@@ -62,7 +66,11 @@
         "timeless": 0.4,
         "top-ladder viable": 0.4
       },
-      "llm_vibe_summary": "Archers are one of those cards people either call completely useless or quietly rely on because they’re just consistent, cheap ranged DPS that covers air. A big chunk of the community vibe is that base Archers feel like they do “no damage” and don’t threaten anything unless you’re basically playing them to cycle (or you’re really talking about the EVO). At the same time, plenty of players still see them as a steady, never-terrible staple in a couple classic control/cycle shells (like X-Bow), even if they’re not taking over the meta."
+      "llm_vibe_summary": "Archers are one of those cards people either call completely useless or quietly rely on because they’re just consistent, cheap ranged DPS that covers air. A big chunk of the community vibe is that base Archers feel like they do “no damage” and don’t threaten anything unless you’re basically playing them to cycle (or you’re really talking about the EVO). At the same time, plenty of players still see them as a steady, never-terrible staple in a couple classic control/cycle shells (like X-Bow), even if they’re not taking over the meta.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": true,
+      "evo_url": "https://api-assets.clashroyale.com/cardevolutions/300/W4Hmp8MTSdXANN8KdblbtHwtsbt0o749BbxNqmJYfA8.png"
     },
     {
       "name": "Goblins",
@@ -92,7 +100,11 @@
         "overrated": 0.5,
         "timeless": 0.4
       },
-      "llm_vibe_summary": "Goblins get talked about like the definition of “fine but why?”—they do their job as a cheap stabby cycle/distraction card, but a lot of players feel they’re just the boring option. The big knock is that Goblin Gang basically powercreeps them for +1 elixir, so standalone Goblins feel kind of pointless unless you’re hard-minmaxing cycle. Overall vibe: usable, not exciting, and usually replaced by a better package."
+      "llm_vibe_summary": "Goblins get talked about like the definition of “fine but why?”—they do their job as a cheap stabby cycle/distraction card, but a lot of players feel they’re just the boring option. The big knock is that Goblin Gang basically powercreeps them for +1 elixir, so standalone Goblins feel kind of pointless unless you’re hard-minmaxing cycle. Overall vibe: usable, not exciting, and usually replaced by a better package.",
+      "is_hero": true,
+      "hero_url": "https://api-assets.clashroyale.com/cardheroes/300/X_DQUye_OaS3QN6VC9CPw05Fit7wvSm3XegXIXKP--0.png",
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Giant",
@@ -121,7 +133,11 @@
         "top-ladder viable": 0.6,
         "respectable": 0.45
       },
-      "llm_vibe_summary": "Giant gets talked about like the classic, reliable tank win con that just always has a place—big stats, simple gameplan, and it doesn’t instantly lose you the match for dropping it. People see it as less of a “coin-flip” commitment than heavier beatdown (since you can still defend after Giant in the back), and it’s generally viewed as a solid, fair card rather than some cringe no-skill gimmick. Overall vibe: timeless and strong across most of ladder, even if it’s not always the absolute #1 meta bully."
+      "llm_vibe_summary": "Giant gets talked about like the classic, reliable tank win con that just always has a place—big stats, simple gameplan, and it doesn’t instantly lose you the match for dropping it. People see it as less of a “coin-flip” commitment than heavier beatdown (since you can still defend after Giant in the back), and it’s generally viewed as a solid, fair card rather than some cringe no-skill gimmick. Overall vibe: timeless and strong across most of ladder, even if it’s not always the absolute #1 meta bully.",
+      "is_hero": true,
+      "hero_url": "https://api-assets.clashroyale.com/cardheroes/300/Axr4ox5_b7edmLsoHxBX3vmgijAIibuF6RImTbqLlXE.png",
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "P.E.K.K.A",
@@ -152,7 +168,11 @@
         "overrated": 0.6,
         "gimmicky": 0.45
       },
-      "llm_vibe_summary": "P.E.K.K.A gets talked about like she’s all aura, but in practice she’s a pricey brick that gets clowned by cheap distractions (skeletons/ice spirit type stuff) and spends half the game waddling into kites. When she actually connects, it’s basically lights-out, but that’s the problem—getting a real tower lock feels rare and super matchup-dependent. Overall the vibe is “looks scary, plays mid,” and a lot of people would rather spend that elixir on something less easy to stall."
+      "llm_vibe_summary": "P.E.K.K.A gets talked about like she’s all aura, but in practice she’s a pricey brick that gets clowned by cheap distractions (skeletons/ice spirit type stuff) and spends half the game waddling into kites. When she actually connects, it’s basically lights-out, but that’s the problem—getting a real tower lock feels rare and super matchup-dependent. Overall the vibe is “looks scary, plays mid,” and a lot of people would rather spend that elixir on something less easy to stall.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": true,
+      "evo_url": "https://api-assets.clashroyale.com/cardevolutions/300/MlArURKhn_zWAZY-Xj1qIRKLVKquarG25BXDjUQajNs.png"
     },
     {
       "name": "Minions",
@@ -181,7 +201,11 @@
         "timeless": 0.45,
         "overrated": 0.4
       },
-      "llm_vibe_summary": "Minions get talked about like the ultimate plug-and-play air DPS: cheap, versatile, and they shred everything if you don’t have the answer right now. One side of the community basically calls them absurdly strong and everywhere, like they do every job you’d want from a 3-elixir air card. The other vibe is more “they’re fine, a bit out of meta,” so the perception splits between ‘lowkey broken’ and ‘just solid’ depending on what you’re seeing on ladder."
+      "llm_vibe_summary": "Minions get talked about like the ultimate plug-and-play air DPS: cheap, versatile, and they shred everything if you don’t have the answer right now. One side of the community basically calls them absurdly strong and everywhere, like they do every job you’d want from a 3-elixir air card. The other vibe is more “they’re fine, a bit out of meta,” so the perception splits between ‘lowkey broken’ and ‘just solid’ depending on what you’re seeing on ladder.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Balloon",
@@ -211,7 +235,11 @@
         "top-ladder viable": 0.55,
         "annoying": 0.45
       },
-      "llm_vibe_summary": "Balloon is seen as a super swingy win con: some matchups you just farm towers, and other matchups you’re staring at Inferno Tower/Archers/Minions and you’re never breaking through. People still rate it pretty high because it’s versatile across multiple decks (Loon cycle, LavaLoon, LumberLoon), but it’s not at its “peak” and doesn’t feel consistent. Overall vibe is basically matchup/slot-machine Clash: when it works it’s disgusting, when it doesn’t you feel useless."
+      "llm_vibe_summary": "Balloon is seen as a super swingy win con: some matchups you just farm towers, and other matchups you’re staring at Inferno Tower/Archers/Minions and you’re never breaking through. People still rate it pretty high because it’s versatile across multiple decks (Loon cycle, LavaLoon, LumberLoon), but it’s not at its “peak” and doesn’t feel consistent. Overall vibe is basically matchup/slot-machine Clash: when it works it’s disgusting, when it doesn’t you feel useless.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Witch",
@@ -247,7 +275,11 @@
         "overrated": 0.45,
         "sleeper": 0.4
       },
-      "llm_vibe_summary": "Witch is the kind of card people call “mad annoying” because it’s constant skeleton spam plus splash, so it stalls forever and makes defense feel gross even when it’s not doing much on offense. There’s a split in how people rate it: some see base Witch as mid and not really meta, while others treat it like an insane defensive staple (especially when you factor in how busted the evolved version feels). Overall the vibe is: irritating, value-y on defense, and way more respected/feared when EVO is in the conversation."
+      "llm_vibe_summary": "Witch is the kind of card people call “mad annoying” because it’s constant skeleton spam plus splash, so it stalls forever and makes defense feel gross even when it’s not doing much on offense. There’s a split in how people rate it: some see base Witch as mid and not really meta, while others treat it like an insane defensive staple (especially when you factor in how busted the evolved version feels). Overall the vibe is: irritating, value-y on defense, and way more respected/feared when EVO is in the conversation.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": true,
+      "evo_url": "https://api-assets.clashroyale.com/cardevolutions/300/cfwk1vzehVyHC-uloEIH6NOI0hOdofCutR5PyhIgO6w.png"
     },
     {
       "name": "Barbarians",
@@ -278,7 +310,11 @@
         "frustrating to face": 0.4,
         "overrated": 0.4
       },
-      "llm_vibe_summary": "Barbarians get talked about like a 5-elixir overcommit that just begs to be Fireballed or farmed by any splash in the game, so they rarely feel worth the slot. People admit you can cook up a “value” scenario sometimes, but most of the time they’re just spellable, clunky, and you’d rather run a cheaper swarm/defender that doesn’t instantly donate elixir."
+      "llm_vibe_summary": "Barbarians get talked about like a 5-elixir overcommit that just begs to be Fireballed or farmed by any splash in the game, so they rarely feel worth the slot. People admit you can cook up a “value” scenario sometimes, but most of the time they’re just spellable, clunky, and you’d rather run a cheaper swarm/defender that doesn’t instantly donate elixir.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": true,
+      "evo_url": "https://api-assets.clashroyale.com/cardevolutions/300/TvJsuu2S4yhyk1jVYUAQwdKOnW4U77KuWWOTPOWnwfI.png"
     },
     {
       "name": "Golem",
@@ -307,7 +343,11 @@
         "respectable": 0.55,
         "mid-ladder menace": 0.4
       },
-      "llm_vibe_summary": "Golem gets talked about like a slot-machine win condition: you drop it and either you steamroll because they don’t have the right answers, or you instantly get punished and feel cooked. People respect it more than the truly brain-dead stuff because it’s expensive and you can’t just spam it—one bad Golem and you lose a tower. At the same time, it’s still seen as a polarizing beatdown card that can just roll less-prepared players, especially outside the very top end."
+      "llm_vibe_summary": "Golem gets talked about like a slot-machine win condition: you drop it and either you steamroll because they don’t have the right answers, or you instantly get punished and feel cooked. People respect it more than the truly brain-dead stuff because it’s expensive and you can’t just spam it—one bad Golem and you lose a tower. At the same time, it’s still seen as a polarizing beatdown card that can just roll less-prepared players, especially outside the very top end.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Skeletons",
@@ -340,7 +380,11 @@
         "high-skill": 0.45,
         "respectable": 0.4
       },
-      "llm_vibe_summary": "Skeletons are basically the definition of “never bad” — cheap, always useful, and they bail you out on defense by distracting and buying time for almost no elixir. People talk about them like the best pure cycle card in the game: they fit everywhere, enable outplays, and don’t feel like a “gimmick” slot. The only knock is they’re still just skeletons, so they’re not flashy — they’re value and fundamentals, not highlight reels."
+      "llm_vibe_summary": "Skeletons are basically the definition of “never bad” — cheap, always useful, and they bail you out on defense by distracting and buying time for almost no elixir. People talk about them like the best pure cycle card in the game: they fit everywhere, enable outplays, and don’t feel like a “gimmick” slot. The only knock is they’re still just skeletons, so they’re not flashy — they’re value and fundamentals, not highlight reels.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": true,
+      "evo_url": "https://api-assets.clashroyale.com/cardevolutions/300/oO7iKMU5m0cdxhYPZA3nWQiAUh2yoGgdThLWB1rVSec.png"
     },
     {
       "name": "Valkyrie",
@@ -372,7 +416,11 @@
         "annoying": 0.45,
         "satisfying": 0.4
       },
-      "llm_vibe_summary": "Valkyrie gets talked about like the ultimate plug-and-play mini tank: cheap-ish, stupidly consistent, and she just spins through bait/swarm like it’s nothing. People rate her as one of those cards you can toss into almost any deck and she’ll still do her job, which makes her feel kinda unfair/annoying when you’re trying to get chip going. Not really a flashy “broken” card vibe—more like a timeless defensive god that always seems to get value."
+      "llm_vibe_summary": "Valkyrie gets talked about like the ultimate plug-and-play mini tank: cheap-ish, stupidly consistent, and she just spins through bait/swarm like it’s nothing. People rate her as one of those cards you can toss into almost any deck and she’ll still do her job, which makes her feel kinda unfair/annoying when you’re trying to get chip going. Not really a flashy “broken” card vibe—more like a timeless defensive god that always seems to get value.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": true,
+      "evo_url": "https://api-assets.clashroyale.com/cardevolutions/300/0lIoYf3Y_plFTzo95zZL93JVxpfb3MMgFDDhgSDGU9A.png"
     },
     {
       "name": "Skeleton Army",
@@ -405,7 +453,11 @@
         "dead card": 0.6,
         "frustrating to face": 0.4
       },
-      "llm_vibe_summary": "Skeleton Army gets talked about like the classic “looks scary, does nothing” card: you drop 3 elixir and it just evaporates to literally any small spell or random splash, so it feels like an overcommit most of the time. One side still acknowledges it can work as a surprise/bait piece, but the dominant vibe is that it’s way too spellable and inconsistent compared to just running Skeletons/Guards. People mostly respect it only when it’s part of evo-driven nonsense—base Skarmy is treated like a relic that sells you on panic value and then loses you the game."
+      "llm_vibe_summary": "Skeleton Army gets talked about like the classic “looks scary, does nothing” card: you drop 3 elixir and it just evaporates to literally any small spell or random splash, so it feels like an overcommit most of the time. One side still acknowledges it can work as a surprise/bait piece, but the dominant vibe is that it’s way too spellable and inconsistent compared to just running Skeletons/Guards. People mostly respect it only when it’s part of evo-driven nonsense—base Skarmy is treated like a relic that sells you on panic value and then loses you the game.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": true,
+      "evo_url": "https://api-assets.clashroyale.com/cardevolutions/300/fAOToOi1pRy7svN2xQS6mDkhQw2pj9m_17FauaNqyl4.png"
     },
     {
       "name": "Bomber",
@@ -434,7 +486,11 @@
         "dead card": 0.75,
         "underrated": 0.45
       },
-      "llm_vibe_summary": "Bomber gets talked about like a fallen-off support troop: it used to be a legit cheap splash option, but now it just feels squishy and kind of irrelevant, dying to everything and rarely swinging games. The vibe is basically “why would I run this when better splash/cycle exists,” so it comes off like a dead card most of the time. Some people still call it situationally useful, but it’s usually framed as underwhelming value unless the matchup is perfect."
+      "llm_vibe_summary": "Bomber gets talked about like a fallen-off support troop: it used to be a legit cheap splash option, but now it just feels squishy and kind of irrelevant, dying to everything and rarely swinging games. The vibe is basically “why would I run this when better splash/cycle exists,” so it comes off like a dead card most of the time. Some people still call it situationally useful, but it’s usually framed as underwhelming value unless the matchup is perfect.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": true,
+      "evo_url": "https://api-assets.clashroyale.com/cardevolutions/300/12n1CesxKIcqVYntjxcF36EFA-ONw7Z-DoL0_rQrbdo.png"
     },
     {
       "name": "Musketeer",
@@ -467,7 +523,11 @@
         "respectable": 0.5,
         "underrated": 0.4
       },
-      "llm_vibe_summary": "Musketeer gets talked about like the “default” ranged unit that just does her job every game—solid DPS, reliable anti-air, and way less gimmicky than most options. People rate her as more consistent and sturdy than stuff like Magic Archer, so she ends up feeling like a safe, respectable pick in a ton of decks. She’s not really a hype or toxic card—more like a dependable meta staple that quietly wins you defenses and converts into counterpushes."
+      "llm_vibe_summary": "Musketeer gets talked about like the “default” ranged unit that just does her job every game—solid DPS, reliable anti-air, and way less gimmicky than most options. People rate her as more consistent and sturdy than stuff like Magic Archer, so she ends up feeling like a safe, respectable pick in a ton of decks. She’s not really a hype or toxic card—more like a dependable meta staple that quietly wins you defenses and converts into counterpushes.",
+      "is_hero": true,
+      "hero_url": "https://api-assets.clashroyale.com/cardheroes/300/Tex1C48UTq9FKtAX-3tzG0FJmc9jzncUZG3bb5Vf-Ds.png",
+      "is_evo": true,
+      "evo_url": "https://api-assets.clashroyale.com/cardevolutions/300/Tex1C48UTq9FKtAX-3tzG0FJmc9jzncUZG3bb5Vf-Ds.png"
     },
     {
       "name": "Baby Dragon",
@@ -502,7 +562,11 @@
         "matchup dependent": 0.4,
         "sleeper": 0.4
       },
-      "llm_vibe_summary": "Baby Dragon gets talked about like the quiet, reliable splash flier you can toss into beatdown/control and it’ll almost always do something useful—people even point out it’s tankier than it looks. There’s also a recurring vibe that the “normal” version is kind of forgotten because everyone associates the card with its EVO and with golem/lava shells. Overall it’s not seen as some toxic brain-dead problem card—more like a solid, slightly slept-on staple that’s good when your deck actually wants that role."
+      "llm_vibe_summary": "Baby Dragon gets talked about like the quiet, reliable splash flier you can toss into beatdown/control and it’ll almost always do something useful—people even point out it’s tankier than it looks. There’s also a recurring vibe that the “normal” version is kind of forgotten because everyone associates the card with its EVO and with golem/lava shells. Overall it’s not seen as some toxic brain-dead problem card—more like a solid, slightly slept-on staple that’s good when your deck actually wants that role.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": true,
+      "evo_url": "https://api-assets.clashroyale.com/cardevolutions/300/cjC9n4AvEZJ3urkVh-rwBkJ-aRSsydIMqSAV48hAih0.png"
     },
     {
       "name": "Prince",
@@ -537,7 +601,11 @@
         "underrated": 0.45,
         "top-ladder viable": 0.4
       },
-      "llm_vibe_summary": "Prince is that card that’s not always “meta,” but it can absolutely ruin your day when it connects—tons of offensive threat and random charge pressure that forces awkward responses. People talk about it like it’s quietly coming back and showing up more, and when it’s in the right deck it feels really strong instead of just nostalgia. It’s not framed as brain-dead; it’s more like a solid, scary pressure piece that’s annoying as hell when you’re not ready for it."
+      "llm_vibe_summary": "Prince is that card that’s not always “meta,” but it can absolutely ruin your day when it connects—tons of offensive threat and random charge pressure that forces awkward responses. People talk about it like it’s quietly coming back and showing up more, and when it’s in the right deck it feels really strong instead of just nostalgia. It’s not framed as brain-dead; it’s more like a solid, scary pressure piece that’s annoying as hell when you’re not ready for it.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Wizard",
@@ -570,7 +638,11 @@
         "overrated": 0.6,
         "mid-ladder menace": 0.5
       },
-      "llm_vibe_summary": "Wizard gets talked about like the classic “looks strong but sells every time” card: when he’s splashing your stuff it feels gross, but most games he just dies too easily for 5 elixir and underperforms. People get tilted because he sometimes high-rolls value, yet he’s inconsistent and usually there are better ranged/splash options for the cost. Overall vibe is expensive, squishy, and kind of overrated—annoying when it works, disappointing the rest of the time."
+      "llm_vibe_summary": "Wizard gets talked about like the classic “looks strong but sells every time” card: when he’s splashing your stuff it feels gross, but most games he just dies too easily for 5 elixir and underperforms. People get tilted because he sometimes high-rolls value, yet he’s inconsistent and usually there are better ranged/splash options for the cost. Overall vibe is expensive, squishy, and kind of overrated—annoying when it works, disappointing the rest of the time.",
+      "is_hero": true,
+      "hero_url": "https://api-assets.clashroyale.com/cardheroes/300/Mej7vnv4H_3p_8qPs_N6_GKahy6HDr7pU7i9eTHS84U.png",
+      "is_evo": true,
+      "evo_url": "https://api-assets.clashroyale.com/cardevolutions/300/Mej7vnv4H_3p_8qPs_N6_GKahy6HDr7pU7i9eTHS84U.png"
     },
     {
       "name": "Mini P.E.K.K.A",
@@ -599,7 +671,11 @@
         "satisfying": 0.6,
         "underrated": 0.5
       },
-      "llm_vibe_summary": "Mini P.E.K.K.A gets talked about like a straight-up damage machine: ridiculous single-target DPS for the cost, enough HP to actually matter, and it can swing games when it connects or deletes a tank. A lot of people value it as a reliable, plug-and-play tank killer that doesn’t need fancy setup—just drop it and it does the job. There’s some split perception though: some see the base card as a bit underwhelming compared to flashier modern options, while others still rate it as a consistently strong, honest defensive threat."
+      "llm_vibe_summary": "Mini P.E.K.K.A gets talked about like a straight-up damage machine: ridiculous single-target DPS for the cost, enough HP to actually matter, and it can swing games when it connects or deletes a tank. A lot of people value it as a reliable, plug-and-play tank killer that doesn’t need fancy setup—just drop it and it does the job. There’s some split perception though: some see the base card as a bit underwhelming compared to flashier modern options, while others still rate it as a consistently strong, honest defensive threat.",
+      "is_hero": true,
+      "hero_url": "https://api-assets.clashroyale.com/cardheroes/300/Fmltc4j3Ve9vO_xhHHPEO3PRP3SmU2oKp2zkZQHRZT4.png",
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Spear Goblins",
@@ -628,7 +704,11 @@
         "underrated": 0.5,
         "annoying": 0.3
       },
-      "llm_vibe_summary": "Spear Goblins get talked about like the definition of a low-impact cycle card: tiny damage, tiny distraction time, and you’re usually asking yourself why you didn’t just run Skeletons or Goblin Gang. A lot of players basically treat them as “lame filler” that only shows up in specific cycle/bait lists, so the vibe is that they’re borderline a dead standalone card. There is still some respect for them as a cheap, flexible stab-at-everything option (especially compared to regular Goblins in certain contexts), but it’s more “they’re fine” than “they’re scary.”"
+      "llm_vibe_summary": "Spear Goblins get talked about like the definition of a low-impact cycle card: tiny damage, tiny distraction time, and you’re usually asking yourself why you didn’t just run Skeletons or Goblin Gang. A lot of players basically treat them as “lame filler” that only shows up in specific cycle/bait lists, so the vibe is that they’re borderline a dead standalone card. There is still some respect for them as a cheap, flexible stab-at-everything option (especially compared to regular Goblins in certain contexts), but it’s more “they’re fine” than “they’re scary.”",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Giant Skeleton",
@@ -660,7 +740,11 @@
         "dead card": 0.6,
         "satisfying": 0.4
       },
-      "llm_vibe_summary": "Giant Skeleton is one of those “either it hard carries or it does nothing” cards—when it works, it lane-stops and the bomb/fist value feels disgusting, but it’s still a pretty gimmicky 6-elixir commitment. One side of the community sees it as quietly revived/underrated lately (especially as a lane-stopper in certain meta shells), while the other basically treats it like a washed, distractable, overcosted relic you almost never see. Overall vibe: niche control tank that can feel amazing in the right deck, but looks dead and clunky the moment the matchup or counters are wrong."
+      "llm_vibe_summary": "Giant Skeleton is one of those “either it hard carries or it does nothing” cards—when it works, it lane-stops and the bomb/fist value feels disgusting, but it’s still a pretty gimmicky 6-elixir commitment. One side of the community sees it as quietly revived/underrated lately (especially as a lane-stopper in certain meta shells), while the other basically treats it like a washed, distractable, overcosted relic you almost never see. Overall vibe: niche control tank that can feel amazing in the right deck, but looks dead and clunky the moment the matchup or counters are wrong.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Hog Rider",
@@ -692,7 +776,11 @@
         "tryhard": 0.45,
         "no-skill": 0.35
       },
-      "llm_vibe_summary": "Hog Rider gets talked about like the definition of a “timeless” win con: you can slap it into a ton of decks, build a whole cycle shell around it, and it just keeps working. People also hate how it always seems to sneak a hit at 1 HP, so it’s consistently annoying even when it’s not the #1 meta deck. Sentiment splits a bit: it’s respected for versatility and consistency, but it also gets side-eyed as a tryhard/cycle spam card that can feel low-effort when you’re the one defending it all game."
+      "llm_vibe_summary": "Hog Rider gets talked about like the definition of a “timeless” win con: you can slap it into a ton of decks, build a whole cycle shell around it, and it just keeps working. People also hate how it always seems to sneak a hit at 1 HP, so it’s consistently annoying even when it’s not the #1 meta deck. Sentiment splits a bit: it’s respected for versatility and consistency, but it also gets side-eyed as a tryhard/cycle spam card that can feel low-effort when you’re the one defending it all game.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Minion Horde",
@@ -723,7 +811,11 @@
         "overrated": 0.55,
         "frustrating to face": 0.35
       },
-      "llm_vibe_summary": "Minion Horde gets talked about like an old-school menace that just doesn’t survive the modern meta—too many arrows/zap/snowball-style answers and way too much risk for 5 elixir. When it works it can still shred and feel “okay,” but most of the time it’s a value donation that disappears instantly to spells or splash. Overall vibe is: super punishable, super matchup-dependent, and not worth the headache unless you’re really banking on spell-baiting someone."
+      "llm_vibe_summary": "Minion Horde gets talked about like an old-school menace that just doesn’t survive the modern meta—too many arrows/zap/snowball-style answers and way too much risk for 5 elixir. When it works it can still shred and feel “okay,” but most of the time it’s a value donation that disappears instantly to spells or splash. Overall vibe is: super punishable, super matchup-dependent, and not worth the headache unless you’re really banking on spell-baiting someone.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Ice Wizard",
@@ -755,7 +847,11 @@
         "timeless": 0.45,
         "satisfying": 0.4
       },
-      "llm_vibe_summary": "Ice Wizard gets talked about like a straight-up defensive cheat code: you drop him and big pushes just stop moving, and suddenly you’ve bought a ton of time for cheap. People see him as a top-ladder “slow everything down” staple—annoying for the attacker, but in a respectable, control-player way rather than brain-dead cheese. Overall vibe is consistent and reliable: not flashy, just always doing work when you need to stabilize."
+      "llm_vibe_summary": "Ice Wizard gets talked about like a straight-up defensive cheat code: you drop him and big pushes just stop moving, and suddenly you’ve bought a ton of time for cheap. People see him as a top-ladder “slow everything down” staple—annoying for the attacker, but in a respectable, control-player way rather than brain-dead cheese. Overall vibe is consistent and reliable: not flashy, just always doing work when you need to stabilize.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Royal Giant",
@@ -790,7 +886,11 @@
         "top-ladder viable": 0.6,
         "timeless": 0.45
       },
-      "llm_vibe_summary": "Royal Giant gets talked about like the poster-child of “drop it at the bridge and collect damage” — people genuinely call it zero-skill/brain-dead and get heated about RG players. Even when it’s not the #1 win con at the very top, it’s still seen as consistently strong across most of ladder, which makes losing to it feel extra gross. The vibe is basically: it’s effective, it’s everywhere, and it’s annoying enough that it tilts people on sight."
+      "llm_vibe_summary": "Royal Giant gets talked about like the poster-child of “drop it at the bridge and collect damage” — people genuinely call it zero-skill/brain-dead and get heated about RG players. Even when it’s not the #1 win con at the very top, it’s still seen as consistently strong across most of ladder, which makes losing to it feel extra gross. The vibe is basically: it’s effective, it’s everywhere, and it’s annoying enough that it tilts people on sight.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": true,
+      "evo_url": "https://api-assets.clashroyale.com/cardevolutions/300/mnlRaNtmfpQx2e6mp70sLd0ND-pKPF70Cf87_agEKg4.png"
     },
     {
       "name": "Guards",
@@ -821,7 +921,11 @@
         "respectable": 0.7,
         "underrated": 0.45
       },
-      "llm_vibe_summary": "Guards get talked about like the \"skeletons that don’t get spelled\"—they’re insanely reliable on defense because they don’t just evaporate to Log/Zap/Arrows, so you actually get value instead of getting farmed. People see them as one of the best cheap defensive staples in the game, able to clamp down on a ton of threats for the cost. Overall vibe is very positive: not flashy, just consistently nasty and hard to punish."
+      "llm_vibe_summary": "Guards get talked about like the \"skeletons that don’t get spelled\"—they’re insanely reliable on defense because they don’t just evaporate to Log/Zap/Arrows, so you actually get value instead of getting farmed. People see them as one of the best cheap defensive staples in the game, able to clamp down on a ton of threats for the cost. Overall vibe is very positive: not flashy, just consistently nasty and hard to punish.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Princess",
@@ -853,7 +957,11 @@
         "top-ladder viable": 0.5,
         "respectable": 0.4
       },
-      "llm_vibe_summary": "Princess is that classic bait staple that never really dies—she’s basically always around because log bait is always around. People talk about her like a 3-elixir value machine: if you don’t answer her, she just chips forever and splashes down swarms from a mile away. She’s not framed as “brain-dead,” but she is absolutely the kind of card that feels annoying and oppressive when she’s getting free shots and forcing you to spend spells awkwardly."
+      "llm_vibe_summary": "Princess is that classic bait staple that never really dies—she’s basically always around because log bait is always around. People talk about her like a 3-elixir value machine: if you don’t answer her, she just chips forever and splashes down swarms from a mile away. She’s not framed as “brain-dead,” but she is absolutely the kind of card that feels annoying and oppressive when she’s getting free shots and forcing you to spend spells awkwardly.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Dark Prince",
@@ -882,7 +990,11 @@
         "underrated": 0.6,
         "timeless": 0.4
       },
-      "llm_vibe_summary": "Dark Prince gets talked about like a sneaky strong glue card: splash, shield value, and real offensive pressure for a “mini tank” slot. One side of the community is basically shocked he’s statistically cooking right now and treats him as genuinely meta-strong; the other side is more lukewarm and never really bought into the hype. Net vibe is that he’s not flashy, but he quietly wins interactions and feels better than people give him credit for."
+      "llm_vibe_summary": "Dark Prince gets talked about like a sneaky strong glue card: splash, shield value, and real offensive pressure for a “mini tank” slot. One side of the community is basically shocked he’s statistically cooking right now and treats him as genuinely meta-strong; the other side is more lukewarm and never really bought into the hype. Net vibe is that he’s not flashy, but he quietly wins interactions and feels better than people give him credit for.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Three Musketeers",
@@ -915,7 +1027,11 @@
         "gimmicky": 0.65,
         "top-ladder viable": 0.7
       },
-      "llm_vibe_summary": "Three Musketeers gets talked about like a polarizing “just drop it and win” card: insane range/DPS that can feel brain-dead when it’s online, and it steamrolls people who don’t have the exact spell answers. At the same time, a lot of players call it gimmicky because one well-timed Fireball/Lightning/Poison swing can make the whole 9-elixir investment look stupid. So the vibe is either you’re getting flat-out destroyed by it, or you’re watching it get spelled and thinking “why would anyone run this?”"
+      "llm_vibe_summary": "Three Musketeers gets talked about like a polarizing “just drop it and win” card: insane range/DPS that can feel brain-dead when it’s online, and it steamrolls people who don’t have the exact spell answers. At the same time, a lot of players call it gimmicky because one well-timed Fireball/Lightning/Poison swing can make the whole 9-elixir investment look stupid. So the vibe is either you’re getting flat-out destroyed by it, or you’re watching it get spelled and thinking “why would anyone run this?”",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Lava Hound",
@@ -946,7 +1062,11 @@
         "high-skill": 0.65,
         "top-ladder viable": 0.35
       },
-      "llm_vibe_summary": "Lava Hound gets talked about like a straight slot machine win con: you queue up and either they’ve got the air answers and you’re cooked, or they don’t and you can outplay and steal games. People don’t really call it brain-dead—if anything it’s seen as hard to pilot well and kind of miserable when the meta is packed with air counters. Overall vibe is “inconsistent but can pop off,” and it feels way less reliable than it used to be."
+      "llm_vibe_summary": "Lava Hound gets talked about like a straight slot machine win con: you queue up and either they’ve got the air answers and you’re cooked, or they don’t and you can outplay and steal games. People don’t really call it brain-dead—if anything it’s seen as hard to pilot well and kind of miserable when the meta is packed with air counters. Overall vibe is “inconsistent but can pop off,” and it feels way less reliable than it used to be.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Ice Spirit",
@@ -974,7 +1094,11 @@
         "timeless": 0.85,
         "high-skill": 0.55
       },
-      "llm_vibe_summary": "Ice Spirit gets talked about like the definition of a “never bad” card: cheap, fits basically everywhere, and always finds value on defense or supporting a push. People don’t really call it brain-dead—if you actually know how to time and place it, it hard swings interactions for 1 elixir. Overall it’s seen as a staple cycle piece that’s just always solid."
+      "llm_vibe_summary": "Ice Spirit gets talked about like the definition of a “never bad” card: cheap, fits basically everywhere, and always finds value on defense or supporting a push. People don’t really call it brain-dead—if you actually know how to time and place it, it hard swings interactions for 1 elixir. Overall it’s seen as a staple cycle piece that’s just always solid.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": true,
+      "evo_url": "https://api-assets.clashroyale.com/cardevolutions/300/lv1budiafU9XmSdrDkk0NYyqASAFYyZ06CPysXKZXlA.png"
     },
     {
       "name": "Fire Spirit",
@@ -999,7 +1123,11 @@
       "crowd_ratings": {
         "sleeper": 0.4
       },
-      "llm_vibe_summary": "Fire Spirit gets talked about like the \"meh\" spirit: it’s playable and does its job, but it’s not the one people are hyped to run when Ice/Electro/Heal Spirit exist. The vibe is basically “okay, not terrible,” mostly showing up as a filler cycle/splash chip option rather than something that swings matchups. Overall perception is low-drama and low-ceiling—fine, just not the spirit you’re picking first."
+      "llm_vibe_summary": "Fire Spirit gets talked about like the \"meh\" spirit: it’s playable and does its job, but it’s not the one people are hyped to run when Ice/Electro/Heal Spirit exist. The vibe is basically “okay, not terrible,” mostly showing up as a filler cycle/splash chip option rather than something that swings matchups. Overall perception is low-drama and low-ceiling—fine, just not the spirit you’re picking first.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Miner",
@@ -1028,7 +1156,11 @@
         "timeless": 0.6,
         "top-ladder viable": 0.5
       },
-      "llm_vibe_summary": "Miner gets talked about like the “classy” way to win: slow, methodical chip where you actually have to think, not just spam a bridge button. The vibe is super respectful—losing to Miner control feels fair, like you got outplayed instead of cheesed. At the same time, people admit he’s fallen off a bit and is more of a secondary win con/sniping tool now than the centerpiece of the meta."
+      "llm_vibe_summary": "Miner gets talked about like the “classy” way to win: slow, methodical chip where you actually have to think, not just spam a bridge button. The vibe is super respectful—losing to Miner control feels fair, like you got outplayed instead of cheesed. At the same time, people admit he’s fallen off a bit and is more of a secondary win con/sniping tool now than the centerpiece of the meta.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Sparky",
@@ -1058,7 +1190,11 @@
         "frustrating to face": 0.5,
         "high-skill": 0.4
       },
-      "llm_vibe_summary": "Sparky’s community vibe is super split: some people think she’s secretly strong right now and way better than her reputation, especially when she’s protected behind a tank and you don’t have the clean answer. Other players still call her clunky and overpriced because she’s a 6-elixir ground-only cannon that gets reset/zapped, distracted, or denied before she ever cashes out. When she does connect, it feels disgusting and unfair, but a lot of games she’s either a win-more threat or a dead slot depending on matchup and cycle."
+      "llm_vibe_summary": "Sparky’s community vibe is super split: some people think she’s secretly strong right now and way better than her reputation, especially when she’s protected behind a tank and you don’t have the clean answer. Other players still call her clunky and overpriced because she’s a 6-elixir ground-only cannon that gets reset/zapped, distracted, or denied before she ever cashes out. When she does connect, it feels disgusting and unfair, but a lot of games she’s either a win-more threat or a dead slot depending on matchup and cycle.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Bowler",
@@ -1087,7 +1223,11 @@
         "respectable": 0.75,
         "top-ladder viable": 0.6
       },
-      "llm_vibe_summary": "Bowler gets talked about like a straight-up lane-stopper: you drop him and he just deletes bridge spam, hog-type pressure, and swarms with that knockback splash. People describe him as insanely clutch and satisfying when you’re down bad on elixir and he still stabilizes the whole defense. The vibe is mostly respect—he’s not some cheesy brain-rot win con, he’s just a chunky control piece that quietly carries games when used right."
+      "llm_vibe_summary": "Bowler gets talked about like a straight-up lane-stopper: you drop him and he just deletes bridge spam, hog-type pressure, and swarms with that knockback splash. People describe him as insanely clutch and satisfying when you’re down bad on elixir and he still stabilizes the whole defense. The vibe is mostly respect—he’s not some cheesy brain-rot win con, he’s just a chunky control piece that quietly carries games when used right.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Lumberjack",
@@ -1115,7 +1255,11 @@
         "matchup dependent": 0.55,
         "underrated": 0.4
       },
-      "llm_vibe_summary": "Lumberjack gets talked about like a solid on-paper DPS support that’s held back by being kinda squishy and not always getting consistent value unless the situation’s right. A lot of the hype is tied to what he enables (rage swings and tempo), but people also see him as pretty deck-dependent—either he’s doing work in specific win-con pairings or he’s just “fine.” Overall vibe is more practical than flashy: not broken, not dead, just a situationally clutch piece that can feel way better when the rest of the deck is built around him."
+      "llm_vibe_summary": "Lumberjack gets talked about like a solid on-paper DPS support that’s held back by being kinda squishy and not always getting consistent value unless the situation’s right. A lot of the hype is tied to what he enables (rage swings and tempo), but people also see him as pretty deck-dependent—either he’s doing work in specific win-con pairings or he’s just “fine.” Overall vibe is more practical than flashy: not broken, not dead, just a situationally clutch piece that can feel way better when the rest of the deck is built around him.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": true,
+      "evo_url": "https://api-assets.clashroyale.com/cardevolutions/300/E6RWrnCuk13xMX5OE1EQtLEKTZQV6B78d00y8PlXt6Q.png"
     },
     {
       "name": "Battle Ram",
@@ -1147,7 +1291,11 @@
         "matchup dependent": 0.7,
         "underrated": 0.4
       },
-      "llm_vibe_summary": "Battle Ram gets talked about like it’s fine in theory, but super unreliable as a main win con unless you’re basically building your whole deck around it. People keep bringing up how often it just gets stopped by common stuff (log/snowball/buildings/splash), so it barely connects and feels kinda gimmicky. One side rates it as just “decent but needs the EVO to feel great,” while the other thinks it’s straight up under-average outside of classic bridge spam setups."
+      "llm_vibe_summary": "Battle Ram gets talked about like it’s fine in theory, but super unreliable as a main win con unless you’re basically building your whole deck around it. People keep bringing up how often it just gets stopped by common stuff (log/snowball/buildings/splash), so it barely connects and feels kinda gimmicky. One side rates it as just “decent but needs the EVO to feel great,” while the other thinks it’s straight up under-average outside of classic bridge spam setups.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": true,
+      "evo_url": "https://api-assets.clashroyale.com/cardevolutions/300/dyc50V2cplKi4H7pq1B3I36pl_sEH5DQrNHboS_dbbM.png"
     },
     {
       "name": "Inferno Dragon",
@@ -1176,7 +1324,11 @@
         "matchup dependent": 0.7,
         "frustrating to face": 0.4
       },
-      "llm_vibe_summary": "Inferno Dragon gets talked about like a \"sometimes insane, sometimes useless\" card: when it locks onto a tank it melts everything, but half the time it just gets kited, distracted, or stalled and you paid 4 elixir for vibes. A lot of players see it as pretty matchup-dependent and easy to neutralize with cheap distractions/cycle, so it doesn’t feel consistently meta-defining. When it does stick and ramp, though, it’s one of those cards that can feel super annoying because your whole push evaporates."
+      "llm_vibe_summary": "Inferno Dragon gets talked about like a \"sometimes insane, sometimes useless\" card: when it locks onto a tank it melts everything, but half the time it just gets kited, distracted, or stalled and you paid 4 elixir for vibes. A lot of players see it as pretty matchup-dependent and easy to neutralize with cheap distractions/cycle, so it doesn’t feel consistently meta-defining. When it does stick and ramp, though, it’s one of those cards that can feel super annoying because your whole push evaporates.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": true,
+      "evo_url": "https://api-assets.clashroyale.com/cardevolutions/300/y5HDbKtTbWG6En6TGWU0xoVIGs1-iQpIP4HC-VM7u8A.png"
     },
     {
       "name": "Ice Golem",
@@ -1207,7 +1359,11 @@
         "underrated": 0.5,
         "wholesome": 0.4
       },
-      "llm_vibe_summary": "Ice Golem gets talked about like the definition of a clean, honest cycle mini-tank: cheap, always useful, and it just does its job (kite, tank a bit, slow stuff) without being cringe. People rate it as a super solid “glue” card that bails you out in defense and makes your cycle smoother. It’s not some flashy takeover card, but it’s one of those picks that basically never feels wrong, even if it’s not the absolute best mini-tank in every meta."
+      "llm_vibe_summary": "Ice Golem gets talked about like the definition of a clean, honest cycle mini-tank: cheap, always useful, and it just does its job (kite, tank a bit, slow stuff) without being cringe. People rate it as a super solid “glue” card that bails you out in defense and makes your cycle smoother. It’s not some flashy takeover card, but it’s one of those picks that basically never feels wrong, even if it’s not the absolute best mini-tank in every meta.",
+      "is_hero": true,
+      "hero_url": "https://api-assets.clashroyale.com/cardheroes/300/r05cmpwV1o7i7FHodtZwW3fmjbXCW34IJCsDEV5cZC4.png",
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Mega Minion",
@@ -1233,7 +1389,11 @@
         "underrated": 0.65,
         "top-ladder viable": 0.55
       },
-      "llm_vibe_summary": "Mega Minion gets talked about like a quiet workhorse: cheap, high DPS, and just reliably cleans up on defense while also backing up pushes. The vibe is mostly “underrated value” rather than flashy—people like that it does its job without needing a whole gimmick. The main knock is it can feel slow and not that threatening on offense, so some players label it kinda mid even though it still holds up in a lot of matchups."
+      "llm_vibe_summary": "Mega Minion gets talked about like a quiet workhorse: cheap, high DPS, and just reliably cleans up on defense while also backing up pushes. The vibe is mostly “underrated value” rather than flashy—people like that it does its job without needing a whole gimmick. The main knock is it can feel slow and not that threatening on offense, so some players label it kinda mid even though it still holds up in a lot of matchups.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Dart Goblin",
@@ -1269,7 +1429,11 @@
         "tryhard": 0.55,
         "top-ladder viable": 0.6
       },
-      "llm_vibe_summary": "Dart Goblin is that ridiculously annoying chip/DPS card that you can’t ignore for even a second—if it’s left alive it just machine-guns your tower and farms value. The vibe is super “I hate this card” because it’s fast, long-range, and forces a response every time, especially in bait shells where dealing with him already puts you in a bad spot. Some people hesitate to call it pure no-skill, but the general talk is that it’s oppressive and tilting to face, and it hard-punishes certain matchups (especially swarm-based defenses)."
+      "llm_vibe_summary": "Dart Goblin is that ridiculously annoying chip/DPS card that you can’t ignore for even a second—if it’s left alive it just machine-guns your tower and farms value. The vibe is super “I hate this card” because it’s fast, long-range, and forces a response every time, especially in bait shells where dealing with him already puts you in a bad spot. Some people hesitate to call it pure no-skill, but the general talk is that it’s oppressive and tilting to face, and it hard-punishes certain matchups (especially swarm-based defenses).",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": true,
+      "evo_url": "https://api-assets.clashroyale.com/cardevolutions/300/BmpK3bqEAviflqHCdxxnfm-_l3pRPJw3qxHkwS55nCY.png"
     },
     {
       "name": "Goblin Gang",
@@ -1303,7 +1467,11 @@
         "respectable": 0.5,
         "annoying": 0.4
       },
-      "llm_vibe_summary": "Goblin Gang gets talked about like the classic “does everything” bait swarm: cheap, fast, covers air and ground, and just makes defending and counterpushing feel easy. People rate it as a super consistent, plug-and-play staple (especially in bait/control shells) because it forces awkward spells and gives reliable DPS + distraction value. The vibe isn’t usually “broken,” more like timeless and always useful—though it can still be irritating when it’s part of a full bait package."
+      "llm_vibe_summary": "Goblin Gang gets talked about like the classic “does everything” bait swarm: cheap, fast, covers air and ground, and just makes defending and counterpushing feel easy. People rate it as a super consistent, plug-and-play staple (especially in bait/control shells) because it forces awkward spells and gives reliable DPS + distraction value. The vibe isn’t usually “broken,” more like timeless and always useful—though it can still be irritating when it’s part of a full bait package.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Electro Wizard",
@@ -1335,7 +1503,11 @@
         "respectable": 0.5,
         "top-ladder viable": 0.4
       },
-      "llm_vibe_summary": "Electro Wizard gets talked about like the ultimate “glue” card: you drop it and it just fixes problems—stuns, resets, cleans up small stuff, and bails you out of pushes. A lot of players treat it as a classic, never-really-bad pick that always has some value, even if it’s not the flashiest win con. The vibe is mostly positive and kind of underrated: not broken, just consistently useful and annoying enough that you can’t ignore it."
+      "llm_vibe_summary": "Electro Wizard gets talked about like the ultimate “glue” card: you drop it and it just fixes problems—stuns, resets, cleans up small stuff, and bails you out of pushes. A lot of players treat it as a classic, never-really-bad pick that always has some value, even if it’s not the flashiest win con. The vibe is mostly positive and kind of underrated: not broken, just consistently useful and annoying enough that you can’t ignore it.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Elite Barbarians",
@@ -1366,7 +1538,11 @@
         "spammy": 0.5,
         "frustrating to face": 0.5
       },
-      "llm_vibe_summary": "Elite Barbarians get talked about like the classic “bridge spam punish” card: if you overspend or look away for two seconds, they’ll just take your tower and make you feel stupid. A lot of players also see them as washed compared to their old terror days—still capable of stealing games, but usually not that good unless the opponent misplays. The vibe is basically mid-ladder PTSD: not respected, but always a little scary when they show up at the bridge."
+      "llm_vibe_summary": "Elite Barbarians get talked about like the classic “bridge spam punish” card: if you overspend or look away for two seconds, they’ll just take your tower and make you feel stupid. A lot of players also see them as washed compared to their old terror days—still capable of stealing games, but usually not that good unless the opponent misplays. The vibe is basically mid-ladder PTSD: not respected, but always a little scary when they show up at the bridge.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Hunter",
@@ -1397,7 +1573,11 @@
         "top-ladder viable": 0.5,
         "matchup dependent": 0.4
       },
-      "llm_vibe_summary": "Hunter gets talked about like a lowkey cracked shotgun DPS card: when you place it right, it deletes tanks and chunks air for cheap and feels way stronger than its popularity suggests. The vibe is that it’s a legit, versatile defender (and can fit lots of decks), but it’s not some auto-win card—if you misplace it or can’t protect it, it just doesn’t look special. One side treats it as a really strong, reliable damage piece; the other sees it as mostly a niche pick (often tied to RG) that’s solid but not a must-run."
+      "llm_vibe_summary": "Hunter gets talked about like a lowkey cracked shotgun DPS card: when you place it right, it deletes tanks and chunks air for cheap and feels way stronger than its popularity suggests. The vibe is that it’s a legit, versatile defender (and can fit lots of decks), but it’s not some auto-win card—if you misplace it or can’t protect it, it just doesn’t look special. One side treats it as a really strong, reliable damage piece; the other sees it as mostly a niche pick (often tied to RG) that’s solid but not a must-run.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": true,
+      "evo_url": "https://api-assets.clashroyale.com/cardevolutions/300/VNabB1WKnYtYRSG7X_FZfnZjQDHTBs9A96OGMFmecrA.png"
     },
     {
       "name": "Executioner",
@@ -1427,7 +1607,11 @@
         "frustrating to face": 0.7,
         "top-ladder viable": 0.5
       },
-      "llm_vibe_summary": "Executioner’s vibe is basically: defensive god when he’s paired with Tornado, but kind of mid and inconsistent when he’s not. People complain that he underperforms for the cost because he gets distracted by tanks and sometimes just doesn’t hit what you need him to hit, which makes you overcommit and get punished. At the same time, the Exe-Nado combo is seen as one of those nasty, matchup-warping defenses that feels like a cheat code when it’s set up right."
+      "llm_vibe_summary": "Executioner’s vibe is basically: defensive god when he’s paired with Tornado, but kind of mid and inconsistent when he’s not. People complain that he underperforms for the cost because he gets distracted by tanks and sometimes just doesn’t hit what you need him to hit, which makes you overcommit and get punished. At the same time, the Exe-Nado combo is seen as one of those nasty, matchup-warping defenses that feels like a cheat code when it’s set up right.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": true,
+      "evo_url": "https://api-assets.clashroyale.com/cardevolutions/300/9XL5BP2mqzV8kza6KF8rOxrpCZTyuGLp2l413DTjEoM.png"
     },
     {
       "name": "Bandit",
@@ -1455,7 +1639,11 @@
         "matchup dependent": 0.5,
         "sleeper": 0.4
       },
-      "llm_vibe_summary": "Bandit gets talked about like the definition of “fine”: cheap bridge-spam pressure that can force a response, maybe sneak some damage, but she’s squishy and doesn’t really mini-tank or carry defenses the way you want. A lot of players feel she’s kinda fallen into the shadow of other bridge-spam options (especially the flashier replacements), so she ends up being a boring mid pick unless your deck specifically wants that dash pressure. She can still be annoying in the right moments, but most of the time people just see her as replaceable."
+      "llm_vibe_summary": "Bandit gets talked about like the definition of “fine”: cheap bridge-spam pressure that can force a response, maybe sneak some damage, but she’s squishy and doesn’t really mini-tank or carry defenses the way you want. A lot of players feel she’s kinda fallen into the shadow of other bridge-spam options (especially the flashier replacements), so she ends up being a boring mid pick unless your deck specifically wants that dash pressure. She can still be annoying in the right moments, but most of the time people just see her as replaceable.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Royal Recruits",
@@ -1485,7 +1673,11 @@
         "matchup dependent": 0.5,
         "sleeper": 0.4
       },
-      "llm_vibe_summary": "Royal Recruits get talked about like this weird “why is everyone suddenly running it?” card—especially in that mid/upper ladder pocket where you just keep queuing into split-lane Recruits stuff. The vibe is that they’re not some unstoppable threat without the EVO, and in the current meta they can feel like cannon fodder that’s pretty easy to wipe if you’ve got the right answers. Still, they’re solid for split pressure and spell-baiting, so when you’re missing the clean counters they can quietly snowball into an annoying, grindy game."
+      "llm_vibe_summary": "Royal Recruits get talked about like this weird “why is everyone suddenly running it?” card—especially in that mid/upper ladder pocket where you just keep queuing into split-lane Recruits stuff. The vibe is that they’re not some unstoppable threat without the EVO, and in the current meta they can feel like cannon fodder that’s pretty easy to wipe if you’ve got the right answers. Still, they’re solid for split pressure and spell-baiting, so when you’re missing the clean counters they can quietly snowball into an annoying, grindy game.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": true,
+      "evo_url": "https://api-assets.clashroyale.com/cardevolutions/300/jcNyYGUiXXNz3kuz8NBkHNKNREQKraXlb_Ts7rhCIdM.png"
     },
     {
       "name": "Night Witch",
@@ -1515,7 +1707,11 @@
         "overrated": 0.6,
         "matchup dependent": 0.45
       },
-      "llm_vibe_summary": "Night Witch gets talked about like a relic from the old beatdown days—people remember the menace, but now she’s mostly just \"why am I even running this?\" because she’s too easy to delete and modern beatdown would rather slot whatever broken support is meta. One side basically treats her as outdated and replaceable (Golem doesn’t even want her anymore), while the other still calls her “good” on paper since she’s a 4-elixir bat-spawning support that hits air/ground. Overall vibe: not unplayable, but kind of washed unless the matchup/deck is specifically built to make her matter."
+      "llm_vibe_summary": "Night Witch gets talked about like a relic from the old beatdown days—people remember the menace, but now she’s mostly just \"why am I even running this?\" because she’s too easy to delete and modern beatdown would rather slot whatever broken support is meta. One side basically treats her as outdated and replaceable (Golem doesn’t even want her anymore), while the other still calls her “good” on paper since she’s a 4-elixir bat-spawning support that hits air/ground. Overall vibe: not unplayable, but kind of washed unless the matchup/deck is specifically built to make her matter.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Bats",
@@ -1544,7 +1740,11 @@
         "dead card": 0.7,
         "underrated": 0.4
       },
-      "llm_vibe_summary": "Bats get talked about like the definition of fragile: they pop to basically anything, so a lot of players just ask “why not run Minions?” and move on. The vibe is that they’re rarely worth the slot because they die instantly and don’t reliably swing games, even if they can technically get value as a cheap distraction/DPS swarm. Overall perception is more “outclassed and forgettable” than genuinely scary or toxic."
+      "llm_vibe_summary": "Bats get talked about like the definition of fragile: they pop to basically anything, so a lot of players just ask “why not run Minions?” and move on. The vibe is that they’re rarely worth the slot because they die instantly and don’t reliably swing games, even if they can technically get value as a cheap distraction/DPS swarm. Overall perception is more “outclassed and forgettable” than genuinely scary or toxic.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": true,
+      "evo_url": "https://api-assets.clashroyale.com/cardevolutions/300/EnIcvO21hxiNpoI-zO6MDjLmzwPbq8Z4JPo2OKoVUjU.png"
     },
     {
       "name": "Royal Ghost",
@@ -1578,7 +1778,11 @@
         "annoying": 0.4,
         "mid-ladder menace": 0.3
       },
-      "llm_vibe_summary": "Royal Ghost gets talked about like the perfect annoying hybrid: enough HP to be a mini tank, enough DPS to punish you, and the invis pressure means you can’t just ignore it or you’re taking damage. One side of the community rates it really highly as a consistent, always-useful pressure piece that forces responses and fits tons of decks. The other side is way more lukewarm, basically treating it as just “fine” and not a standout, so the vibe is split between underrated staple and forgettable average card."
+      "llm_vibe_summary": "Royal Ghost gets talked about like the perfect annoying hybrid: enough HP to be a mini tank, enough DPS to punish you, and the invis pressure means you can’t just ignore it or you’re taking damage. One side of the community rates it really highly as a consistent, always-useful pressure piece that forces responses and fits tons of decks. The other side is way more lukewarm, basically treating it as just “fine” and not a standout, so the vibe is split between underrated staple and forgettable average card.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": true,
+      "evo_url": "https://api-assets.clashroyale.com/cardevolutions/300/3En2cz0ISQAaMTHY3hj3rTveFN2kJYq-H4VxvdJNvCM.png"
     },
     {
       "name": "Ram Rider",
@@ -1608,7 +1812,11 @@
         "dead card": 0.6,
         "coin-flip": 0.4
       },
-      "llm_vibe_summary": "Ram Rider gets talked about like a polarizing card that swings between “please nerf this” and “why am I even running this,” and right now the vibe is way closer to irrelevant. It’s still a bridge-spam win con with the snare/control utility, but it’s not feeling consistent in the meta, so a lot of players treat it like a matchup-check more than a reliable ladder staple. Overall perception: not unplayable, just kind of dead unless the meta shifts back in its favor."
+      "llm_vibe_summary": "Ram Rider gets talked about like a polarizing card that swings between “please nerf this” and “why am I even running this,” and right now the vibe is way closer to irrelevant. It’s still a bridge-spam win con with the snare/control utility, but it’s not feeling consistent in the meta, so a lot of players treat it like a matchup-check more than a reliable ladder staple. Overall perception: not unplayable, just kind of dead unless the meta shifts back in its favor.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Zappies",
@@ -1641,7 +1849,11 @@
         "top-ladder viable": 0.5,
         "dead card": 0.5
       },
-      "llm_vibe_summary": "Zappies are one of those cards that feel insanely obnoxious when they’re good—stun-locking, splitting lanes, and forcing awkward responses while acting as solid fireball bait. A chunk of players see them as genuinely strong and kind of underrated right now, especially when you’re already busy defending and they stack up. But there’s also a loud camp that thinks they’re basically trash outside of very specific recruits/flying-machine style shells, so the card swings hard between “secretly cracked” and “why are you running this?” depending on who you ask."
+      "llm_vibe_summary": "Zappies are one of those cards that feel insanely obnoxious when they’re good—stun-locking, splitting lanes, and forcing awkward responses while acting as solid fireball bait. A chunk of players see them as genuinely strong and kind of underrated right now, especially when you’re already busy defending and they stack up. But there’s also a loud camp that thinks they’re basically trash outside of very specific recruits/flying-machine style shells, so the card swings hard between “secretly cracked” and “why are you running this?” depending on who you ask.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Rascals",
@@ -1676,7 +1888,11 @@
         "overrated": 0.7,
         "underrated": 0.4
       },
-      "llm_vibe_summary": "Rascals are super polarizing: one side sees them as a buffed-up bait staple that’s actually dominating right now, because even if you log the girls you’re still stuck dealing with a beefy boy that hits way harder than he used to. The other side thinks the card is straight up trash—\"crappy knight plus crappy archers\"—and basically free value for any solid splash/control defense. Net vibe is: either a legit log-bait powerhouse or a clown card, depending on who you ask and what you’re playing into."
+      "llm_vibe_summary": "Rascals are super polarizing: one side sees them as a buffed-up bait staple that’s actually dominating right now, because even if you log the girls you’re still stuck dealing with a beefy boy that hits way harder than he used to. The other side thinks the card is straight up trash—\"crappy knight plus crappy archers\"—and basically free value for any solid splash/control defense. Net vibe is: either a legit log-bait powerhouse or a clown card, depending on who you ask and what you’re playing into.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Cannon Cart",
@@ -1704,7 +1920,11 @@
         "annoying": 0.5,
         "top-ladder viable": 0.4
       },
-      "llm_vibe_summary": "Cannon Cart gets talked about like a sneaky, high-DPS menace: if it ever locks and you don’t have the clean answer, you feel instantly punished. Some players see it as a genuinely strong, underrated threat that also doubles as a defensive building after it breaks, which makes it feel super efficient. Others basically shrug and call it underwhelming/situational, like it’s not bad but it’s not worth a slot in most decks unless you’re building around it."
+      "llm_vibe_summary": "Cannon Cart gets talked about like a sneaky, high-DPS menace: if it ever locks and you don’t have the clean answer, you feel instantly punished. Some players see it as a genuinely strong, underrated threat that also doubles as a defensive building after it breaks, which makes it feel super efficient. Others basically shrug and call it underwhelming/situational, like it’s not bad but it’s not worth a slot in most decks unless you’re building around it.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Mega Knight",
@@ -1737,7 +1957,11 @@
         "matchup dependent": 0.6,
         "overrated": 0.55
       },
-      "llm_vibe_summary": "Mega Knight gets talked about like the ultimate “looks scary, isn’t actually that good” card: expensive, super distractable, and it mostly shines when people are overleveled or you’re running into players without clean answers. It can still farm value in the right spots (drop + splash control), but a lot of the time it just turns into a clunky 7-elixir commitment that hands the opponent a counterpush. Overall vibe is mid-ladder menace energy more than a reliable top-tier threat, especially without leaning on the evo."
+      "llm_vibe_summary": "Mega Knight gets talked about like the ultimate “looks scary, isn’t actually that good” card: expensive, super distractable, and it mostly shines when people are overleveled or you’re running into players without clean answers. It can still farm value in the right spots (drop + splash control), but a lot of the time it just turns into a clunky 7-elixir commitment that hands the opponent a counterpush. Overall vibe is mid-ladder menace energy more than a reliable top-tier threat, especially without leaning on the evo.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": true,
+      "evo_url": "https://api-assets.clashroyale.com/cardevolutions/300/O2NycChSNhn_UK9nqBXUhhC_lILkiANzPuJjtjoz0CE.png"
     },
     {
       "name": "Skeleton Barrel",
@@ -1771,7 +1995,11 @@
         "brain-dead": 0.45,
         "cheese": 0.5
       },
-      "llm_vibe_summary": "Skeleton Barrel gets talked about like a niche, kinda cheesy bait win-con that mostly exists to force a response or stack with other bait pressure. One side of the community view is that it’s only really scary because of its EVO; without that, it’s just “mid” and not a real threat by itself. The other vibe is basically “who cares, it just gets zapped/logged,” so it ends up feeling matchup- and spell-availability dependent more than anything."
+      "llm_vibe_summary": "Skeleton Barrel gets talked about like a niche, kinda cheesy bait win-con that mostly exists to force a response or stack with other bait pressure. One side of the community view is that it’s only really scary because of its EVO; without that, it’s just “mid” and not a real threat by itself. The other vibe is basically “who cares, it just gets zapped/logged,” so it ends up feeling matchup- and spell-availability dependent more than anything.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": true,
+      "evo_url": "https://api-assets.clashroyale.com/cardevolutions/300/vCB4DWCcrGbTkarjcOiVz4aNDx6GWLm0yUepg9E1MGo.png"
     },
     {
       "name": "Flying Machine",
@@ -1802,7 +2030,11 @@
         "underrated": 0.4,
         "matchup dependent": 0.4
       },
-      "llm_vibe_summary": "Flying Machine gets talked about like a washed-up \"used to be annoying\" ranged flier that doesn’t keep up anymore—too squishy, not enough DPS, and it just doesn’t bring the oomph into beefy metas. A lot of the time it’s framed as falling off hard post-evos/heroes, where you need real damage and it doesn’t deliver. There’s still a grudging respect that it can get value in the right scenario, but the vibe is mostly that it’s niche and kinda dead unless your matchup/deck specifically makes it work."
+      "llm_vibe_summary": "Flying Machine gets talked about like a washed-up \"used to be annoying\" ranged flier that doesn’t keep up anymore—too squishy, not enough DPS, and it just doesn’t bring the oomph into beefy metas. A lot of the time it’s framed as falling off hard post-evos/heroes, where you need real damage and it doesn’t deliver. There’s still a grudging respect that it can get value in the right scenario, but the vibe is mostly that it’s niche and kinda dead unless your matchup/deck specifically makes it work.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Wall Breakers",
@@ -1842,7 +2074,11 @@
         "frustrating to face": 0.7,
         "cheese": 0.6
       },
-      "llm_vibe_summary": "Wall Breakers get talked about like pure spam/brain-rot pressure: you just keep tossing them at the bridge and force constant awkward responses for cheap. One side says they’ve fallen off a bit in the current meta compared to their peak, but they’re still labeled insanely annoying and oppressive when paired with the usual bait shell. Overall vibe is “low effort, high payoff” — if you’re facing them, it feels like you’re getting chipped to death while they cycle back again and again."
+      "llm_vibe_summary": "Wall Breakers get talked about like pure spam/brain-rot pressure: you just keep tossing them at the bridge and force constant awkward responses for cheap. One side says they’ve fallen off a bit in the current meta compared to their peak, but they’re still labeled insanely annoying and oppressive when paired with the usual bait shell. Overall vibe is “low effort, high payoff” — if you’re facing them, it feels like you’re getting chipped to death while they cycle back again and again.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": true,
+      "evo_url": "https://api-assets.clashroyale.com/cardevolutions/300/_xPphEfC8eEwFNrfU3cMQG9-f5JaLQ31ARCA7l3XtW4.png"
     },
     {
       "name": "Royal Hogs",
@@ -1875,7 +2111,11 @@
         "annoying": 0.5,
         "spammy": 0.4
       },
-      "llm_vibe_summary": "Royal Hogs get talked about like a straight-up elite win condition: split them, pressure both lanes, and suddenly your opponent’s spell cycle is getting dragged around the map. They’re loved for how efficient and hard-to-stop they feel without the perfect counters, and they’re seen as a legit meta pick rather than some niche gimmick. One side gives them extra credit for spell-bait + split-lane flexibility (even without EVO), while the other basically just stamps them as S-tier disgusting and moves on."
+      "llm_vibe_summary": "Royal Hogs get talked about like a straight-up elite win condition: split them, pressure both lanes, and suddenly your opponent’s spell cycle is getting dragged around the map. They’re loved for how efficient and hard-to-stop they feel without the perfect counters, and they’re seen as a legit meta pick rather than some niche gimmick. One side gives them extra credit for spell-bait + split-lane flexibility (even without EVO), while the other basically just stamps them as S-tier disgusting and moves on.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": true,
+      "evo_url": "https://api-assets.clashroyale.com/cardevolutions/300/ASSQJG_MoVq9e81HZzo4bynMnyLNpNJMfSLb3hqydOw.png"
     },
     {
       "name": "Goblin Giant",
@@ -1910,7 +2150,11 @@
         "frustrating to face": 0.55,
         "mid-ladder menace": 0.4
       },
-      "llm_vibe_summary": "Goblin Giant gets talked about like a clunky, kinda overcosted tank that dies too fast for 6, and the spear gobs on his back feel like “wet paper towel shooters” unless the deck is built perfectly around him. People still admit he can be nasty in specific setups (the classic Goblin Giant + Sparky style), but it’s very “either it pops off or it does nothing,” so it lands in that gimmicky/matchup-dependent zone. Overall vibe: not a staple meta win con, but when it’s in the right toxic-feeling combo it can be super annoying to deal with."
+      "llm_vibe_summary": "Goblin Giant gets talked about like a clunky, kinda overcosted tank that dies too fast for 6, and the spear gobs on his back feel like “wet paper towel shooters” unless the deck is built perfectly around him. People still admit he can be nasty in specific setups (the classic Goblin Giant + Sparky style), but it’s very “either it pops off or it does nothing,” so it lands in that gimmicky/matchup-dependent zone. Overall vibe: not a staple meta win con, but when it’s in the right toxic-feeling combo it can be super annoying to deal with.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": true,
+      "evo_url": "https://api-assets.clashroyale.com/cardevolutions/300/SoW16cY3jXBwaTDvb39DkqiVsoFVaDWbzf5QBYphJrY.png"
     },
     {
       "name": "Fisherman",
@@ -1942,7 +2186,11 @@
         "satisfying": 0.7,
         "top-ladder viable": 0.65
       },
-      "llm_vibe_summary": "Fisherman gets talked about like the troop-version of Tornado: stupid utility, constant king activations, and it just yoinks win cons/tanks wherever it wants. People find it annoying because one hook can completely flip an interaction, but it’s also the kind of card that feels insanely satisfying when you actually know the timings and placements. Overall vibe is that it’s way more valuable than its hype level—quietly cracked and shows up a lot in serious decks."
+      "llm_vibe_summary": "Fisherman gets talked about like the troop-version of Tornado: stupid utility, constant king activations, and it just yoinks win cons/tanks wherever it wants. People find it annoying because one hook can completely flip an interaction, but it’s also the kind of card that feels insanely satisfying when you actually know the timings and placements. Overall vibe is that it’s way more valuable than its hype level—quietly cracked and shows up a lot in serious decks.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Magic Archer",
@@ -1976,7 +2224,11 @@
         "satisfying": 0.5,
         "tryhard": 0.4
       },
-      "llm_vibe_summary": "Magic Archer gets talked about like a sweaty, lineup-reliant card: if you’re good with angles you can make it look completely unfair, but if you’re not, it’s just a squishier ranged troop that can feel inconsistent. People still call it a pain to deal with because the chip and piercing pressure forces responses and can randomly swing games off one clean geometry shot. Overall the vibe is “high-skill and annoying,” with some seeing it as newly legit after buffs, while others still prefer more consistent ranged options."
+      "llm_vibe_summary": "Magic Archer gets talked about like a sweaty, lineup-reliant card: if you’re good with angles you can make it look completely unfair, but if you’re not, it’s just a squishier ranged troop that can feel inconsistent. People still call it a pain to deal with because the chip and piercing pressure forces responses and can randomly swing games off one clean geometry shot. Overall the vibe is “high-skill and annoying,” with some seeing it as newly legit after buffs, while others still prefer more consistent ranged options.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Electro Dragon",
@@ -2008,7 +2260,11 @@
         "annoying": 0.65,
         "frustrating to face": 0.85
       },
-      "llm_vibe_summary": "Electro Dragon without the EVO gets talked about like it’s basically a dead slot: too little impact for the cost, inconsistent, and you’d almost always rather run a different splash/air support. The vibe flips hard when EVO is involved—then it’s the kind of chain-stun value that feels disgusting to play into, especially in those healer + E-Golem style piles. So it’s either “why would you ever play this?” or “this is making me want to uninstall,” depending on whether the EVO is in the conversation."
+      "llm_vibe_summary": "Electro Dragon without the EVO gets talked about like it’s basically a dead slot: too little impact for the cost, inconsistent, and you’d almost always rather run a different splash/air support. The vibe flips hard when EVO is involved—then it’s the kind of chain-stun value that feels disgusting to play into, especially in those healer + E-Golem style piles. So it’s either “why would you ever play this?” or “this is making me want to uninstall,” depending on whether the EVO is in the conversation.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": true,
+      "evo_url": "https://api-assets.clashroyale.com/cardevolutions/300/tN9h6lnMNPCNsx0LMFmvpHgznbDZ1fBRkx-C7UfNmfY.png"
     },
     {
       "name": "Firecracker",
@@ -2044,7 +2300,11 @@
         "mid-ladder menace": 0.7,
         "top-ladder viable": 0.45
       },
-      "llm_vibe_summary": "Firecracker is the definition of “why is this getting value again?”—she sits behind a tank/win con and casually bleeds tower HP while being a constant headache to line up and remove. People complain that the base version already overperforms in the right spots, and the EVO is basically what makes her feel actually worth building around. Overall she’s talked about like a toxic, match-tilting nuisance: not always the most consistent standalone card, but when she starts chaining splash and chip, it feels disgusting to play into."
+      "llm_vibe_summary": "Firecracker is the definition of “why is this getting value again?”—she sits behind a tank/win con and casually bleeds tower HP while being a constant headache to line up and remove. People complain that the base version already overperforms in the right spots, and the EVO is basically what makes her feel actually worth building around. Overall she’s talked about like a toxic, match-tilting nuisance: not always the most consistent standalone card, but when she starts chaining splash and chip, it feels disgusting to play into.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": true,
+      "evo_url": "https://api-assets.clashroyale.com/cardevolutions/300/c1rL3LO1U2D9-TkeFfAC18gP3AO8ztSwrcHMZplwL2Q.png"
     },
     {
       "name": "Mighty Miner",
@@ -2072,7 +2332,11 @@
         "high-skill": 0.6,
         "top-ladder viable": 0.4
       },
-      "llm_vibe_summary": "Mighty Miner gets talked about like a solid, technical champ that can be nasty if you actually know what you’re doing—timing the ability and using the lane swap to bail yourself out or set up value. The vibe isn’t “broken” though; it’s more like he’s just kinda okay and held back by the fact you can only run one champ and there are usually better options. Some people respect it as a higher-skill pick, but it doesn’t have that must-play presence, so it ends up feeling quietly decent rather than scary."
+      "llm_vibe_summary": "Mighty Miner gets talked about like a solid, technical champ that can be nasty if you actually know what you’re doing—timing the ability and using the lane swap to bail yourself out or set up value. The vibe isn’t “broken” though; it’s more like he’s just kinda okay and held back by the fact you can only run one champ and there are usually better options. Some people respect it as a higher-skill pick, but it doesn’t have that must-play presence, so it ends up feeling quietly decent rather than scary.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Elixir Golem",
@@ -2107,7 +2371,11 @@
         "matchup dependent": 0.7,
         "annoying": 0.65
       },
-      "llm_vibe_summary": "Elixir Golem gets talked about like straight-up coin-flip, brain-rot gameplay: you drop it, stack healer/drag type stuff behind it, and either your opponent’s deck can handle it or you just steamroll. People don’t just dislike it—they treat it like a toxic archetype that ruins the vibe, especially when it’s paired with the usual support package that makes everything feel unkillable. Even when it’s not top-tier consistent, it still gets labeled no-skill because the “outplay” factor feels low and the matchup lottery feels high."
+      "llm_vibe_summary": "Elixir Golem gets talked about like straight-up coin-flip, brain-rot gameplay: you drop it, stack healer/drag type stuff behind it, and either your opponent’s deck can handle it or you just steamroll. People don’t just dislike it—they treat it like a toxic archetype that ruins the vibe, especially when it’s paired with the usual support package that makes everything feel unkillable. Even when it’s not top-tier consistent, it still gets labeled no-skill because the “outplay” factor feels low and the matchup lottery feels high.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Battle Healer",
@@ -2140,7 +2408,11 @@
         "coin-flip": 0.65,
         "matchup dependent": 0.55
       },
-      "llm_vibe_summary": "Battle Healer gets talked about like an objectively trash card… until it’s in that E-Golem/E-Drag pile where it suddenly turns into a two-minute, can’t-die nightmare. People hate how it punishes even tiny overcommits—if you slip once, it just perma-heals and the whole lane becomes unkillable. The vibe is basically “cheesy coin-flip”: outside the toxic combo decks it’s whatever, but in the right shell it feels disgusting to play against."
+      "llm_vibe_summary": "Battle Healer gets talked about like an objectively trash card… until it’s in that E-Golem/E-Drag pile where it suddenly turns into a two-minute, can’t-die nightmare. People hate how it punishes even tiny overcommits—if you slip once, it just perma-heals and the whole lane becomes unkillable. The vibe is basically “cheesy coin-flip”: outside the toxic combo decks it’s whatever, but in the right shell it feels disgusting to play against.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Skeleton King",
@@ -2173,7 +2445,11 @@
         "underrated": 0.45,
         "overrated": 0.6
       },
-      "llm_vibe_summary": "Skeleton King gets talked about like a bait/graveyard glue card that can randomly turn a push into a problem if you stack souls and pop ability at the right time. At the same time, a chunk of players straight up think he’s trash for a champ slot—too often you don’t get the big moment and he just feels like a worse option than other mini-tank pressure pieces. So you’ll see people call him sneaky good in the right shell, and others call him overrated and not worth building around."
+      "llm_vibe_summary": "Skeleton King gets talked about like a bait/graveyard glue card that can randomly turn a push into a problem if you stack souls and pop ability at the right time. At the same time, a chunk of players straight up think he’s trash for a champ slot—too often you don’t get the big moment and he just feels like a worse option than other mini-tank pressure pieces. So you’ll see people call him sneaky good in the right shell, and others call him overrated and not worth building around.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Archer Queen",
@@ -2201,7 +2477,11 @@
         "tryhard": 0.5,
         "respectable": 0.4
       },
-      "llm_vibe_summary": "Archer Queen is seen as a super versatile, high-value champion that you can slap into a lot of decks and just get paid off, mainly because the ability can swing fights and farm value. The vibe around her is pretty tryhard/top-ladder-ish: if someone’s running Queen, they’re usually playing something real and they know what they’re doing. Compared to more niche champions, she’s talked about as the safer, more universally useful pick rather than some gimmick."
+      "llm_vibe_summary": "Archer Queen is seen as a super versatile, high-value champion that you can slap into a lot of decks and just get paid off, mainly because the ability can swing fights and farm value. The vibe around her is pretty tryhard/top-ladder-ish: if someone’s running Queen, they’re usually playing something real and they know what they’re doing. Compared to more niche champions, she’s talked about as the safer, more universally useful pick rather than some gimmick.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Golden Knight",
@@ -2234,7 +2514,11 @@
         "tryhard": 0.5,
         "fun": 0.45
       },
-      "llm_vibe_summary": "Golden Knight gets talked about like the “actually good” champion: a legit mini-tank that can randomly swing the whole game when the dash chains right. People respect it because you can’t just slam it and pray—you need timing and spacing to not waste the ability, and good players make it look disgusting. Even after nerfs, the vibe is still that it’s top-tier pressure and one of the scariest punish tools when you’re even a little off-cycle."
+      "llm_vibe_summary": "Golden Knight gets talked about like the “actually good” champion: a legit mini-tank that can randomly swing the whole game when the dash chains right. People respect it because you can’t just slam it and pray—you need timing and spacing to not waste the ability, and good players make it look disgusting. Even after nerfs, the vibe is still that it’s top-tier pressure and one of the scariest punish tools when you’re even a little off-cycle.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Monk",
@@ -2263,7 +2547,11 @@
         "underrated": 0.4,
         "mid-ladder menace": 0.4
       },
-      "llm_vibe_summary": "Monk gets talked about like a card that should be scary in theory, but most of the time it just kinda underperforms and you don’t really feel like you’re missing it. When it does show up, it’s usually glued to Royal Giant and that combo is what makes people tilt—one good ability timing and it can swing a whole interaction. Overall the vibe is “situational and annoying when it works,” not “meta-defining carry.”"
+      "llm_vibe_summary": "Monk gets talked about like a card that should be scary in theory, but most of the time it just kinda underperforms and you don’t really feel like you’re missing it. When it does show up, it’s usually glued to Royal Giant and that combo is what makes people tilt—one good ability timing and it can swing a whole interaction. Overall the vibe is “situational and annoying when it works,” not “meta-defining carry.”",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Skeleton Dragons",
@@ -2288,7 +2576,11 @@
         "dead card": 0.8,
         "underrated": 0.4
       },
-      "llm_vibe_summary": "Skeleton Dragons get talked about like they straight-up disappeared from the game—most people just run Baby Dragon instead, so you basically never see them. When they do show up, it’s usually as a niche splash/air support pick (like into Recruits), but the vibe is that they’re outclassed and not worth the slot. Overall perception: low presence, low hype, and mostly a “who even plays this anymore?” card."
+      "llm_vibe_summary": "Skeleton Dragons get talked about like they straight-up disappeared from the game—most people just run Baby Dragon instead, so you basically never see them. When they do show up, it’s usually as a niche splash/air support pick (like into Recruits), but the vibe is that they’re outclassed and not worth the slot. Overall perception: low presence, low hype, and mostly a “who even plays this anymore?” card.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Mother Witch",
@@ -2318,7 +2610,11 @@
         "underrated": 0.5,
         "overrated": 0.5
       },
-      "llm_vibe_summary": "Mother Witch is basically the “plug-and-play” hate card: when swarm/bait or Graveyard is popular, she can just auto-farm value and make people feel cooked. A lot of players find her super annoying because she can flip a defense into a disgusting counterpush if you slip up. But there’s a real split in perception—some think she’s a meta counterpiece, others think she’s kinda trash/situational and only looks good when the matchup feeds her pigs."
+      "llm_vibe_summary": "Mother Witch is basically the “plug-and-play” hate card: when swarm/bait or Graveyard is popular, she can just auto-farm value and make people feel cooked. A lot of players find her super annoying because she can flip a defense into a disgusting counterpush if you slip up. But there’s a real split in perception—some think she’s a meta counterpiece, others think she’s kinda trash/situational and only looks good when the matchup feeds her pigs.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Electro Spirit",
@@ -2349,7 +2645,11 @@
         "satisfying": 0.5,
         "high-skill": 0.4
       },
-      "llm_vibe_summary": "Electro Spirit gets talked about like an auto-include 1-elixir glue card: cheap cycle that still flips interactions with chain stun, resets, and clutch defense. People rate it up with the best spirits because it’s never really “bad” in any matchup and it’s always getting value when you time it right. The vibe is less ‘toxic’ and more ‘clean and efficient’—a little tryhard, but in a respectable way."
+      "llm_vibe_summary": "Electro Spirit gets talked about like an auto-include 1-elixir glue card: cheap cycle that still flips interactions with chain stun, resets, and clutch defense. People rate it up with the best spirits because it’s never really “bad” in any matchup and it’s always getting value when you time it right. The vibe is less ‘toxic’ and more ‘clean and efficient’—a little tryhard, but in a respectable way.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Electro Giant",
@@ -2380,7 +2680,11 @@
         "matchup dependent": 0.7,
         "coin-flip": 0.65
       },
-      "llm_vibe_summary": "Electro Giant gets talked about like pure matchup roulette: you drop it and either they’ve got the building/mini-tank answers and you do nothing, or you just roll them and it feels disgusting. A lot of players label it straight-up no-skill/brain-dead because the gameplan is basically “slam E-Giant and pray,” and it’s miserable to face when you don’t have the clean counters. At the same time, there’s also the take that it’s kind of rough in the current meta and can feel borderline unusable into all the common answers—so the frustration is real, but the consistency isn’t."
+      "llm_vibe_summary": "Electro Giant gets talked about like pure matchup roulette: you drop it and either they’ve got the building/mini-tank answers and you do nothing, or you just roll them and it feels disgusting. A lot of players label it straight-up no-skill/brain-dead because the gameplan is basically “slam E-Giant and pray,” and it’s miserable to face when you don’t have the clean counters. At the same time, there’s also the take that it’s kind of rough in the current meta and can feel borderline unusable into all the common answers—so the frustration is real, but the consistency isn’t.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Phoenix",
@@ -2410,7 +2714,11 @@
         "frustrating to face": 0.5,
         "underrated": 0.4
       },
-      "llm_vibe_summary": "Phoenix gets talked about like it fell off hard—slow, low pressure, and usually not worth the slot compared to other air supports. The only time it feels disgusting is when the egg actually gets value and you don’t have the answer, which makes it randomly irritating in certain matchups. Overall the vibe is “kinda dead,” with occasional annoying moments when the respawn swings an interaction."
+      "llm_vibe_summary": "Phoenix gets talked about like it fell off hard—slow, low pressure, and usually not worth the slot compared to other air supports. The only time it feels disgusting is when the egg actually gets value and you don’t have the answer, which makes it randomly irritating in certain matchups. Overall the vibe is “kinda dead,” with occasional annoying moments when the respawn swings an interaction.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Little Prince",
@@ -2436,7 +2744,11 @@
         "gimmicky": 0.6,
         "high-skill": 0.4
       },
-      "llm_vibe_summary": "Community vibe on Little Prince is basically “used to be insane, now it’s kinda cooked.” People clown on the ability being a super overpriced, rarely-worth-it button (it’s easy to point at a million better 6-elixir options), so the card ends up feeling gimmicky and underwhelming most games. There’s still some respect for players who can actually time and justify the ability, but the dominant perception is that it’s the worst-feeling champ and not really doing enough in the meta."
+      "llm_vibe_summary": "Community vibe on Little Prince is basically “used to be insane, now it’s kinda cooked.” People clown on the ability being a super overpriced, rarely-worth-it button (it’s easy to point at a million better 6-elixir options), so the card ends up feeling gimmicky and underwhelming most games. There’s still some respect for players who can actually time and justify the ability, but the dominant perception is that it’s the worst-feeling champ and not really doing enough in the meta.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Goblin Demolisher",
@@ -2465,7 +2777,11 @@
         "annoying": 0.6,
         "top-ladder viable": 0.4
       },
-      "llm_vibe_summary": "Community vibe on Goblin Demolisher is that it’s a super annoying little utility piece—mostly seen in drill shells—because it can chip, splash, and randomly turn into a wall-breaker style threat for just 4 elixir. It’s not treated like some game-breaking win con, but more like a consistently solid, “why is this getting value again?” support card. Overall perception leans underrated: people who face it feel the pressure and chip adds up, while a lot of players still don’t rate it until it steals damage or bails out a defense with knockback."
+      "llm_vibe_summary": "Community vibe on Goblin Demolisher is that it’s a super annoying little utility piece—mostly seen in drill shells—because it can chip, splash, and randomly turn into a wall-breaker style threat for just 4 elixir. It’s not treated like some game-breaking win con, but more like a consistently solid, “why is this getting value again?” support card. Overall perception leans underrated: people who face it feel the pressure and chip adds up, while a lot of players still don’t rate it until it steals damage or bails out a defense with knockback.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Goblin Machine",
@@ -2491,7 +2807,11 @@
         "overrated": 0.7,
         "frustrating to face": 0.6
       },
-      "llm_vibe_summary": "Community vibe is that Goblin Machine was only “fun” when it was completely busted—aka you’d just get deleted by it—and once it got nerfed, it basically stopped existing. Now it gets talked about like a failed concept: either it’s broken and miserable, or it’s balanced by being trash. Compared to other 5-elixir support options, people feel like it doesn’t justify the slot anymore."
+      "llm_vibe_summary": "Community vibe is that Goblin Machine was only “fun” when it was completely busted—aka you’d just get deleted by it—and once it got nerfed, it basically stopped existing. Now it gets talked about like a failed concept: either it’s broken and miserable, or it’s balanced by being trash. Compared to other 5-elixir support options, people feel like it doesn’t justify the slot anymore.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Suspicious Bush",
@@ -2521,7 +2841,11 @@
         "frustrating to face": 0.6,
         "underrated": 0.5
       },
-      "llm_vibe_summary": "Suspicious Bush gets talked about like a dumb cheap pressure card that forces a response for only 2 elixir, and if you blink it can randomly chunk your tower. It fits that hyper-bait, spammy playstyle where you just keep tossing it in and your opponent is stuck spending answers over and over. The vibe is mostly “annoying but effective,” and it’s seen as sneakily strong for how little it costs."
+      "llm_vibe_summary": "Suspicious Bush gets talked about like a dumb cheap pressure card that forces a response for only 2 elixir, and if you blink it can randomly chunk your tower. It fits that hyper-bait, spammy playstyle where you just keep tossing it in and your opponent is stuck spending answers over and over. The vibe is mostly “annoying but effective,” and it’s seen as sneakily strong for how little it costs.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Goblinstein",
@@ -2547,7 +2871,11 @@
         "top-ladder viable": 0.7,
         "underrated": 0.5
       },
-      "llm_vibe_summary": "Goblinstein went from looking like a whatever/low-impact champ to being a legit meta piece, mostly because it slots insanely well into Graveyard and makes those pushes feel way harder to stop. People see it as a tanky support/control body where the ability can just swing interactions and bail you out, plus the stun value adds up fast. The main knock is it’s kinda married to Graveyard—outside that, it’s not really a plug-and-play champ like the more universally useful picks."
+      "llm_vibe_summary": "Goblinstein went from looking like a whatever/low-impact champ to being a legit meta piece, mostly because it slots insanely well into Graveyard and makes those pushes feel way harder to stop. People see it as a tanky support/control body where the ability can just swing interactions and bail you out, plus the stun value adds up fast. The main knock is it’s kinda married to Graveyard—outside that, it’s not really a plug-and-play champ like the more universally useful picks.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Rune Giant",
@@ -2577,7 +2905,11 @@
         "gimmicky": 0.7,
         "coin-flip": 0.45
       },
-      "llm_vibe_summary": "Rune Giant gets talked about like the actual worst card: not tanky enough to be a real tank, not impactful enough to be real support, and it ends up being a useless hybrid that doesn’t defend or pressure. Even after buffs, people act like it only “works” with a tiny handful of niche synergies, so most of the time playing it feels like you’re trolling. Overall vibe is just dead-on-arrival and outclassed by basically any mini tank, DPS unit, or actual win con you could slot instead."
+      "llm_vibe_summary": "Rune Giant gets talked about like the actual worst card: not tanky enough to be a real tank, not impactful enough to be real support, and it ends up being a useless hybrid that doesn’t defend or pressure. Even after buffs, people act like it only “works” with a tiny handful of niche synergies, so most of the time playing it feels like you’re trolling. Overall vibe is just dead-on-arrival and outclassed by basically any mini tank, DPS unit, or actual win con you could slot instead.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Berserker",
@@ -2606,7 +2938,11 @@
         "top-ladder viable": 0.7,
         "sleeper": 0.6
       },
-      "llm_vibe_summary": "Berserker gets talked about like a lowkey cracked 2-elixir glue card: it’s that perfect stopgap between mini-tank and damage dealer that bails you out of bad spots and doesn’t feel like a useless cycle slot. The vibe is that it quietly farms value as a distraction / “get out of jail” defender, and the stats/usage backing it up makes people treat it like a sleeper meta pick rather than a flashy win con."
+      "llm_vibe_summary": "Berserker gets talked about like a lowkey cracked 2-elixir glue card: it’s that perfect stopgap between mini-tank and damage dealer that bails you out of bad spots and doesn’t feel like a useless cycle slot. The vibe is that it quietly farms value as a distraction / “get out of jail” defender, and the stats/usage backing it up makes people treat it like a sleeper meta pick rather than a flashy win con.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Boss Bandit",
@@ -2645,7 +2981,11 @@
         "top-ladder viable": 0.55,
         "cheese": 0.5
       },
-      "llm_vibe_summary": "Boss Bandit gets talked about like a straight-up headache card: if you’re down elixir or don’t have the exact answers in hand, it can just run you over and make you feel helpless. People describe it as ability-spam/\"press button to win\" energy—low effort, high payoff, and super frustrating to face. There’s a split where some admit it can be scary when played smart, but the dominant vibe is still that it’s toxic, cheesy, and way too easy to get value with."
+      "llm_vibe_summary": "Boss Bandit gets talked about like a straight-up headache card: if you’re down elixir or don’t have the exact answers in hand, it can just run you over and make you feel helpless. People describe it as ability-spam/\"press button to win\" energy—low effort, high payoff, and super frustrating to face. There’s a split where some admit it can be scary when played smart, but the dominant vibe is still that it’s toxic, cheesy, and way too easy to get value with.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Cannon",
@@ -2676,7 +3016,11 @@
         "top-ladder viable": 0.6,
         "satisfying": 0.5
       },
-      "llm_vibe_summary": "Cannon gets talked about like the cheap, no-BS defensive building that just deletes pushes for 3 elixir—tons of DPS, easy kites, and it bails you out when you’re getting swarmed. People frame it as a staple in cycle/control because it’s hard to justify more expensive buildings when Cannon does the job and lets you keep tempo. The vibe is mostly “quietly cracked/underrated” rather than flashy—when it’s placed right, it feels stupid efficient."
+      "llm_vibe_summary": "Cannon gets talked about like the cheap, no-BS defensive building that just deletes pushes for 3 elixir—tons of DPS, easy kites, and it bails you out when you’re getting swarmed. People frame it as a staple in cycle/control because it’s hard to justify more expensive buildings when Cannon does the job and lets you keep tempo. The vibe is mostly “quietly cracked/underrated” rather than flashy—when it’s placed right, it feels stupid efficient.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": true,
+      "evo_url": "https://api-assets.clashroyale.com/cardevolutions/300/nZK1y-beLxO5vnlyUhK6-2zH2NzXJwqykcosqQ1cmZ8.png"
     },
     {
       "name": "Goblin Hut",
@@ -2710,7 +3054,11 @@
         "top-ladder viable": 0.55,
         "sleeper": 0.45
       },
-      "llm_vibe_summary": "Goblin Hut gets talked about like the kind of card that just won’t let you play the game—constant spear goblin drip-feed, nonstop distractions, and it always forces a spell or you start bleeding value. A lot of players see it as low-effort, spammy control that snowballs just by existing, but others rate it highly because it’s tanky, consistent, and makes the rest of your deck feel better by baiting responses all game. Overall vibe: irritating pressure generator that can feel toxic when it’s meta."
+      "llm_vibe_summary": "Goblin Hut gets talked about like the kind of card that just won’t let you play the game—constant spear goblin drip-feed, nonstop distractions, and it always forces a spell or you start bleeding value. A lot of players see it as low-effort, spammy control that snowballs just by existing, but others rate it highly because it’s tanky, consistent, and makes the rest of your deck feel better by baiting responses all game. Overall vibe: irritating pressure generator that can feel toxic when it’s meta.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Mortar",
@@ -2742,7 +3090,11 @@
         "tryhard": 0.5,
         "top-ladder viable": 0.4
       },
-      "llm_vibe_summary": "Mortar’s got that “I respect it, but it kinda sucks” energy: people see it as a sweaty, high-skill win con that you’re grinding all game just to get one lock. A big chunk of the community vibe is that base Mortar is basically a defensive building / cycle button and the card only really feels legit because of EVO Mortar propping the archetype up. Still, Mortar players get some respect because when it does connect, it chunks towers and it’s not the kind of thing you can just autopilot."
+      "llm_vibe_summary": "Mortar’s got that “I respect it, but it kinda sucks” energy: people see it as a sweaty, high-skill win con that you’re grinding all game just to get one lock. A big chunk of the community vibe is that base Mortar is basically a defensive building / cycle button and the card only really feels legit because of EVO Mortar propping the archetype up. Still, Mortar players get some respect because when it does connect, it chunks towers and it’s not the kind of thing you can just autopilot.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": true,
+      "evo_url": "https://api-assets.clashroyale.com/cardevolutions/300/lPOSw6H7YOHq2miSCrf7ZDL3ANjhJdPPDYOTujdNrVE.png"
     },
     {
       "name": "Inferno Tower",
@@ -2769,7 +3121,11 @@
       "crowd_ratings": {
         "matchup dependent": 0.6
       },
-      "llm_vibe_summary": "Inferno Tower gets talked about like a solid, classic tank-melter that can hard-stop certain pushes, but it’s not something people are hyping as meta-defining right now. The vibe is mostly that it swings matchups hard—into some decks it feels amazing, and into others it’s just kind of whatever—so it lands more in that “fine, but not crazy” bucket rather than being toxic or brain-dead."
+      "llm_vibe_summary": "Inferno Tower gets talked about like a solid, classic tank-melter that can hard-stop certain pushes, but it’s not something people are hyping as meta-defining right now. The vibe is mostly that it swings matchups hard—into some decks it feels amazing, and into others it’s just kind of whatever—so it lands more in that “fine, but not crazy” bucket rather than being toxic or brain-dead.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Bomb Tower",
@@ -2797,7 +3153,11 @@
         "matchup dependent": 0.55,
         "underrated": 0.45
       },
-      "llm_vibe_summary": "Bomb Tower gets talked about like a niche defensive building that only really shows up in a couple specific shells, and outside of that it feels forgettable. One side basically calls it weak for the cost and says it “hits like a wet paper towel,” while the other thinks it’s at least improved and not the worst—just not something you’re excited to run. Overall the vibe is: it can stabilize ground pushes, but it’s not a scary meta staple and often you’d rather run a cheaper building plus extra DPS."
+      "llm_vibe_summary": "Bomb Tower gets talked about like a niche defensive building that only really shows up in a couple specific shells, and outside of that it feels forgettable. One side basically calls it weak for the cost and says it “hits like a wet paper towel,” while the other thinks it’s at least improved and not the worst—just not something you’re excited to run. Overall the vibe is: it can stabilize ground pushes, but it’s not a scary meta staple and often you’d rather run a cheaper building plus extra DPS.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Barbarian Hut",
@@ -2825,7 +3185,11 @@
         "troll": 0.75,
         "gimmicky": 0.7
       },
-      "llm_vibe_summary": "Barbarian Hut gets talked about like the definition of a dead card: it’s not “secretly underrated,” it’s just ass and basically only shows up when someone’s trolling. When it does get value, it’s usually because the opponent mindlessly feeds tanks into the spawned barbs, not because the card is actually good. Overall vibe is gimmick building that doesn’t justify the elixir in real matches."
+      "llm_vibe_summary": "Barbarian Hut gets talked about like the definition of a dead card: it’s not “secretly underrated,” it’s just ass and basically only shows up when someone’s trolling. When it does get value, it’s usually because the opponent mindlessly feeds tanks into the spawned barbs, not because the card is actually good. Overall vibe is gimmick building that doesn’t justify the elixir in real matches.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Tesla",
@@ -2856,7 +3220,11 @@
         "top-ladder viable": 0.6,
         "timeless": 0.4
       },
-      "llm_vibe_summary": "Tesla’s perception is split hard: one side sees base Tesla as kind of a washed, low-oomph building that’s easy to spell down, distract, or misplace, so it ends up feeling like a “why would I run this without the EVO?” pick. The other side treats Tesla as a staple defensive building that’s just straight-up nasty and always solid, especially in tighter, more tryhard control/cycle contexts. Overall vibe is: either a dead-ish base card carried by upgrades, or a timeless defense tool depending on who you ask."
+      "llm_vibe_summary": "Tesla’s perception is split hard: one side sees base Tesla as kind of a washed, low-oomph building that’s easy to spell down, distract, or misplace, so it ends up feeling like a “why would I run this without the EVO?” pick. The other side treats Tesla as a staple defensive building that’s just straight-up nasty and always solid, especially in tighter, more tryhard control/cycle contexts. Overall vibe is: either a dead-ish base card carried by upgrades, or a timeless defense tool depending on who you ask.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": true,
+      "evo_url": "https://api-assets.clashroyale.com/cardevolutions/300/OiwnGrxFMNiHetYEerE-UZt0L_uYNzFY7qV_CA_OxR4.png"
     },
     {
       "name": "Elixir Collector",
@@ -2886,7 +3254,11 @@
         "coin-flip": 0.7,
         "tryhard": 0.45
       },
-      "llm_vibe_summary": "Elixir Collector feels like pure matchup roulette: if they’ve got Lightning/Rocket, you look stupid; if they don’t, you’re suddenly drowning in elixir and the game turns into a snowball. People mostly talk about it as an annoying “you HAVE to spell this” card that forces awkward responses and then punishes you for spending that spell. It’s not really hype or flashy—just a tryhard, slot-machine enabler that makes certain decks feel miserable to play into."
+      "llm_vibe_summary": "Elixir Collector feels like pure matchup roulette: if they’ve got Lightning/Rocket, you look stupid; if they don’t, you’re suddenly drowning in elixir and the game turns into a snowball. People mostly talk about it as an annoying “you HAVE to spell this” card that forces awkward responses and then punishes you for spending that spell. It’s not really hype or flashy—just a tryhard, slot-machine enabler that makes certain decks feel miserable to play into.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "X-Bow",
@@ -2915,7 +3287,11 @@
         "top-ladder viable": 0.65,
         "respectable": 0.7
       },
-      "llm_vibe_summary": "X-Bow gets treated like the sweaty, nerdy win con that’s actually legit if you can play it—most people respect it because you’re basically fighting the whole match just to get one lock. It’s seen as more of a top-ladder/“specialist” card than something you’d recommend to newer players, but in the right hands it’s nasty, especially with defensive setups. Compared to stuff like Mortar, it’s framed as the stronger, more reliable version of that siege grind."
+      "llm_vibe_summary": "X-Bow gets treated like the sweaty, nerdy win con that’s actually legit if you can play it—most people respect it because you’re basically fighting the whole match just to get one lock. It’s seen as more of a top-ladder/“specialist” card than something you’d recommend to newer players, but in the right hands it’s nasty, especially with defensive setups. Compared to stuff like Mortar, it’s framed as the stronger, more reliable version of that siege grind.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Tombstone",
@@ -2945,7 +3321,11 @@
         "top-ladder viable": 0.5,
         "timeless": 0.5
       },
-      "llm_vibe_summary": "Tombstone is one of those cards people either forget exists or swear by as a super clean, low-commitment defensive building—great for stalling/kiting tanks and making stuff like Prince, Giant, and Pekka feel miserable. Some players talk like it barely has a “real deck” anymore and just isn’t that relevant, while others see it as crazy versatile and always getting value when you need to slow the game down. Overall vibe: quietly solid defense tech, but not something everyone agrees is meta-defining."
+      "llm_vibe_summary": "Tombstone is one of those cards people either forget exists or swear by as a super clean, low-commitment defensive building—great for stalling/kiting tanks and making stuff like Prince, Giant, and Pekka feel miserable. Some players talk like it barely has a “real deck” anymore and just isn’t that relevant, while others see it as crazy versatile and always getting value when you need to slow the game down. Overall vibe: quietly solid defense tech, but not something everyone agrees is meta-defining.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Furnace",
@@ -2980,7 +3360,11 @@
         "underrated": 0.6,
         "dead card": 0.45
       },
-      "llm_vibe_summary": "Furnace is super polarizing: when it’s good, it’s that annoying chip-and-splash building that forces a response every time and makes the rest of the deck feel way more oppressive. One side of the community treats it like a genuinely strong, high-range control piece that keeps generating value even without the evo, while the other side basically calls it forgettable trash and one of those cards that shouldn’t even exist in decks anymore. Overall vibe is “ugh, I have to spell this” mixed with “why am I even running this card?” depending on who you ask."
+      "llm_vibe_summary": "Furnace is super polarizing: when it’s good, it’s that annoying chip-and-splash building that forces a response every time and makes the rest of the deck feel way more oppressive. One side of the community treats it like a genuinely strong, high-range control piece that keeps generating value even without the evo, while the other side basically calls it forgettable trash and one of those cards that shouldn’t even exist in decks anymore. Overall vibe is “ugh, I have to spell this” mixed with “why am I even running this card?” depending on who you ask.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": true,
+      "evo_url": "https://api-assets.clashroyale.com/cardevolutions/300/iqbDiG7yYRIzvCPXdt9zPb3IvMt7F7Gi4wIPnh2x4aI.png"
     },
     {
       "name": "Goblin Cage",
@@ -3009,7 +3393,11 @@
         "underrated": 0.5,
         "matchup dependent": 0.4
       },
-      "llm_vibe_summary": "Goblin Cage gets talked about like a “fine, but why?” defensive building: it can work, but a lot of the time the brawler pops out and just gets deleted by whatever support troop is behind the tank, so it doesn’t feel like it actually stabilizes the push. Some players still call it solid (even mention it getting buffed), but the overall vibe is that it’s rarely the building you *want*—more like a decent option when it lines up, and forgettable when it doesn’t."
+      "llm_vibe_summary": "Goblin Cage gets talked about like a “fine, but why?” defensive building: it can work, but a lot of the time the brawler pops out and just gets deleted by whatever support troop is behind the tank, so it doesn’t feel like it actually stabilizes the push. Some players still call it solid (even mention it getting buffed), but the overall vibe is that it’s rarely the building you *want*—more like a decent option when it lines up, and forgettable when it doesn’t.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": true,
+      "evo_url": "https://api-assets.clashroyale.com/cardevolutions/300/vD24bBgK4rSq7wx5QEbuqChtPMRFviL_ep76GwQw1yA.png"
     },
     {
       "name": "Goblin Drill",
@@ -3041,7 +3429,11 @@
         "high-skill": 0.55,
         "mid-ladder menace": 0.3
       },
-      "llm_vibe_summary": "Goblin Drill gets talked about like a real deck card, but not some auto-win menace anymore—if people have solid Drill counters, you’re fighting for scraps and it can feel rough. The vibe is that it still wins games in the right hands (and you’ll see it up high), but it’s not the kind of win condition you just slam into anything and expect to farm. Some players frame it as a legit, skill-y control/bait win con, while others basically warn it’s a frustrating grind unless the matchup lines up."
+      "llm_vibe_summary": "Goblin Drill gets talked about like a real deck card, but not some auto-win menace anymore—if people have solid Drill counters, you’re fighting for scraps and it can feel rough. The vibe is that it still wins games in the right hands (and you’ll see it up high), but it’s not the kind of win condition you just slam into anything and expect to farm. Some players frame it as a legit, skill-y control/bait win con, while others basically warn it’s a frustrating grind unless the matchup lines up.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": true,
+      "evo_url": "https://api-assets.clashroyale.com/cardevolutions/300/eN2TKUYbih-26yBi0xy5LVFOA0zDftgDqxxnVfdIg1o.png"
     },
     {
       "name": "Fireball",
@@ -3070,7 +3462,11 @@
         "tryhard": 0.5,
         "satisfying": 0.45
       },
-      "llm_vibe_summary": "Fireball is basically the “default good spell” that just always gets value—clean damage, deletes a ton of mid-cost troops, and slots into almost any deck without feeling weird. People talk about it like a staple/tryhard tool: not flashy, just nasty and reliable, especially when paired with a small spell to finish key units. Compared to heavier spells like Rocket, it’s seen as way more consistently viable and easier to justify in most archetypes."
+      "llm_vibe_summary": "Fireball is basically the “default good spell” that just always gets value—clean damage, deletes a ton of mid-cost troops, and slots into almost any deck without feeling weird. People talk about it like a staple/tryhard tool: not flashy, just nasty and reliable, especially when paired with a small spell to finish key units. Compared to heavier spells like Rocket, it’s seen as way more consistently viable and easier to justify in most archetypes.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Arrows",
@@ -3094,7 +3490,11 @@
         "timeless": 0.75,
         "top-ladder viable": 0.65
       },
-      "llm_vibe_summary": "Arrows gets talked about like the ultimate “can’t go wrong” spell: consistent, easy value, and always relevant when bait is everywhere. People rate it as one of the best all-around spells because it just deletes swarms on demand and stays useful across metas. The only real knock is that sometimes you’d rather have a heavier spell for specific problems, but Arrows is still seen as a super safe, staple pick."
+      "llm_vibe_summary": "Arrows gets talked about like the ultimate “can’t go wrong” spell: consistent, easy value, and always relevant when bait is everywhere. People rate it as one of the best all-around spells because it just deletes swarms on demand and stays useful across metas. The only real knock is that sometimes you’d rather have a heavier spell for specific problems, but Arrows is still seen as a super safe, staple pick.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Rage",
@@ -3121,7 +3521,11 @@
         "annoying": 0.5,
         "spammy": 0.4
       },
-      "llm_vibe_summary": "Rage is getting talked about like it’s way better than it has any right to be: it’s not just a boost anymore, it’s basically a mini-spell that also speeds your whole push up. People see it as a legit meta tool (not a meme), especially because it can wipe little stuff while making your units feel impossible to stop. It’s not the most “toxic” card by itself, but it definitely creates those annoying, snowbally moments where one good Rage turns a normal defense into a disaster."
+      "llm_vibe_summary": "Rage is getting talked about like it’s way better than it has any right to be: it’s not just a boost anymore, it’s basically a mini-spell that also speeds your whole push up. People see it as a legit meta tool (not a meme), especially because it can wipe little stuff while making your units feel impossible to stop. It’s not the most “toxic” card by itself, but it definitely creates those annoying, snowbally moments where one good Rage turns a normal defense into a disaster.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Rocket",
@@ -3149,7 +3553,11 @@
         "tryhard": 0.4,
         "respectable": 0.4
       },
-      "llm_vibe_summary": "Rocket’s seen as that high-commitment “highlight” spell: it can look insane when you snipe a big clump or steal a game, but most of the time it’s awkward to just jam into decks compared to safer big spells. People talk about it like a niche, deck-specific win path (and sometimes a surprise factor), not a universally solid option. Overall vibe is more gimmick/control-tryhard than straight-up broken—when it works it feels genius, when it doesn’t you just wish it was Fireball/Poison/Lightning."
+      "llm_vibe_summary": "Rocket’s seen as that high-commitment “highlight” spell: it can look insane when you snipe a big clump or steal a game, but most of the time it’s awkward to just jam into decks compared to safer big spells. People talk about it like a niche, deck-specific win path (and sometimes a surprise factor), not a universally solid option. Overall vibe is more gimmick/control-tryhard than straight-up broken—when it works it feels genius, when it doesn’t you just wish it was Fireball/Poison/Lightning.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Goblin Barrel",
@@ -3186,7 +3594,11 @@
         "no-skill": 0.45,
         "top-ladder viable": 0.55
       },
-      "llm_vibe_summary": "Goblin Barrel is basically the face of bait: cheap, spammy pressure that forces you to have the right small spell or you just start bleeding tower HP. A big chunk of the salt comes from how miserable it feels when it’s paired with the rest of the bait package—multiple threats, constant spell-bait loops, and you’re never allowed to relax. At the same time, people also point out that the *base* Barrel by itself can feel kinda awful into double-spell or solid answers, and a lot of its success comes from the deck around it (and EVO power) more than the standalone card."
+      "llm_vibe_summary": "Goblin Barrel is basically the face of bait: cheap, spammy pressure that forces you to have the right small spell or you just start bleeding tower HP. A big chunk of the salt comes from how miserable it feels when it’s paired with the rest of the bait package—multiple threats, constant spell-bait loops, and you’re never allowed to relax. At the same time, people also point out that the *base* Barrel by itself can feel kinda awful into double-spell or solid answers, and a lot of its success comes from the deck around it (and EVO power) more than the standalone card.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": true,
+      "evo_url": "https://api-assets.clashroyale.com/cardevolutions/300/CoZdp5PpsTH858l212lAMeJxVJ0zxv9V-f5xC8Bvj5g.png"
     },
     {
       "name": "Freeze",
@@ -3216,7 +3628,11 @@
         "cheese": 0.6,
         "gimmicky": 0.55
       },
-      "llm_vibe_summary": "Freeze is basically the “annoying ass” spell: it doesn’t always feel like a surprise because you can usually smell it coming, but it still steals interactions and swings games when paired with a push. People acknowledge it can get value (even more after damage buffs), but it’s also easy to misplay and can straight-up hand your opponent a huge counterpush if you freeze wrong. Overall it’s viewed more like cheesy control/support than a clean, consistent top-tier spell."
+      "llm_vibe_summary": "Freeze is basically the “annoying ass” spell: it doesn’t always feel like a surprise because you can usually smell it coming, but it still steals interactions and swings games when paired with a push. People acknowledge it can get value (even more after damage buffs), but it’s also easy to misplay and can straight-up hand your opponent a huge counterpush if you freeze wrong. Overall it’s viewed more like cheesy control/support than a clean, consistent top-tier spell.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Mirror",
@@ -3244,7 +3660,11 @@
         "troll": 0.7,
         "coin-flip": 0.6
       },
-      "llm_vibe_summary": "Mirror gets talked about like the definition of “cute surprise that almost never pays off.” Most people see it as a troll/gimmick slot that gives you one cheesy win every handful of games, but usually it’s just extra elixir for the same result you could’ve gotten by running a real card. The vibe is basically: unreliable, not meta, and only worth it if you’re trying to catch someone sleeping."
+      "llm_vibe_summary": "Mirror gets talked about like the definition of “cute surprise that almost never pays off.” Most people see it as a troll/gimmick slot that gives you one cheesy win every handful of games, but usually it’s just extra elixir for the same result you could’ve gotten by running a real card. The vibe is basically: unreliable, not meta, and only worth it if you’re trying to catch someone sleeping.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Lightning",
@@ -3270,7 +3690,11 @@
         "top-ladder viable": 0.7,
         "tryhard": 0.5
       },
-      "llm_vibe_summary": "Lightning gets talked about like the “serious” big spell: it deletes buildings and stacked support troops and pretty reliably prints positive trades, so it just stays relevant no matter what. It’s basically always treated as an S-tier staple spell you can lean on when the meta is full of annoying backline units and defensive setups. Not really a hype or fun card—more like the sweaty, consistent option that just works."
+      "llm_vibe_summary": "Lightning gets talked about like the “serious” big spell: it deletes buildings and stacked support troops and pretty reliably prints positive trades, so it just stays relevant no matter what. It’s basically always treated as an S-tier staple spell you can lean on when the meta is full of annoying backline units and defensive setups. Not really a hype or fun card—more like the sweaty, consistent option that just works.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Zap",
@@ -3300,7 +3724,11 @@
         "top-ladder viable": 0.6,
         "respectable": 0.5
       },
-      "llm_vibe_summary": "Zap gets talked about like the definition of a solid, honest spell: instant, consistent, and it just does its job—resetting stuff and cleaning up small units without needing some crazy setup. It’s not usually framed as “broken” or flashy, just one of those staples you can toss into tons of decks and not feel bad about. People mainly nitpick it by comparing it to other small spells (Log/Barb Barrel), but the overall vibe is still that it’s a reliable, always-playable option."
+      "llm_vibe_summary": "Zap gets talked about like the definition of a solid, honest spell: instant, consistent, and it just does its job—resetting stuff and cleaning up small units without needing some crazy setup. It’s not usually framed as “broken” or flashy, just one of those staples you can toss into tons of decks and not feel bad about. People mainly nitpick it by comparing it to other small spells (Log/Barb Barrel), but the overall vibe is still that it’s a reliable, always-playable option.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": true,
+      "evo_url": "https://api-assets.clashroyale.com/cardevolutions/300/7dxh2-yCBy1x44GrBaL29vjqnEEeJXHEAlsi5g6D1eY.png"
     },
     {
       "name": "Poison",
@@ -3326,7 +3754,11 @@
         "top-ladder viable": 0.8,
         "respectable": 0.6
       },
-      "llm_vibe_summary": "Poison gets talked about like one of those always-safe, always-useful spells: it slows, controls space, and just quietly farms value in a ton of matchups. People especially rate it because Graveyard is everywhere, so Poison both enables that style and hard-checks it at the same time. Overall it’s seen as a staple, high-utility pick rather than some cheesy or brain-dead gimmick."
+      "llm_vibe_summary": "Poison gets talked about like one of those always-safe, always-useful spells: it slows, controls space, and just quietly farms value in a ton of matchups. People especially rate it because Graveyard is everywhere, so Poison both enables that style and hard-checks it at the same time. Overall it’s seen as a staple, high-utility pick rather than some cheesy or brain-dead gimmick.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Graveyard",
@@ -3359,7 +3791,11 @@
         "toxic": 0.6,
         "tryhard": 0.45
       },
-      "llm_vibe_summary": "Graveyard gets talked about like it’s stupidly consistent right now—drop it and you’re basically guaranteed chip even when it’s “countered,” which makes it feel toxic and miserable to face. A lot of people frame it as one of the easier win cons in the meta because the deck defends forever and still squeezes damage out. At the same time, some players insist it’s not pure brain-dead since you have to scout their counters first (poison, dark goblin, etc.) or you just throw the game."
+      "llm_vibe_summary": "Graveyard gets talked about like it’s stupidly consistent right now—drop it and you’re basically guaranteed chip even when it’s “countered,” which makes it feel toxic and miserable to face. A lot of people frame it as one of the easier win cons in the meta because the deck defends forever and still squeezes damage out. At the same time, some players insist it’s not pure brain-dead since you have to scout their counters first (poison, dark goblin, etc.) or you just throw the game.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "The Log",
@@ -3386,7 +3822,11 @@
         "respectable": 0.6,
         "satisfying": 0.5
       },
-      "llm_vibe_summary": "The Log is seen as one of those forever-staple spells: super consistent, easy to get value with, and it just does what it’s supposed to do every match. People talk about it like the definition of \"solid\"—reliable knockback, clean swarm control, and it fits basically anywhere. The only real knock is that it’s getting edged out a bit by Barb Barrel lately, since Barb Barrel does a lot of the same stuff but leaves a body behind."
+      "llm_vibe_summary": "The Log is seen as one of those forever-staple spells: super consistent, easy to get value with, and it just does what it’s supposed to do every match. People talk about it like the definition of \"solid\"—reliable knockback, clean swarm control, and it fits basically anywhere. The only real knock is that it’s getting edged out a bit by Barb Barrel lately, since Barb Barrel does a lot of the same stuff but leaves a body behind.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Tornado",
@@ -3417,7 +3857,11 @@
         "high-skill": 0.55,
         "satisfying": 0.45
       },
-      "llm_vibe_summary": "Tornado gets talked about like pure utility: it’s the glue spell that always finds value—king activations, buying time, yanking win cons off your tower, and setting up splash synergies. People rate it as a staple that fits basically anywhere and stays relevant no matter the meta. The vibe is less “toxic” and more “annoyingly effective,” especially when it’s paired with big splash defenders (the classic pull-into-death combo)."
+      "llm_vibe_summary": "Tornado gets talked about like pure utility: it’s the glue spell that always finds value—king activations, buying time, yanking win cons off your tower, and setting up splash synergies. People rate it as a staple that fits basically anywhere and stays relevant no matter the meta. The vibe is less “toxic” and more “annoyingly effective,” especially when it’s paired with big splash defenders (the classic pull-into-death combo).",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Clone",
@@ -3451,7 +3895,11 @@
         "cheese": 0.55,
         "frustrating to face": 0.35
       },
-      "llm_vibe_summary": "Clone gets talked about like a straight-up gimmick spell: funny when it works, useless most of the time, and basically only shows up in troll/cheese decks. People see it as a “gotcha” win button that relies on the opponent not reading the obvious setup, so it feels coin-flippy rather than solid. It’s been described as not truly viable for years—if you want consistent value, you just play something else."
+      "llm_vibe_summary": "Clone gets talked about like a straight-up gimmick spell: funny when it works, useless most of the time, and basically only shows up in troll/cheese decks. People see it as a “gotcha” win button that relies on the opponent not reading the obvious setup, so it feels coin-flippy rather than solid. It’s been described as not truly viable for years—if you want consistent value, you just play something else.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Earthquake",
@@ -3478,7 +3926,11 @@
         "overrated": 0.5,
         "top-ladder viable": 0.4
       },
-      "llm_vibe_summary": "Earthquake gets talked about like a super niche spell: it’s only really “the thing” in Hog EQ, and outside of that it feels like the odd man out compared to Fireball/Poison/Lightning. One side basically sees it as not used much and kinda ass because most decks would rather have a real big spell. The other side treats it like an S-tier staple spell (because spells are mandatory anyway), so the vibe is split—but overall it reads as matchup-dependent and not a plug-and-play pick."
+      "llm_vibe_summary": "Earthquake gets talked about like a super niche spell: it’s only really “the thing” in Hog EQ, and outside of that it feels like the odd man out compared to Fireball/Poison/Lightning. One side basically sees it as not used much and kinda ass because most decks would rather have a real big spell. The other side treats it like an S-tier staple spell (because spells are mandatory anyway), so the vibe is split—but overall it reads as matchup-dependent and not a plug-and-play pick.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Barbarian Barrel",
@@ -3505,7 +3957,11 @@
         "top-ladder viable": 0.9,
         "satisfying": 0.5
       },
-      "llm_vibe_summary": "Barbarian Barrel gets talked about like the small spell that just never stops being good: easy value, constant utility, and it straight-up outclasses Log right now because you also get a body on the board. People love how it deletes annoying ranged units while the spawned Barb immediately distracts and cleans up, so it feels stupidly consistent. Even when it’s nerfed, the vibe is basically “still busted, still the default.”"
+      "llm_vibe_summary": "Barbarian Barrel gets talked about like the small spell that just never stops being good: easy value, constant utility, and it straight-up outclasses Log right now because you also get a body on the board. People love how it deletes annoying ranged units while the spawned Barb immediately distracts and cleans up, so it feels stupidly consistent. Even when it’s nerfed, the vibe is basically “still busted, still the default.”",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Heal Spirit",
@@ -3532,7 +3988,11 @@
         "satisfying": 0.5,
         "top-ladder viable": 0.4
       },
-      "llm_vibe_summary": "Heal Spirit gets talked about like a lowkey game-changer: it’s a tiny cycle card that randomly flips fights and wins games when it connects right. People frame it as way more impactful than it looks on paper—more than just “another spirit”—because the heal swing can be disgusting value for 1 elixir. Compared to the other spirits it’s not always called the outright best, but it’s definitely treated as a sleeper pick that feels amazing when it clutches."
+      "llm_vibe_summary": "Heal Spirit gets talked about like a lowkey game-changer: it’s a tiny cycle card that randomly flips fights and wins games when it connects right. People frame it as way more impactful than it looks on paper—more than just “another spirit”—because the heal swing can be disgusting value for 1 elixir. Compared to the other spirits it’s not always called the outright best, but it’s definitely treated as a sleeper pick that feels amazing when it clutches.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Giant Snowball",
@@ -3562,7 +4022,11 @@
         "timeless": 0.5,
         "underrated": 0.4
       },
-      "llm_vibe_summary": "Snowball gets talked about as one of those low-drama, always-useful spells: it stalls, knocks stuff around, and can be used on offense to steal hits and flip interactions. People don’t hype it as “broken,” but they do treat it like a super clean utility pick that quietly wins moments over and over. The base version is seen as limited compared to heavier spells (and it can’t do everything), but it’s still a really comfortable, consistent tool to have."
+      "llm_vibe_summary": "Snowball gets talked about as one of those low-drama, always-useful spells: it stalls, knocks stuff around, and can be used on offense to steal hits and flip interactions. People don’t hype it as “broken,” but they do treat it like a super clean utility pick that quietly wins moments over and over. The base version is seen as limited compared to heavier spells (and it can’t do everything), but it’s still a really comfortable, consistent tool to have.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": true,
+      "evo_url": "https://api-assets.clashroyale.com/cardevolutions/300/7MaJLa6hK9WN2_VIshuh5DIDfGwm0wEv98gXtAxLDPs.png"
     },
     {
       "name": "Royal Delivery",
@@ -3592,7 +4056,11 @@
         "frustrating to face": 0.6,
         "underrated": 0.45
       },
-      "llm_vibe_summary": "Royal Delivery gets talked about like a “how do you NOT get value?” spell: huge drop damage, cleans up a bunch of stuff, and then you still get a free body to stall and mess up pushes. People who play it think it’s insanely efficient and just feels good every time it lands. On the other side, it’s the kind of card that makes you tilt because it randomly deletes your support troop and ruins your timing, even if it’s not the most versatile spell offensively."
+      "llm_vibe_summary": "Royal Delivery gets talked about like a “how do you NOT get value?” spell: huge drop damage, cleans up a bunch of stuff, and then you still get a free body to stall and mess up pushes. People who play it think it’s insanely efficient and just feels good every time it lands. On the other side, it’s the kind of card that makes you tilt because it randomly deletes your support troop and ruins your timing, even if it’s not the most versatile spell offensively.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Void",
@@ -3620,7 +4088,11 @@
         "frustrating to face": 0.45,
         "underrated": 0.35
       },
-      "llm_vibe_summary": "Void gets talked about like a high-risk, low-reward “fake Fireball/Arrows” that only pops off when it’s a surprise or your opponent misplays into it. When people know you have it, it starts feeling mad inconsistent—sometimes it snipes a key unit, other times it just does nothing and you wish it was a real spell. The vibe is basically: niche, kinda gimmicky, and way more matchup/knowledge-dependent than most players want in a spell slot."
+      "llm_vibe_summary": "Void gets talked about like a high-risk, low-reward “fake Fireball/Arrows” that only pops off when it’s a surprise or your opponent misplays into it. When people know you have it, it starts feeling mad inconsistent—sometimes it snipes a key unit, other times it just does nothing and you wish it was a real spell. The vibe is basically: niche, kinda gimmicky, and way more matchup/knowledge-dependent than most players want in a spell slot.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Goblin Curse",
@@ -3649,7 +4121,11 @@
         "fun": 0.6,
         "satisfying": 0.55
       },
-      "llm_vibe_summary": "Goblin Curse is talked about like a straight-up “steal the game” button: most of the time it’s not the most standard, plug-and-play spell, but it has that cheesy ceiling where one good use can just decide the whole match. The vibe around it is less “meta staple” and more “I’m here to troll and highroll,” which makes it feel fun and satisfying when it works. Overall perception is that its value is swingy and matchup-y, but the win-out-of-nowhere potential is what people remember."
+      "llm_vibe_summary": "Goblin Curse is talked about like a straight-up “steal the game” button: most of the time it’s not the most standard, plug-and-play spell, but it has that cheesy ceiling where one good use can just decide the whole match. The vibe around it is less “meta staple” and more “I’m here to troll and highroll,” which makes it feel fun and satisfying when it works. Overall perception is that its value is swingy and matchup-y, but the win-out-of-nowhere potential is what people remember.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Spirit Empress",
@@ -3676,7 +4152,11 @@
         "top-ladder viable": 0.6,
         "annoying": 0.3
       },
-      "llm_vibe_summary": "Spirit Empress gets talked about like a sleeper meta pick: the air form behind a Lava push feels straight-up unkillable unless you can stall it out, and the ground form is quietly high DPS. The vibe is mostly “people aren’t using this enough,” with more respect than hate. It’s not framed as brain-dead—more like a strong, under-the-radar support card that randomly makes matchups feel unfair if you don’t have the right answers."
+      "llm_vibe_summary": "Spirit Empress gets talked about like a sleeper meta pick: the air form behind a Lava push feels straight-up unkillable unless you can stall it out, and the ground form is quietly high DPS. The vibe is mostly “people aren’t using this enough,” with more respect than hate. It’s not framed as brain-dead—more like a strong, under-the-radar support card that randomly makes matchups feel unfair if you don’t have the right answers.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Vines",
@@ -3705,7 +4185,11 @@
         "underrated": 0.6,
         "satisfying": 0.4
       },
-      "llm_vibe_summary": "Vines gets talked about like a super high-utility “mini-freeze” control spell that randomly fixes a ton of interactions—pinning stuff, buying time, and making your ground units actually connect. People rate it as one of those clean, efficient spells that also snipes annoying backline units (Dark Goblin/Firecracker/Archers types) and can even help deal with air by forcing it into bad spots. Overall vibe is that it’s just a really solid meta tool that quietly gets way more value than you’d expect."
+      "llm_vibe_summary": "Vines gets talked about like a super high-utility “mini-freeze” control spell that randomly fixes a ton of interactions—pinning stuff, buying time, and making your ground units actually connect. People rate it as one of those clean, efficient spells that also snipes annoying backline units (Dark Goblin/Firecracker/Archers types) and can even help deal with air by forcing it into bad spots. Overall vibe is that it’s just a really solid meta tool that quietly gets way more value than you’d expect.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     }
   ],
   "supportItems": [
@@ -3719,6 +4203,7 @@
       "rarity": "common",
       "description": "The King decides to guard his secondary towers with his trusted daughter, because family always comes first. High hitpoints and quick but low damage is always nice as a secondary means of defense.",
       "role_tags": [
+        "tower troop",
         "support",
         "control"
       ],
@@ -3734,7 +4219,11 @@
         "top-ladder viable": 0.4,
         "respectable": 0.35
       },
-      "llm_vibe_summary": "Tower Princess gets talked about like one of those forever-relevant cards: she’s basically never “bad” and always finds a home when her style is viable. People don’t frame her as brain-dead—more like a consistent, reliable pick that rewards clean timing and positioning. The main vibe is that she’s a staple you’ll keep seeing, and when she’s strong she can feel pretty annoying to deal with."
+      "llm_vibe_summary": "Tower Princess gets talked about like one of those forever-relevant cards: she’s basically never “bad” and always finds a home when her style is viable. People don’t frame her as brain-dead—more like a consistent, reliable pick that rewards clean timing and positioning. The main vibe is that she’s a staple you’ll keep seeing, and when she’s strong she can feel pretty annoying to deal with.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Cannoneer",
@@ -3746,7 +4235,7 @@
       "rarity": "epic",
       "description": "Blast Away! The Cannoneer is a tower troop that deals a lot more damage but at a lower hit speed. This makes him great against low health, low count units and tanks, but susceptible to swarms. And use noise reducers. If you're his ally, you won't be targeted, but your ears will not like all that blast.",
       "role_tags": [
-        "building",
+        "tower troop",
         "DPS",
         "control",
         "tank killer"
@@ -3763,7 +4252,11 @@
         "satisfying": 0.5,
         "annoying": 0.4
       },
-      "llm_vibe_summary": "Cannoneer gets talked about like a lowkey menace when it’s actually allowed to do its job: the DPS is nasty and if it’s hitting what it’s supposed to hit, you feel like you just deleted pushes for cheap. People also treat it as kinda underrated/underplayed compared to the “default” defensive options, but still very legit when the meta’s tanky and you need raw damage. It’s not really a “toxic” card—more like an efficient, annoying-to-break-through defensive piece that feels super satisfying when it locks in and melts stuff."
+      "llm_vibe_summary": "Cannoneer gets talked about like a lowkey menace when it’s actually allowed to do its job: the DPS is nasty and if it’s hitting what it’s supposed to hit, you feel like you just deleted pushes for cheap. People also treat it as kinda underrated/underplayed compared to the “default” defensive options, but still very legit when the meta’s tanky and you need raw damage. It’s not really a “toxic” card—more like an efficient, annoying-to-break-through defensive piece that feels super satisfying when it locks in and melts stuff.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Dagger Duchess",
@@ -3775,6 +4268,7 @@
       "rarity": "legendary",
       "description": "This fiery royal isn't one for dainty lobs. She pelts enemies with quick, stinging daggers, building up to a ferocious finale. She charges up a \"dagger bar\" over time. Once charged, she depletes the dagger bar, unleashing a sharp flurry of all her blades at a single target, dealing devastating damage. She's great against swarms and chipping away at tanks, but can be baited and struggles against single-target heavyweights. And make sure to call her a \"Duchess\". She envies the Princess.",
       "role_tags": [
+        "tower troop",
         "control",
         "DPS",
         "support"
@@ -3786,7 +4280,11 @@
       "crowd_ratings": {
         "top-ladder viable": 0.4
       },
-      "llm_vibe_summary": "Dagger Duchess isn’t meaningfully covered in the provided transcripts, so there’s not enough direct community-sentiment signal here to call it “toxic,” “annoying,” or “no-skill” based on these sources. The only adjacent hint is that one creator mentions enjoying “Diddy” for its suction/pull utility, but that’s not a clear, explicit read on Dagger Duchess’s overall power or frustration factor. With limited data, the safest takeaway is simply that it’s treated like a utility/control-style piece rather than a card people are ranting about."
+      "llm_vibe_summary": "The Reddit community largely views the Dagger Duchess as controversial, with many players arguing she was overpowered at release and disrupted the game’s balance and established deck strategies. Some users describe her as a “fun-killer” that made certain archetypes—especially cycle decks—much harder to play effectively. However, a smaller group defends her as a strategic sidegrade rather than a broken mechanic, saying players simply needed to adapt their playstyle.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     },
     {
       "name": "Royal Chef",
@@ -3797,10 +4295,24 @@
       },
       "rarity": "legendary",
       "description": "This magnificent chef trades less health and hit speed with delicious pancakes approved by the one and only Mini P.E.K.K.A.! And these pancakes are so special, that they even LEVEL UP troops, making them harder, better, faster, and stronger. However, they do sadly take time to make, so he prioritizes healthy troops who hasn't gotten a pancake! Sharing is caring, after all. Troops whose hitpoints have been depleted to below 33% HP will not get the pancake, as well as buildings.",
-      "role_tags": [],
-      "vibe_tags": [],
+      "role_tags": [
+        "tower troop",
+        "support"
+      ],
+      "vibe_tags": [
+        "annoying",
+        "toxic",
+        "dead card",
+        "sleeper",
+        "cheese",
+        "fun"
+      ],
       "crowd_ratings": {},
-      "llm_vibe_summary": "Royal Chef isn’t mentioned in either transcript, so there’s no reliable community-sentiment signal here to score (no rage, no praise, no “no-skill/toxic” labeling, no meta talk). If you meant a different card name or an alternate localization (or you want sentiment for a specific Chef mechanic/version), tell me which one and I’ll map it properly."
+      "llm_vibe_summary": "The Royal Chef is widely seen on Reddit as a polarizing card, with many players arguing his mid-battle level-up mechanic is fundamentally unhealthy for game balance. Some users describe him as “toxic” or promoting low-skill strategies, while others complain about bugs and design issues that made him feel broken on release. However, a smaller segment of the community says the concept is creative and fun, even if it needed heavy balancing to fit the meta.",
+      "is_hero": false,
+      "hero_url": null,
+      "is_evo": false,
+      "evo_url": null
     }
   ]
 }

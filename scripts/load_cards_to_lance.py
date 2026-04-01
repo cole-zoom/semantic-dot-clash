@@ -127,12 +127,13 @@ def transform_card(card: dict, index: int, total: int, download_images: bool = T
         Transformed card dictionary matching Lance schema
     """
     name = card.get("name", "Unknown")
+    icon_urls = card.get("iconUrls") or {}
     print(f"[{index + 1}/{total}] Transforming: {name}...", flush=True)
     
     # Get image bytes if URL exists and download is enabled
     image_bytes = None
     if download_images:
-        image_url = card.get("iconUrls", {}).get("medium")
+        image_url = icon_urls.get("medium")
         if image_url:
             image_bytes = download_image(image_url)
     
@@ -165,6 +166,11 @@ def transform_card(card: dict, index: int, total: int, download_images: bool = T
         "vibe_tags": card.get("vibe_tags"),
         "crowd_ratings": convert_crowd_ratings(card.get("crowd_ratings")),
         "llm_vibe_summary": card.get("llm_vibe_summary"),
+        "has_evolution": bool(icon_urls.get("evolutionMedium")),
+        "max_evolution_level": int(card["maxEvolutionLevel"]) if card.get("maxEvolutionLevel") is not None else None,
+        "evolution_image_url": icon_urls.get("evolutionMedium"),
+        "has_hero": bool(icon_urls.get("heroMedium")),
+        "hero_image_url": icon_urls.get("heroMedium"),
     }
     
     return transformed
@@ -304,6 +310,11 @@ Examples:
         print(f"  role_tags: {sample['role_tags']}")
         print(f"  vibe_tags: {sample['vibe_tags']}")
         print(f"  crowd_ratings: {sample['crowd_ratings']}")
+        print(f"  has_evolution: {sample['has_evolution']}")
+        print(f"  max_evolution_level: {sample['max_evolution_level']}")
+        print(f"  evolution_image_url: {sample['evolution_image_url']}")
+        print(f"  has_hero: {sample['has_hero']}")
+        print(f"  hero_image_url: {sample['hero_image_url']}")
         print()
     
     # Dry run - stop here
