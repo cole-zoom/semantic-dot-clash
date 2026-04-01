@@ -2,7 +2,9 @@
 """
 Test script for the CardTools functionality.
 
-Tests all four tools:
+Tests all six tools:
+- search_archetypes: Semantic search for archetype blueprints
+- get_archetype: Fetch archetype by ID
 - search_cards: Semantic search with filters
 - similar_cards: Find similar cards
 - get_card: Fetch card by ID
@@ -44,6 +46,68 @@ def print_card(card: dict, index: int = None) -> None:
     distance = card.get("_distance", "N/A")
     distance_str = f" (distance: {distance:.4f})" if isinstance(distance, float) else ""
     print(f"{prefix}{card['name']} - {card['elixir']} elixir, {card['rarity']} {card['type']}{distance_str}")
+
+
+def print_archetype(archetype: dict, index: int = None) -> None:
+    """Print an archetype in a readable format."""
+    prefix = f"  [{index}] " if index is not None else "  "
+    distance = archetype.get("_distance", "N/A")
+    distance_str = f" (distance: {distance:.4f})" if isinstance(distance, float) else ""
+    tags = ", ".join(archetype.get("tags") or [])
+    print(f"{prefix}{archetype['name']}{distance_str}")
+    if tags:
+        print(f"      tags: {tags}")
+    if archetype.get("playstyle_vibes"):
+        print(f"      vibes: {', '.join(archetype['playstyle_vibes'])}")
+    if archetype.get("llm_vibe_summary"):
+        print(f"      summary: {archetype['llm_vibe_summary'][:100]}...")
+
+
+def test_search_archetypes(tools: CardTools) -> str | None:
+    """Test search_archetypes functionality."""
+    print_header("TEST: search_archetypes")
+
+    query = "fast annoying control deck with cheap pressure"
+    print(f"\n  Searching archetypes for: {query!r}")
+    results = tools.search_archetypes(query, limit=3)
+    print(f"  Found {len(results)} results:")
+    for i, archetype in enumerate(results, 1):
+        print_archetype(archetype, i)
+
+    if not results:
+        print("  ERROR: No archetypes found in database!")
+        return None
+
+    chosen = results[0]
+    print(f"\n  SUCCESS! Selected archetype candidate: {chosen['name']} ({chosen['id']})")
+    return chosen["id"]
+
+
+def test_get_archetype(tools: CardTools, archetype_id: str) -> None:
+    """Test get_archetype functionality."""
+    print_header("TEST: get_archetype")
+
+    print(f"\n  Fetching archetype by ID {archetype_id!r}...")
+    archetype = tools.get_archetype(archetype_id)
+
+    if archetype is None:
+        print(f"  ERROR: get_archetype returned None for ID {archetype_id}")
+        return
+
+    print("  SUCCESS! Retrieved archetype:")
+    print(f"    Name: {archetype['name']}")
+    print(f"    ID: {archetype['id']}")
+    print(f"    Meta strength: {archetype.get('meta_strength', 'N/A')}")
+    print(f"    Tags: {archetype.get('tags', [])}")
+    print(f"    Vibes: {archetype.get('playstyle_vibes', [])}")
+    print(f"    Vibe summary: {archetype.get('llm_vibe_summary', 'N/A')}")
+
+    print("\n  Testing non-existent archetype ID...")
+    missing = tools.get_archetype("not_a_real_archetype")
+    if missing is None:
+        print("  SUCCESS! Correctly returned None for non-existent archetype ID")
+    else:
+        print("  WARNING: Expected None for non-existent archetype ID")
 
 
 def test_get_card(tools: CardTools) -> int | None:
@@ -242,6 +306,12 @@ def main():
     
     # Run tests
     try:
+        archetype_id = test_search_archetypes(tools)
+        if archetype_id is None:
+            print("\nERROR: Cannot continue without valid archetype ID")
+            sys.exit(1)
+        test_get_archetype(tools, archetype_id)
+
         # Test get_card first to get a valid card ID
         card_id = test_get_card(tools)
         if card_id is None:
