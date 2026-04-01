@@ -1,8 +1,8 @@
 """
-Tools for interacting with the Lance database cards table.
+Tools for interacting with the Lance database cards and archetypes tables.
 
-Provides semantic search, similarity search, card lookup, and deck scoring
-functionality using the LanceDB cards table.
+Provides semantic search, similarity search, card lookup, archetype retrieval,
+and deck scoring functionality using LanceDB Cloud.
 
 Environment Variables:
     LANCE_URI: LanceDB Cloud URI
@@ -11,9 +11,10 @@ Environment Variables:
 
 Usage:
     from semantic_dot_clash.tools import CardTools
-    
+
     tools = CardTools()
     cards = tools.search_cards("fast cycle cards", elixir_max=3)
+    archetypes = tools.search_archetypes("annoying low-cost control")
     similar = tools.similar_cards(card_id=26000000)
     card = tools.get_card(card_id=26000000)
     score = tools.score_deck(battle_card_ids=[...], tower_card_id=28000000)
@@ -39,6 +40,7 @@ load_dotenv()
 TEXT_EMBEDDING_MODEL = "text-embedding-3-small"
 TEXT_EMBEDDING_DIMS = 1536
 COMBINED_EMBEDDING_DIMS = 2048
+ARCHETYPE_EMBEDDING_DIMS = 768
 
 # Required roles for a balanced deck
 REQUIRED_ROLES = {"win condition", "anti-air", "splash", "tank", "cycle"}
@@ -117,9 +119,10 @@ class DeckScore:
 
 class CardTools:
     """
-    Client for interacting with the Lance database cards table.
-    
-    Provides semantic search, similarity search, card lookup, and deck scoring.
+    Client for interacting with the Lance database cards and archetypes tables.
+
+    Provides semantic search, similarity search, card lookup, archetype lookup,
+    and deck scoring.
     
     Args:
         lance_uri: LanceDB Cloud URI (defaults to LANCE_URI env var)
@@ -163,6 +166,12 @@ class CardTools:
         if "cards" not in self._db.table_names():
             raise ValueError("Cards table does not exist. Run create_tables.py and load_cards_to_lance.py first.")
         self._cards_table = self._db.open_table("cards")
+
+        if "archetypes" not in self._db.table_names():
+            raise ValueError(
+                "Archetypes table does not exist. Run create_tables.py and load_archetypes_to_lance.py first."
+            )
+        self._archetypes_table = self._db.open_table("archetypes")
         
         # Initialize OpenAI client
         self._openai = OpenAI(api_key=self._openai_api_key)
@@ -194,6 +203,32 @@ class CardTools:
         padded_embedding = text_embedding + [0.0] * (COMBINED_EMBEDDING_DIMS - TEXT_EMBEDDING_DIMS)
         
         return padded_embedding
+
+    def _normalize_embedding(self, embedding: list[float]) -> list[float]:
+        """L2-normalize an embedding vector."""
+        array = np.array(embedding, dtype=np.float32)
+        norm = float(np.linalg.norm(array))
+        if norm == 0:
+            return array.tolist()
+        return (array / norm).tolist()
+
+    def _embed_archetype_query(self, query: str) -> list[float]:
+        """
+        Embed a query string for the archetypes table.
+
+        Archetype rows use 768-dim normalized text embeddings, so the query
+        path must match that format instead of the 2048-dim card search path.
+        """
+        response = self._openai.embeddings.create(
+            model=TEXT_EMBEDDING_MODEL,
+            input=query,
+            dimensions=ARCHETYPE_EMBEDDING_DIMS,
+        )
+        return self._normalize_embedding(response.data[0].embedding)
+
+    def _escape_sql_string(self, value: str) -> str:
+        """Escape single quotes for Lance string filters."""
+        return value.replace("'", "''")
     
     def _infer_image_mime(self, image_bytes: bytes | None) -> str | None:
         """Infer the MIME type for raw image bytes."""
@@ -235,6 +270,14 @@ class CardTools:
         if include_image:
             cleaned["image_data_url"] = self._encode_image_data_url(card.get("image"))
         return cleaned
+
+    def _clean_archetype_result(self, archetype: dict) -> dict:
+        """Clean an archetype row and expose only its descriptive fields."""
+        return {
+            key: value
+            for key, value in archetype.items()
+            if key not in {"embedding", "example_decks"}
+        }
     
     def search_cards(
         self,
@@ -295,6 +338,55 @@ class CardTools:
         
         # Clean results
         return [self._clean_card_result(card, include_image=include_images) for card in results]
+
+    def search_archetypes(
+        self,
+        query: str,
+        limit: int = 5,
+    ) -> list[dict]:
+        """
+        Search archetypes semantically using the archetype embedding space.
+
+        Args:
+            query: Natural language search query
+            limit: Maximum number of results to return (default: 5)
+
+        Returns:
+            List of matching archetypes with descriptive fields and similarity
+            scores (`_distance` field).
+        """
+        query_embedding = self._embed_archetype_query(query)
+        results = (
+            self._archetypes_table
+            .search(query_embedding, vector_column_name="embedding")
+            .where("embedding IS NOT NULL")
+            .limit(limit)
+            .to_list()
+        )
+        return [self._clean_archetype_result(archetype) for archetype in results]
+
+    def get_archetype(self, archetype_id: str) -> dict | None:
+        """
+        Fetch an archetype by ID without exposing example deck lists.
+
+        Args:
+            archetype_id: Unique archetype identifier
+
+        Returns:
+            Archetype dictionary or None if not found
+        """
+        escaped_archetype_id = self._escape_sql_string(archetype_id)
+        zero_vector = [0.0] * ARCHETYPE_EMBEDDING_DIMS
+        results = (
+            self._archetypes_table
+            .search(zero_vector, vector_column_name="embedding")
+            .where(f"id = '{escaped_archetype_id}'")
+            .limit(1)
+            .to_list()
+        )
+        if not results:
+            return None
+        return self._clean_archetype_result(results[0])
     
     def similar_cards(
         self,

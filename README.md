@@ -24,7 +24,8 @@ The secret sauce: every card has been embedded with both text descriptions AND i
                               ▼
 ┌─────────────────────────────────────────────────────────────┐
 │                        CardTools                            │
-│  search_cards()   similar_cards()   get_card()   score_deck()│
+│ search_archetypes() get_archetype() search_cards()          │
+│ similar_cards() get_card() score_deck()                     │
 └─────────────────────────────────────────────────────────────┘
                               │
                    vector search│
@@ -158,9 +159,9 @@ print(f"Missing roles: {score.missing_roles}")
 ## How the Agent Works
 
 1. **You ask** for a deck in plain English
-2. **Agent plans** which roles to fill (win con, support, spells, defense, cycle)
-3. **Searches semantically** for cards matching each role
-4. **Assembles draft deck** from search results
+2. **Agent retrieves archetypes** to find the best matching blueprint for playstyle, vibe, and pacing
+3. **Plans roles and searches semantically** for cards matching both the user intent and the chosen archetype
+4. **Assembles a draft deck** using the archetype as loose inspiration, not as a template to copy
 5. **Validates** with `score_deck()` - checks balance, legality, role coverage
 6. **Iterates** if validation fails (up to 3 attempts)
 7. **Presents** final deck with strategy, synergies, and gameplan

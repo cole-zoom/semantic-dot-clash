@@ -2,7 +2,8 @@
 LLM Agent for building Clash Royale decks.
 
 Implements an agentic loop that uses OpenAI function calling to orchestrate
-CardTools methods for semantic card search, similarity matching, and deck scoring.
+CardTools methods for semantic card search, archetype retrieval, similarity
+matching, and deck scoring.
 
 Environment Variables:
     LANCE_URI: LanceDB Cloud URI
@@ -40,6 +41,45 @@ DEFAULT_MAX_ITERATIONS = 10
 
 # Tool schemas for OpenAI function calling
 TOOL_SCHEMAS = [
+    {
+        "type": "function",
+        "function": {
+            "name": "search_archetypes",
+            "description": "Search archetypes semantically using the archetype embedding space. Use this first to find the archetype whose playstyle, vibe, and feel best match the user's request.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "query": {
+                        "type": "string",
+                        "description": "Natural language search query describing the desired archetype (e.g., 'fast annoying control deck', 'air beatdown', 'bridge spam with pressure')"
+                    },
+                    "limit": {
+                        "type": "integer",
+                        "description": "Maximum number of results to return (default: 5)",
+                        "default": 5
+                    }
+                },
+                "required": ["query"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "get_archetype",
+            "description": "Fetch full details for a specific archetype by ID. Use this when you want to inspect the chosen archetype's description, tags, and vibes more closely before assembling the final deck.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "archetype_id": {
+                        "type": "string",
+                        "description": "The unique archetype ID"
+                    }
+                },
+                "required": ["archetype_id"]
+            }
+        }
+    },
     {
         "type": "function",
         "function": {
@@ -177,10 +217,11 @@ class DeckAgent:
     LLM agent for building Clash Royale decks.
     
     Uses an agentic loop with OpenAI function calling to:
-    1. Search for cards semantically
-    2. Find similar cards for swaps
-    3. Validate decks with score_deck
-    4. Present final deck with strategy
+    1. Search for archetypes semantically
+    2. Search for cards semantically
+    3. Find similar cards for swaps
+    4. Validate decks with score_deck
+    5. Present final deck with strategy
     
     Args:
         model: OpenAI model to use (default: gpt-4o)
@@ -256,7 +297,8 @@ Rules:
         Execute a tool by name with the given arguments.
         
         Args:
-            name: Tool name (search_cards, similar_cards, get_card, score_deck)
+            name: Tool name (search_archetypes, get_archetype, search_cards,
+                similar_cards, get_card, score_deck)
             arguments: JSON string of arguments
             
         Returns:
@@ -264,7 +306,19 @@ Rules:
         """
         args = json.loads(arguments)
         
-        if name == "search_cards":
+        if name == "search_archetypes":
+            return self._tools.search_archetypes(
+                query=args["query"],
+                limit=args.get("limit", 5),
+            )
+
+        elif name == "get_archetype":
+            archetype = self._tools.get_archetype(archetype_id=args["archetype_id"])
+            if archetype is None:
+                return {"error": f"Archetype with ID {args['archetype_id']} not found"}
+            return archetype
+
+        elif name == "search_cards":
             return self._tools.search_cards(
                 query=args["query"],
                 elixir_min=args.get("elixir_min"),
