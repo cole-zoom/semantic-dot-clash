@@ -15,6 +15,16 @@ Usage:
     tools = CardTools()
     cards = tools.search_cards("fast cycle cards", elixir_max=3)
     archetypes = tools.search_archetypes("annoying low-cost control")
+    ranked_archetypes = tools.select_archetype_for_core(
+        user_request="annoying deck",
+        core_card_ids=[26000032],
+    )
+    complementary = tools.search_complementary_cards(
+        user_request="annoying deck",
+        archetype_id="log_bait",
+        core_card_ids=[26000032],
+        role_hint="cheap anti-air support",
+    )
     similar = tools.similar_cards(card_id=26000000)
     card = tools.get_card(card_id=26000000)
     score = tools.score_deck(battle_card_ids=[...], tower_card_id=28000000)
@@ -273,11 +283,125 @@ class CardTools:
 
     def _clean_archetype_result(self, archetype: dict) -> dict:
         """Clean an archetype row and expose only its descriptive fields."""
-        return {
+        cleaned = {
             key: value
             for key, value in archetype.items()
             if key not in {"embedding", "example_decks"}
         }
+        cleaned["example_deck_count"] = len(archetype.get("example_decks") or [])
+        return cleaned
+
+    def _clean_archetype_result_with_examples(self, archetype: dict) -> dict:
+        """Clean an archetype row while preserving compact example deck data."""
+        cleaned = self._clean_archetype_result(archetype)
+        cleaned["example_decks"] = archetype.get("example_decks") or []
+        return cleaned
+
+    def _normalize_card_ids(self, card_ids: list[int] | None) -> list[int]:
+        """Deduplicate card IDs while preserving order."""
+        if not card_ids:
+            return []
+        normalized: list[int] = []
+        seen: set[int] = set()
+        for card_id in card_ids:
+            normalized_id = int(card_id)
+            if normalized_id in seen:
+                continue
+            seen.add(normalized_id)
+            normalized.append(normalized_id)
+        return normalized
+
+    def _get_required_cards(
+        self,
+        card_ids: list[int],
+        *,
+        include_embeddings: bool = False,
+    ) -> list[dict]:
+        """Fetch cards by ID and raise if any requested card is missing."""
+        cards: list[dict] = []
+        for card_id in self._normalize_card_ids(card_ids):
+            card = self.get_card(card_id, include_embeddings=include_embeddings)
+            if card is None:
+                raise ValueError(f"Card with ID {card_id} not found")
+            cards.append(card)
+        if not cards:
+            raise ValueError("At least one core card ID is required")
+        return cards
+
+    def _extract_tag_values(self, cards: list[dict], key: str) -> set[str]:
+        """Collect normalized list-valued tags from a card set."""
+        values: set[str] = set()
+        for card in cards:
+            for value in card.get(key) or []:
+                if value:
+                    values.add(str(value).lower())
+        return values
+
+    def _search_archetype_rows(self, query: str, limit: int) -> list[dict]:
+        """Return raw archetype rows for internal reranking workflows."""
+        query_embedding = self._embed_archetype_query(query)
+        return (
+            self._archetypes_table
+            .search(query_embedding, vector_column_name="embedding")
+            .where("embedding IS NOT NULL")
+            .limit(limit)
+            .to_list()
+        )
+
+    def _compose_core_context(self, cards: list[dict]) -> str:
+        """Summarize core cards into a compact text description."""
+        segments = []
+        for card in cards:
+            roles = ", ".join(card.get("role_tags") or [])
+            vibes = ", ".join(card.get("vibe_tags") or [])
+            details = [card["name"]]
+            if card.get("type"):
+                details.append(str(card["type"]))
+            if card.get("elixir") is not None:
+                details.append(f"{card['elixir']} elixir")
+            if roles:
+                details.append(f"roles: {roles}")
+            if vibes:
+                details.append(f"vibes: {vibes}")
+            segments.append("; ".join(details))
+        return " | ".join(segments)
+
+    def _distance_to_similarity(self, distance: float | None) -> float:
+        """Convert a Lance distance into a bounded similarity-like score."""
+        if distance is None:
+            return 0.0
+        return 1.0 / (1.0 + max(float(distance), 0.0))
+
+    def _average_similarity_to_core(
+        self,
+        candidate_embedding: list[float] | None,
+        core_cards: list[dict],
+    ) -> float:
+        """Average cosine similarity between one candidate and the current core."""
+        if not candidate_embedding:
+            return 0.0
+        core_embeddings = [
+            card["combined_embedding"]
+            for card in core_cards
+            if card.get("combined_embedding")
+        ]
+        if not core_embeddings:
+            return 0.0
+        candidate = np.array(candidate_embedding, dtype=np.float32)
+        candidate_norm = float(np.linalg.norm(candidate))
+        if candidate_norm == 0:
+            return 0.0
+        candidate = candidate / candidate_norm
+        similarities: list[float] = []
+        for embedding in core_embeddings:
+            core = np.array(embedding, dtype=np.float32)
+            core_norm = float(np.linalg.norm(core))
+            if core_norm == 0:
+                continue
+            similarities.append(float(np.dot(candidate, core / core_norm)))
+        if not similarities:
+            return 0.0
+        return float(np.mean(similarities))
     
     def search_cards(
         self,
@@ -286,6 +410,7 @@ class CardTools:
         elixir_max: int | None = None,
         type: str | None = None,
         rarity: str | None = None,
+        exclude_card_ids: list[int] | None = None,
         limit: int = 10,
         include_images: bool = False,
     ) -> list[dict]:
@@ -298,6 +423,7 @@ class CardTools:
             elixir_max: Maximum elixir cost filter
             type: Card type filter (Troop, Spell, Building, Champion, Tower Troop)
             rarity: Card rarity filter (Common, Rare, Epic, Legendary, Champion)
+            exclude_card_ids: Card IDs to exclude from the results
             limit: Maximum number of results to return (default: 10)
             
         Returns:
@@ -327,6 +453,10 @@ class CardTools:
             filters.append(f"LOWER(type) = '{type.lower()}'")
         if rarity is not None:
             filters.append(f"LOWER(rarity) = '{rarity.lower()}'")
+        normalized_excludes = self._normalize_card_ids(exclude_card_ids)
+        if normalized_excludes:
+            excluded_ids = ", ".join(str(card_id) for card_id in normalized_excludes)
+            filters.append(f"id NOT IN ({excluded_ids})")
         
         # Apply filters if any
         if filters:
@@ -355,14 +485,7 @@ class CardTools:
             List of matching archetypes with descriptive fields and similarity
             scores (`_distance` field).
         """
-        query_embedding = self._embed_archetype_query(query)
-        results = (
-            self._archetypes_table
-            .search(query_embedding, vector_column_name="embedding")
-            .where("embedding IS NOT NULL")
-            .limit(limit)
-            .to_list()
-        )
+        results = self._search_archetype_rows(query=query, limit=limit)
         return [self._clean_archetype_result(archetype) for archetype in results]
 
     def get_archetype(self, archetype_id: str) -> dict | None:
@@ -387,6 +510,242 @@ class CardTools:
         if not results:
             return None
         return self._clean_archetype_result(results[0])
+
+    def select_archetype_for_core(
+        self,
+        user_request: str,
+        core_card_ids: list[int],
+        limit: int = 5,
+    ) -> list[dict]:
+        """
+        Rank archetypes using both the user's request and the current core cards.
+
+        This lets the agent commit to the strongest candidate cards first and
+        then select the archetype shell that best fits those cards.
+        """
+        core_cards = self._get_required_cards(core_card_ids)
+        core_roles = self._extract_roles(core_cards)
+        core_vibes = self._extract_tag_values(core_cards, "vibe_tags")
+        core_card_id_set = set(self._normalize_card_ids(core_card_ids))
+        fused_query = (
+            f"User request: {user_request}\n"
+            f"Current core cards: {self._compose_core_context(core_cards)}\n"
+            "Choose the Clash Royale archetype that best supports these cards."
+        )
+        raw_results = self._search_archetype_rows(
+            query=fused_query,
+            limit=max(limit * 3, limit),
+        )
+
+        ranked_results: list[dict] = []
+        for archetype in raw_results:
+            cleaned = self._clean_archetype_result(archetype)
+            example_decks = archetype.get("example_decks") or []
+            archetype_tags = {tag.lower() for tag in archetype.get("tags") or []}
+            archetype_vibes = {
+                vibe.lower() for vibe in archetype.get("playstyle_vibes") or []
+            }
+
+            semantic_score = self._distance_to_similarity(archetype.get("_distance"))
+            vibe_overlap = len(core_vibes & archetype_vibes) / max(
+                len(core_vibes | archetype_vibes),
+                1,
+            )
+
+            example_overlap = 0.0
+            if example_decks:
+                example_overlap = max(
+                    len(core_card_id_set & set(deck.get("battle_card_ids") or []))
+                    / max(len(core_card_id_set), 1)
+                    for deck in example_decks
+                )
+
+            role_alignment = 0.0
+            if core_roles:
+                matched_tags = {
+                    role for role in core_roles
+                    if any(role_part in archetype_tags for role_part in role.split())
+                }
+                role_alignment = len(matched_tags) / len(core_roles)
+
+            fit_score = (
+                semantic_score * 0.55
+                + example_overlap * 0.3
+                + vibe_overlap * 0.1
+                + role_alignment * 0.05
+            )
+
+            reasons: list[str] = []
+            if semantic_score > 0:
+                reasons.append("semantic match to the request and core cards")
+            if example_overlap > 0:
+                reasons.append("example deck overlap with the chosen core")
+            if vibe_overlap > 0:
+                reasons.append("shared vibe tags between the core and archetype")
+            if role_alignment > 0:
+                reasons.append("tag alignment with current core roles")
+
+            cleaned["fit_score"] = round(fit_score, 3)
+            cleaned["fit_reasons"] = reasons
+            ranked_results.append(cleaned)
+
+        ranked_results.sort(
+            key=lambda result: (
+                result.get("fit_score", 0.0),
+                result.get("meta_strength") or 0.0,
+            ),
+            reverse=True,
+        )
+        return ranked_results[:limit]
+
+    def search_complementary_cards(
+        self,
+        user_request: str,
+        archetype_id: str,
+        core_card_ids: list[int],
+        role_hint: str | None = None,
+        elixir_min: int | None = None,
+        elixir_max: int | None = None,
+        type: str | None = None,
+        rarity: str | None = None,
+        limit: int = 10,
+    ) -> list[dict]:
+        """
+        Search for cards that complement the current core inside a chosen shell.
+
+        Results are semantically searched first, then reranked to reward missing
+        role coverage, similarity to the current core, and archetype vibe fit.
+        """
+        core_cards = self._get_required_cards(core_card_ids, include_embeddings=True)
+        archetype = self.get_archetype(archetype_id=archetype_id)
+        if archetype is None:
+            raise ValueError(f"Archetype with ID {archetype_id} not found")
+
+        core_roles = self._extract_roles(core_cards)
+        missing_roles = REQUIRED_ROLES - core_roles
+        core_vibes = self._extract_tag_values(core_cards, "vibe_tags")
+        archetype_vibes = {
+            vibe.lower() for vibe in archetype.get("playstyle_vibes") or []
+        }
+        query_parts = [
+            f"user request: {user_request}",
+            f"archetype: {archetype['name']}",
+            f"archetype description: {archetype.get('description', '')}",
+            f"current core cards: {self._compose_core_context(core_cards)}",
+        ]
+        if role_hint:
+            query_parts.append(f"needed role: {role_hint}")
+        if missing_roles:
+            query_parts.append(
+                "missing roles: " + ", ".join(sorted(missing_roles))
+            )
+        query_parts.append(
+            "Find the best complementary Clash Royale card for this deck core."
+        )
+        search_query = ". ".join(part for part in query_parts if part)
+
+        candidates = self.search_cards(
+            query=search_query,
+            elixir_min=elixir_min,
+            elixir_max=elixir_max,
+            type=type,
+            rarity=rarity,
+            exclude_card_ids=core_card_ids,
+            limit=max(limit * 4, limit),
+        )
+
+        reranked: list[dict] = []
+        role_hint_lower = (role_hint or "").lower()
+        core_has_spell = any(card.get("type") == "Spell" for card in core_cards)
+
+        for candidate in candidates:
+            full_candidate = self.get_card(
+                candidate["id"],
+                include_embeddings=True,
+            )
+            if full_candidate is None:
+                continue
+
+            candidate_roles = {
+                role.lower() for role in full_candidate.get("role_tags") or []
+            }
+            candidate_vibes = {
+                vibe.lower() for vibe in full_candidate.get("vibe_tags") or []
+            }
+            semantic_score = self._distance_to_similarity(candidate.get("_distance"))
+            core_similarity = self._average_similarity_to_core(
+                full_candidate.get("combined_embedding"),
+                core_cards,
+            )
+            missing_role_score = len(candidate_roles & missing_roles) / max(
+                len(missing_roles),
+                1,
+            )
+            archetype_vibe_score = len(candidate_vibes & (archetype_vibes | core_vibes)) / max(
+                len(candidate_vibes | archetype_vibes | core_vibes),
+                1,
+            )
+
+            role_hint_score = 0.0
+            if role_hint_lower:
+                searchable_text = " ".join(
+                    [
+                        full_candidate.get("name", "").lower(),
+                        full_candidate.get("description", "").lower(),
+                        " ".join(candidate_roles),
+                        " ".join(candidate_vibes),
+                        str(full_candidate.get("type", "")).lower(),
+                    ]
+                )
+                if role_hint_lower in searchable_text:
+                    role_hint_score = 1.0
+                else:
+                    hint_words = {
+                        word for word in role_hint_lower.split() if len(word) > 2
+                    }
+                    if hint_words:
+                        role_hint_score = len(
+                            [word for word in hint_words if word in searchable_text]
+                        ) / len(hint_words)
+
+            utility_bonus = 0.0
+            if not core_has_spell and full_candidate.get("type") == "Spell":
+                utility_bonus += 0.6
+            if "anti-air" in missing_roles and "anti-air" in candidate_roles:
+                utility_bonus += 0.4
+
+            fit_score = (
+                semantic_score * 0.4
+                + core_similarity * 0.25
+                + missing_role_score * 0.2
+                + archetype_vibe_score * 0.1
+                + role_hint_score * 0.05
+                + utility_bonus * 0.05
+            )
+
+            fit_reasons: list[str] = []
+            if semantic_score > 0:
+                fit_reasons.append("semantic match to the request and archetype")
+            if core_similarity > 0.6:
+                fit_reasons.append("strong embedding synergy with the current core")
+            if missing_role_score > 0:
+                fit_reasons.append("helps cover currently missing required roles")
+            if archetype_vibe_score > 0:
+                fit_reasons.append("matches the archetype or core vibe")
+            if role_hint_score > 0:
+                fit_reasons.append(f"fits the requested role hint: {role_hint}")
+
+            reranked_candidate = self._clean_card_result(full_candidate)
+            reranked_candidate["_distance"] = candidate.get("_distance")
+            reranked_candidate["fit_score"] = round(fit_score, 3)
+            reranked_candidate["fit_reasons"] = fit_reasons
+            reranked.append(reranked_candidate)
+
+        reranked.sort(
+            key=lambda card: (card.get("fit_score", 0.0), -(card.get("_distance") or 0.0)),
+            reverse=True,
+        )
+        return reranked[:limit]
     
     def similar_cards(
         self,
