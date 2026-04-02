@@ -12,7 +12,7 @@ Environment Variables:
 
 Usage:
     from semantic_dot_clash import DeckAgent
-    
+
     agent = DeckAgent()
     result = agent.build("Make me a fast cycle deck under 3.0 elixir")
     print(result)
@@ -29,6 +29,8 @@ from typing import Any
 from dotenv import load_dotenv
 from openai import OpenAI
 
+from semantic_dot_clash.chat_session import ChatSession, DeckSnapshot
+from semantic_dot_clash.memory import append_turn, build_chat_messages
 from semantic_dot_clash.tools import CardTools
 
 load_dotenv()
@@ -197,6 +199,10 @@ class DeckResult:
         response: Full text response from the agent
         iterations: Number of loop iterations used
         error: Error message if success is False
+    deck_snapshot: Structured deck snapshot for the current turn
+    used_summary: Whether summarized history was injected into the prompt
+    turn_index: Completed turn count for chat sessions
+    memory_updates: Structured memory metadata for chat sessions
     """
     success: bool
     deck: list[dict] = field(default_factory=list)
@@ -205,6 +211,10 @@ class DeckResult:
     response: str = ""
     iterations: int = 0
     error: str | None = None
+    deck_snapshot: DeckSnapshot | None = None
+    used_summary: bool = False
+    turn_index: int | None = None
+    memory_updates: dict[str, Any] = field(default_factory=dict)
     
     def __str__(self) -> str:
         if not self.success:
@@ -357,7 +367,149 @@ Rules:
         """Log a message if verbose mode is enabled."""
         if self.verbose:
             print(f"[DeckAgent] {message}")
-    
+
+    def _snapshot_from_tool_result(
+        self,
+        tool_name: str,
+        tool_result: Any,
+    ) -> DeckSnapshot | None:
+        """Return a structured deck snapshot for a valid ``score_deck`` result."""
+        if tool_name != "score_deck" or not isinstance(tool_result, dict):
+            return None
+        if tool_result.get("error") or "avg_elixir" not in tool_result:
+            return None
+        return DeckSnapshot.from_score_payload(tool_result)
+
+    def _build_result(
+        self,
+        *,
+        success: bool,
+        response: str = "",
+        iterations: int = 0,
+        error: str | None = None,
+        deck_snapshot: DeckSnapshot | None = None,
+        used_summary: bool = False,
+        turn_index: int | None = None,
+        memory_updates: dict[str, Any] | None = None,
+    ) -> DeckResult:
+        """Create a ``DeckResult`` with backward-compatible fields populated."""
+        return DeckResult(
+            success=success,
+            deck=list(deck_snapshot.battle_cards) if deck_snapshot else [],
+            tower_card=deck_snapshot.tower_card if deck_snapshot else None,
+            avg_elixir=deck_snapshot.avg_elixir if deck_snapshot else 0.0,
+            response=response,
+            iterations=iterations,
+            error=error,
+            deck_snapshot=deck_snapshot,
+            used_summary=used_summary,
+            turn_index=turn_index,
+            memory_updates=memory_updates or {},
+        )
+
+    def _run_agent_loop(
+        self,
+        *,
+        messages: list[dict],
+        max_iterations: int,
+        used_summary: bool = False,
+    ) -> DeckResult:
+        """Run the shared OpenAI tool-calling loop against a prepared message list."""
+        latest_deck_snapshot: DeckSnapshot | None = None
+
+        for step in range(max_iterations):
+            self._log(f"Iteration {step + 1}/{max_iterations}")
+
+            try:
+                response = self._openai.chat.completions.create(
+                    model=self.model,
+                    messages=messages,
+                    tools=TOOL_SCHEMAS,
+                    tool_choice="auto",
+                )
+            except Exception as exc:
+                return self._build_result(
+                    success=False,
+                    error=f"OpenAI API error: {exc}",
+                    iterations=step + 1,
+                    deck_snapshot=latest_deck_snapshot,
+                    used_summary=used_summary,
+                )
+
+            msg = response.choices[0].message
+
+            if msg.tool_calls:
+                self._log(f"Tool calls: {[tc.function.name for tc in msg.tool_calls]}")
+
+                messages.append(
+                    {
+                        "role": "assistant",
+                        "content": msg.content,
+                        "tool_calls": [
+                            {
+                                "id": tc.id,
+                                "type": "function",
+                                "function": {
+                                    "name": tc.function.name,
+                                    "arguments": tc.function.arguments,
+                                },
+                            }
+                            for tc in msg.tool_calls
+                        ],
+                    }
+                )
+
+                for tool_call in msg.tool_calls:
+                    tool_name = tool_call.function.name
+                    tool_args = tool_call.function.arguments
+
+                    self._log(f"Executing {tool_name}...")
+
+                    try:
+                        tool_result = self._execute_tool(tool_name, tool_args)
+                    except Exception as exc:  # pragma: no cover - defensive guard
+                        tool_result = {"error": str(exc)}
+
+                    snapshot = self._snapshot_from_tool_result(tool_name, tool_result)
+                    if snapshot is not None:
+                        latest_deck_snapshot = snapshot
+
+                    messages.append(
+                        {
+                            "role": "tool",
+                            "tool_call_id": tool_call.id,
+                            "content": json.dumps(tool_result, default=str),
+                        }
+                    )
+
+                continue
+
+            self._log("Final answer received")
+            return self._build_result(
+                success=True,
+                response=msg.content or "",
+                iterations=step + 1,
+                deck_snapshot=latest_deck_snapshot,
+                used_summary=used_summary,
+            )
+
+        self._log("Max iterations reached")
+
+        last_content = ""
+        for message in reversed(messages):
+            if message.get("role") == "assistant" and message.get("content"):
+                last_content = message["content"]
+                break
+
+        return self._build_result(
+            success=False,
+            response=last_content,
+            error=f"Max iterations ({max_iterations}) reached without final answer",
+            iterations=max_iterations,
+            deck_snapshot=latest_deck_snapshot,
+            used_summary=used_summary,
+        )
+
     def build(
         self,
         user_request: str,
@@ -365,141 +517,85 @@ Rules:
     ) -> DeckResult:
         """
         Build a deck based on the user's request.
-        
+
         This is the main agentic loop that:
         1. Sends the request to the LLM with tool schemas
         2. Executes any tool calls the LLM requests
         3. Continues until the LLM provides a final answer or max iterations reached
-        
+
         Args:
             user_request: Natural language deck request (e.g., "Make me a fast cycle deck")
             max_iterations: Maximum number of loop iterations (default: 10)
-            
+
         Returns:
             DeckResult with the built deck or error information
         """
-        # Initialize message history
-        messages: list[dict] = [
-            {"role": "system", "content": self._system_prompt},
-            {"role": "user", "content": user_request},
-        ]
-        
         self._log(f"Starting deck build: {user_request[:50]}...")
-        
-        # Agentic loop
-        for step in range(max_iterations):
-            self._log(f"Iteration {step + 1}/{max_iterations}")
-            
-            try:
-                # Call the LLM
-                response = self._openai.chat.completions.create(
-                    model=self.model,
-                    messages=messages,
-                    tools=TOOL_SCHEMAS,
-                    tool_choice="auto",
-                )
-            except Exception as e:
-                return DeckResult(
-                    success=False,
-                    error=f"OpenAI API error: {e}",
-                    iterations=step + 1,
-                )
-            
-            # Get the assistant message
-            msg = response.choices[0].message
-            
-            # Check if there are tool calls
-            if msg.tool_calls:
-                self._log(f"Tool calls: {[tc.function.name for tc in msg.tool_calls]}")
-                
-                # Append assistant message with tool calls
-                messages.append({
-                    "role": "assistant",
-                    "content": msg.content,
-                    "tool_calls": [
-                        {
-                            "id": tc.id,
-                            "type": "function",
-                            "function": {
-                                "name": tc.function.name,
-                                "arguments": tc.function.arguments,
-                            }
-                        }
-                        for tc in msg.tool_calls
-                    ]
-                })
-                
-                # Execute each tool call and append results
-                for tool_call in msg.tool_calls:
-                    tool_name = tool_call.function.name
-                    tool_args = tool_call.function.arguments
-                    
-                    self._log(f"Executing {tool_name}...")
-                    
-                    try:
-                        result = self._execute_tool(tool_name, tool_args)
-                        result_str = json.dumps(result, default=str)
-                    except Exception as e:
-                        result_str = json.dumps({"error": str(e)})
-                    
-                    # Append tool result
-                    messages.append({
-                        "role": "tool",
-                        "tool_call_id": tool_call.id,
-                        "content": result_str,
-                    })
-                
-                # Continue the loop
-                continue
-            
-            # No tool calls - this is the final answer
-            self._log("Final answer received")
-            
-            final_content = msg.content or ""
-            
-            # Try to extract deck info from the last score_deck call
-            deck_cards = []
-            tower_card = None
-            avg_elixir = 0.0
-            
-            # Look backwards through messages for the last score_deck result
-            for m in reversed(messages):
-                if m.get("role") == "tool":
-                    try:
-                        tool_result = json.loads(m.get("content", "{}"))
-                        if "avg_elixir" in tool_result:
-                            deck_cards = tool_result.get("battle_cards") or tool_result.get("cards", [])
-                            tower_card = tool_result.get("tower_card")
-                            avg_elixir = tool_result["avg_elixir"]
-                            break
-                    except json.JSONDecodeError:
-                        continue
-            
-            return DeckResult(
-                success=True,
-                deck=deck_cards,
-                tower_card=tower_card,
-                avg_elixir=avg_elixir,
-                response=final_content,
-                iterations=step + 1,
-            )
-        
-        # Max iterations reached without final answer
-        self._log("Max iterations reached")
-        
-        # Try to return the best attempt
-        last_content = ""
-        for m in reversed(messages):
-            if m.get("role") == "assistant" and m.get("content"):
-                last_content = m["content"]
-                break
-        
-        return DeckResult(
-            success=False,
-            response=last_content,
-            error=f"Max iterations ({max_iterations}) reached without final answer",
-            iterations=max_iterations,
+        return self._run_agent_loop(
+            messages=[
+                {"role": "system", "content": self._system_prompt},
+                {"role": "user", "content": user_request},
+            ],
+            max_iterations=max_iterations,
         )
+
+    def chat(
+        self,
+        *,
+        session: ChatSession,
+        user_message: str,
+        max_iterations: int = DEFAULT_MAX_ITERATIONS,
+    ) -> DeckResult:
+        """Run a single chat turn against an ephemeral session."""
+        self._log(
+            f"Starting chat turn {session.turn_count + 1} for session {session.session_id}"
+        )
+        messages, used_summary = build_chat_messages(
+            system_prompt=self._system_prompt,
+            session=session,
+            user_message=user_message,
+        )
+        result = self._run_agent_loop(
+            messages=messages,
+            max_iterations=max_iterations,
+            used_summary=used_summary,
+        )
+        if not result.success:
+            return result
+
+        memory_updates = append_turn(
+            session,
+            user_message=user_message,
+            assistant_message=result.response,
+            deck_snapshot=result.deck_snapshot,
+        )
+        result.turn_index = session.turn_count
+        result.memory_updates = memory_updates
+        return result
+
+    def hydrate_deck_snapshot(
+        self,
+        deck_snapshot: DeckSnapshot | None,
+        *,
+        include_image: bool = True,
+    ) -> tuple[list[dict], dict | None]:
+        """Hydrate a structured deck snapshot back to full card payloads."""
+        if deck_snapshot is None:
+            return [], None
+
+        cards: list[dict] = []
+        for card_id in deck_snapshot.battle_card_ids:
+            card = self._tools.get_card(card_id=card_id, include_image=include_image)
+            if card:
+                cards.append(card)
+
+        tower_card = None
+        if deck_snapshot.tower_card and deck_snapshot.tower_card.get("id") is not None:
+            tower_card = self._tools.get_card(
+                card_id=deck_snapshot.tower_card["id"],
+                include_image=include_image,
+            )
+        return cards, tower_card
 
 
 __all__ = [

@@ -10,6 +10,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
 from semantic_dot_clash.agent import DEFAULT_MAX_ITERATIONS, DEFAULT_MODEL, DeckAgent
+from semantic_dot_clash.chat_session import InMemoryChatSessionStore
 
 
 def _split_origins(raw: str | None) -> List[str]:
@@ -30,6 +31,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+SESSION_STORE = InMemoryChatSessionStore()
 
 
 class DeckRequest(BaseModel):
@@ -65,6 +68,41 @@ class DeckResponse(BaseModel):
     tower_card: CardOut | None = None
 
 
+class ChatMessageRequest(BaseModel):
+    session_id: str = Field(..., min_length=1, description="Ephemeral session ID")
+    message: str = Field(..., min_length=1, description="Next user chat message")
+    model: str | None = Field(default=None, description="OpenAI model override")
+    max_iterations: int | None = Field(
+        default=None, description="Max agent iterations before abort"
+    )
+
+
+class ChatMessageResponse(BaseModel):
+    session_id: str
+    response_markdown: str
+    avg_elixir: float
+    cards: list[CardOut]
+    tower_card: CardOut | None = None
+    turn_index: int
+    used_summary: bool = False
+
+
+class ChatResetRequest(BaseModel):
+    session_id: str = Field(..., min_length=1, description="Ephemeral session ID")
+
+
+class ChatSessionStateResponse(BaseModel):
+    session_id: str
+    avg_elixir: float
+    cards: list[CardOut]
+    tower_card: CardOut | None = None
+    turn_count: int
+
+
+def _hydrate_result(agent: DeckAgent, *, include_image: bool, deck_snapshot) -> tuple[list[dict], dict | None]:
+    return agent.hydrate_deck_snapshot(deck_snapshot, include_image=include_image)
+
+
 @app.get("/api/health")
 def health() -> dict:
     return {"status": "ok"}
@@ -86,16 +124,11 @@ def build_deck(req: DeckRequest) -> DeckResponse:
     if not result.success:
         raise HTTPException(status_code=500, detail=result.error or "Deck build failed")
 
-    tools = agent._tools
-    card_ids = [card.get("id") for card in result.deck if card.get("id") is not None]
-    cards: list[dict] = []
-    for card_id in card_ids:
-        card = tools.get_card(card_id=card_id, include_image=True)
-        if card:
-            cards.append(card)
-    tower_card = None
-    if result.tower_card and result.tower_card.get("id") is not None:
-        tower_card = tools.get_card(card_id=result.tower_card["id"], include_image=True)
+    cards, tower_card = _hydrate_result(
+        agent,
+        include_image=True,
+        deck_snapshot=result.deck_snapshot,
+    )
 
     return DeckResponse(
         prompt=req.prompt,
@@ -104,6 +137,80 @@ def build_deck(req: DeckRequest) -> DeckResponse:
         cards=cards,
         tower_card=tower_card,
     )
+
+
+@app.post("/api/chat/message", response_model=ChatMessageResponse)
+def chat_message(req: ChatMessageRequest) -> ChatMessageResponse:
+    session = SESSION_STORE.get_or_create(req.session_id)
+
+    try:
+        agent = DeckAgent(model=req.model or DEFAULT_MODEL)
+        result = agent.chat(
+            session=session,
+            user_message=req.message,
+            max_iterations=req.max_iterations or DEFAULT_MAX_ITERATIONS,
+        )
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    except Exception as exc:  # pragma: no cover - surfacing unexpected errors
+        raise HTTPException(status_code=500, detail=str(exc)) from exc
+
+    if not result.success:
+        raise HTTPException(status_code=500, detail=result.error or "Chat turn failed")
+
+    cards, tower_card = _hydrate_result(
+        agent,
+        include_image=True,
+        deck_snapshot=result.deck_snapshot,
+    )
+
+    return ChatMessageResponse(
+        session_id=req.session_id,
+        response_markdown=result.response,
+        avg_elixir=result.avg_elixir,
+        cards=cards,
+        tower_card=tower_card,
+        turn_index=result.turn_index or session.turn_count,
+        used_summary=result.used_summary,
+    )
+
+
+@app.get("/api/chat/session/{session_id}", response_model=ChatSessionStateResponse)
+def get_chat_session(session_id: str) -> ChatSessionStateResponse:
+    session = SESSION_STORE.get(session_id)
+    if session is None:
+        raise HTTPException(status_code=404, detail="Session not found")
+
+    try:
+        agent = DeckAgent(model=DEFAULT_MODEL)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    except Exception as exc:  # pragma: no cover - surfacing unexpected errors
+        raise HTTPException(status_code=500, detail=str(exc)) from exc
+
+    cards, tower_card = _hydrate_result(
+        agent,
+        include_image=True,
+        deck_snapshot=session.latest_deck_snapshot,
+    )
+
+    return ChatSessionStateResponse(
+        session_id=session_id,
+        avg_elixir=(
+            session.latest_deck_snapshot.avg_elixir
+            if session.latest_deck_snapshot
+            else 0.0
+        ),
+        cards=cards,
+        tower_card=tower_card,
+        turn_count=session.turn_count,
+    )
+
+
+@app.post("/api/chat/reset")
+def reset_chat(req: ChatResetRequest) -> dict:
+    SESSION_STORE.reset(req.session_id)
+    return {"status": "ok"}
 
 
 if __name__ == "__main__":
