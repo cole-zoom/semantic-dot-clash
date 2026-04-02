@@ -2,8 +2,8 @@
 LLM Agent for building Clash Royale decks.
 
 Implements an agentic loop that uses OpenAI function calling to orchestrate
-CardTools methods for semantic card search, archetype retrieval, similarity
-matching, and deck scoring.
+CardTools methods for cards-first deck building, archetype retrieval,
+complementary search, similarity matching, and deck scoring.
 
 Environment Variables:
     LANCE_URI: LanceDB Cloud URI
@@ -46,19 +46,42 @@ TOOL_SCHEMAS = [
     {
         "type": "function",
         "function": {
-            "name": "search_archetypes",
-            "description": "Search archetypes semantically using the archetype embedding space. Use this first to find the archetype whose playstyle, vibe, and feel best match the user's request.",
+            "name": "search_cards",
+            "description": "Search for candidate cards semantically with optional filters. Use this first to find high-signal core cards that match the user's request before locking in an archetype.",
             "parameters": {
                 "type": "object",
                 "properties": {
                     "query": {
                         "type": "string",
-                        "description": "Natural language search query describing the desired archetype (e.g., 'fast annoying control deck', 'air beatdown', 'bridge spam with pressure')"
+                        "description": "Natural language search query (e.g., 'annoying pressure cards', 'cheap anti-air support', 'fast aggressive win condition')"
+                    },
+                    "elixir_min": {
+                        "type": "integer",
+                        "description": "Minimum elixir cost filter"
+                    },
+                    "elixir_max": {
+                        "type": "integer",
+                        "description": "Maximum elixir cost filter"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "Card type filter",
+                        "enum": ["Troop", "Spell", "Building", "Champion", "Tower Troop"]
+                    },
+                    "rarity": {
+                        "type": "string",
+                        "description": "Card rarity filter",
+                        "enum": ["Common", "Rare", "Epic", "Legendary", "Champion"]
+                    },
+                    "exclude_card_ids": {
+                        "type": "array",
+                        "items": {"type": "integer"},
+                        "description": "Card IDs to exclude when you already have core cards"
                     },
                     "limit": {
                         "type": "integer",
-                        "description": "Maximum number of results to return (default: 5)",
-                        "default": 5
+                        "description": "Maximum number of results to return (default: 10)",
+                        "default": 10
                     }
                 },
                 "required": ["query"]
@@ -68,31 +91,54 @@ TOOL_SCHEMAS = [
     {
         "type": "function",
         "function": {
-            "name": "get_archetype",
-            "description": "Fetch full details for a specific archetype by ID. Use this when you want to inspect the chosen archetype's description, tags, and vibes more closely before assembling the final deck.",
+            "name": "select_archetype_for_core",
+            "description": "Choose the best-fit archetype using both the user's request and a set of candidate core cards. Use this after searching cards so the archetype follows the strongest cards instead of overriding them.",
             "parameters": {
                 "type": "object",
                 "properties": {
-                    "archetype_id": {
+                    "user_request": {
                         "type": "string",
-                        "description": "The unique archetype ID"
+                        "description": "The user's full request"
+                    },
+                    "core_card_ids": {
+                        "type": "array",
+                        "items": {"type": "integer"},
+                        "description": "List of candidate or chosen core card IDs"
+                    },
+                    "limit": {
+                        "type": "integer",
+                        "description": "Maximum number of archetype results to return (default: 5)",
+                        "default": 5
                     }
                 },
-                "required": ["archetype_id"]
+                "required": ["user_request", "core_card_ids"]
             }
         }
     },
     {
         "type": "function",
         "function": {
-            "name": "search_cards",
-            "description": "Search for cards semantically with optional filters. Use this to find cards matching a role, playstyle, or archetype.",
+            "name": "search_complementary_cards",
+            "description": "Search for cards that complement an existing core inside a chosen archetype. Use this to fill missing roles after you know the core cards and archetype shell.",
             "parameters": {
                 "type": "object",
                 "properties": {
-                    "query": {
+                    "user_request": {
                         "type": "string",
-                        "description": "Natural language search query (e.g., 'cheap cycle cards', 'anti-air splash damage', 'fast aggressive win condition')"
+                        "description": "The user's full request"
+                    },
+                    "archetype_id": {
+                        "type": "string",
+                        "description": "The chosen archetype ID"
+                    },
+                    "core_card_ids": {
+                        "type": "array",
+                        "items": {"type": "integer"},
+                        "description": "List of core card IDs that should stay central to the deck"
+                    },
+                    "role_hint": {
+                        "type": "string",
+                        "description": "Optional role still needed, such as 'small spell', 'anti-air', 'cheap cycle', or 'tower troop'"
                     },
                     "elixir_min": {
                         "type": "integer",
@@ -118,7 +164,46 @@ TOOL_SCHEMAS = [
                         "default": 10
                     }
                 },
+                "required": ["user_request", "archetype_id", "core_card_ids"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "search_archetypes",
+            "description": "Search archetypes semantically using the archetype embedding space. Use this for broader archetype exploration or as a fallback comparison when the core is still unclear.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "query": {
+                        "type": "string",
+                        "description": "Natural language search query describing the desired archetype (e.g., 'fast annoying control deck', 'air beatdown', 'bridge spam with pressure')"
+                    },
+                    "limit": {
+                        "type": "integer",
+                        "description": "Maximum number of archetype results to return (default: 5)",
+                        "default": 5
+                    }
+                },
                 "required": ["query"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "get_archetype",
+            "description": "Fetch full details for a specific archetype by ID. Use this when you want to inspect the chosen archetype's description, tags, and vibes more closely before assembling the final deck.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "archetype_id": {
+                        "type": "string",
+                        "description": "The unique archetype ID"
+                    }
+                },
+                "required": ["archetype_id"]
             }
         }
     },
@@ -148,7 +233,7 @@ TOOL_SCHEMAS = [
         "type": "function",
         "function": {
             "name": "get_card",
-            "description": "Fetch complete details for a specific card by ID. Use this to verify exact stats before including a card, or to explain a card's role.",
+            "description": "Fetch complete details for a specific card by ID. Use this sparingly to verify a specific card when search results are not already sufficient; do not call it for every candidate.",
             "parameters": {
                 "type": "object",
                 "properties": {
@@ -227,11 +312,12 @@ class DeckAgent:
     LLM agent for building Clash Royale decks.
     
     Uses an agentic loop with OpenAI function calling to:
-    1. Search for archetypes semantically
-    2. Search for cards semantically
-    3. Find similar cards for swaps
-    4. Validate decks with score_deck
-    5. Present final deck with strategy
+    1. Search for high-signal candidate cards first
+    2. Select the best-fit archetype from the request plus current core cards
+    3. Search for complementary cards inside that archetype shell
+    4. Find similar cards for swaps when refining
+    5. Validate decks with score_deck
+    6. Present the final deck with strategy
     
     Args:
         model: OpenAI model to use (default: gpt-4o)
@@ -298,6 +384,9 @@ class DeckAgent:
 
 Rules:
 - Only use cards returned by tools - never invent cards
+- Search for strong core cards before selecting an archetype
+- Let the archetype follow the best current core cards
+- Use get_card sparingly; search tools already return enough data for drafting
 - Always call score_deck before presenting a final deck
 - If constraints are violated, revise and try again
 - Present the final deck with card names, elixir costs, and strategy"""
@@ -307,7 +396,8 @@ Rules:
         Execute a tool by name with the given arguments.
         
         Args:
-            name: Tool name (search_archetypes, get_archetype, search_cards,
+            name: Tool name (search_cards, select_archetype_for_core,
+                search_complementary_cards, search_archetypes, get_archetype,
                 similar_cards, get_card, score_deck)
             arguments: JSON string of arguments
             
@@ -316,7 +406,38 @@ Rules:
         """
         args = json.loads(arguments)
         
-        if name == "search_archetypes":
+        if name == "search_cards":
+            return self._tools.search_cards(
+                query=args["query"],
+                elixir_min=args.get("elixir_min"),
+                elixir_max=args.get("elixir_max"),
+                type=args.get("type"),
+                rarity=args.get("rarity"),
+                exclude_card_ids=args.get("exclude_card_ids"),
+                limit=args.get("limit", 10),
+            )
+
+        elif name == "select_archetype_for_core":
+            return self._tools.select_archetype_for_core(
+                user_request=args["user_request"],
+                core_card_ids=args["core_card_ids"],
+                limit=args.get("limit", 5),
+            )
+
+        elif name == "search_complementary_cards":
+            return self._tools.search_complementary_cards(
+                user_request=args["user_request"],
+                archetype_id=args["archetype_id"],
+                core_card_ids=args["core_card_ids"],
+                role_hint=args.get("role_hint"),
+                elixir_min=args.get("elixir_min"),
+                elixir_max=args.get("elixir_max"),
+                type=args.get("type"),
+                rarity=args.get("rarity"),
+                limit=args.get("limit", 10),
+            )
+
+        elif name == "search_archetypes":
             return self._tools.search_archetypes(
                 query=args["query"],
                 limit=args.get("limit", 5),
@@ -328,16 +449,6 @@ Rules:
                 return {"error": f"Archetype with ID {args['archetype_id']} not found"}
             return archetype
 
-        elif name == "search_cards":
-            return self._tools.search_cards(
-                query=args["query"],
-                elixir_min=args.get("elixir_min"),
-                elixir_max=args.get("elixir_max"),
-                type=args.get("type"),
-                rarity=args.get("rarity"),
-                limit=args.get("limit", 10),
-            )
-        
         elif name == "similar_cards":
             return self._tools.similar_cards(
                 card_id=args["card_id"],
