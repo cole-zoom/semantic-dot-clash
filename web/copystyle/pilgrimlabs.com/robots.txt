@@ -1,0 +1,7 @@
+# ---------------------------
+User-agent: *
+Disallow:
+Crawl-delay: 10
+
+Sitemap: https://pilgrimlabs.com/sitemap.xml
+# ---------------------------
