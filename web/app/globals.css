@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --paper: #ffffff;
+  --paper: #f8f4eb;
   --ink: #1b1b1b;
   --pencil: #6a6a6a;
   --accent: #2f78b7;
@@ -18,20 +18,51 @@
 }
 
 body {
-  background-color: var(--paper);
+  min-height: 100vh;
+  background-color: #050608;
   color: var(--ink);
   font-family: var(--font-body), serif;
-  background-image: repeating-linear-gradient(
-    0deg,
-    rgba(15, 15, 15, 0.04) 0px,
-    rgba(15, 15, 15, 0.04) 1px,
-    transparent 1px,
-    transparent 28px
-  );
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+img {
+  max-width: 100%;
 }
 
 ::selection {
   background: var(--accent-soft);
+}
+
+.overlay-shell {
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.8), rgba(244, 238, 228, 0.72)),
+    rgba(255, 255, 255, 0.68);
+  box-shadow:
+    0 30px 100px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(22px);
+}
+
+.soft-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(31, 31, 31, 0.22) transparent;
+}
+
+.soft-scrollbar::-webkit-scrollbar {
+  width: 10px;
+}
+
+.soft-scrollbar::-webkit-scrollbar-thumb {
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background-clip: padding-box;
+  background-color: rgba(31, 31, 31, 0.22);
 }
 
 .sketch-panel {
@@ -87,4 +118,45 @@ body {
 .prose h2,
 .prose h3 {
   font-family: var(--font-display), serif;
+}
+
+/* ── Title card overlay ─────────────────────────────────────────────── */
+
+.title-card {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  pointer-events: auto;
+  cursor: pointer;
+  clip-path: inset(0 100% 0 0);
+  opacity: 0.3;
+  transition:
+    clip-path 800ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 800ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.title-card-entered {
+  clip-path: inset(0 0 0 0);
+  opacity: 1;
+}
+
+.title-card-dismissed {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 600ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
